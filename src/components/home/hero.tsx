@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { HeroDashboard } from "@/components/art/hero-dashboard";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
 import { siteConfig } from "@/lib/site";
 
 const platformLogos = [
@@ -77,9 +76,13 @@ export function Hero() {
                   />
                 </svg>
               </Button>
-              <HealthCheckButton variant="ghost" size="lg" source="hero">
+              <Button
+                href={siteConfig.ctas.healthCheck.href}
+                variant="ghost"
+                size="lg"
+              >
                 Book a Health Check
-              </HealthCheckButton>
+              </Button>
             </div>
 
             <p className="mt-5 text-sm text-ink-muted">

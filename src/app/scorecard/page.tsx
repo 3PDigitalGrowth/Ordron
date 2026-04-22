@@ -6,8 +6,9 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Scorecard } from "@/components/scorecard/scorecard";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
+import { Button } from "@/components/ui/button";
 import { pillars } from "@/lib/scorecard";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Finance Automation Health Check Scorecard",
@@ -133,13 +134,13 @@ export default function ScorecardPage() {
                 </ul>
 
                 <div className="mt-8">
-                  <HealthCheckButton
+                  <Button
+                    href={siteConfig.ctas.healthCheck.href}
                     variant="primary"
                     size="lg"
-                    source="scorecard-page-cta"
                   >
                     Book your Health Check
-                  </HealthCheckButton>
+                  </Button>
                 </div>
               </div>
 

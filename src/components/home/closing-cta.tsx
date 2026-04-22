@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
 import { siteConfig } from "@/lib/site";
 
 export function ClosingCta() {
@@ -36,9 +35,13 @@ export function ClosingCta() {
             >
               Take the 5-minute Scorecard
             </Button>
-            <HealthCheckButton variant="inverse" size="lg" source="closing-cta">
+            <Button
+              href={siteConfig.ctas.healthCheck.href}
+              variant="inverse"
+              size="lg"
+            >
               Book a Health Check
-            </HealthCheckButton>
+            </Button>
           </div>
         </div>
       </Container>

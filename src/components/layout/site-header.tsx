@@ -3,7 +3,6 @@ import { siteConfig } from "@/lib/site";
 import { Wordmark } from "@/components/brand/wordmark";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
 
 export function SiteHeader() {
   return (
@@ -41,9 +40,13 @@ export function SiteHeader() {
           >
             {siteConfig.ctas.scorecard.label}
           </Button>
-          <HealthCheckButton variant="primary" size="md" source="site-header">
+          <Button
+            href={siteConfig.ctas.healthCheck.href}
+            variant="primary"
+            size="md"
+          >
             {siteConfig.ctas.healthCheck.label}
-          </HealthCheckButton>
+          </Button>
         </div>
       </Container>
     </header>

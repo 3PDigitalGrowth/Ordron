@@ -3,29 +3,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Button } from "@/components/ui/button";
-
-type Platform = {
-  name: string;
-  slug: string;
-  shortLabel: string;
-  detail: string;
-};
-
-const platforms: Platform[] = [
-  { name: "Xero", slug: "xero-automation", shortLabel: "Xero", detail: "AP, AR, GL, bank" },
-  { name: "MYOB", slug: "myob-automation", shortLabel: "MYOB", detail: "AP, AR, payroll" },
-  { name: "QuickBooks", slug: "quickbooks-automation", shortLabel: "QuickBooks", detail: "SMB AP and GL" },
-  { name: "NetSuite", slug: "netsuite-automation", shortLabel: "NetSuite", detail: "ERP AP, AR, close" },
-  { name: "SAP", slug: "sap-automation", shortLabel: "SAP", detail: "Mid-market ERP" },
-  { name: "Dynamics 365", slug: "dynamics-automation", shortLabel: "Dynamics", detail: "F&O and BC" },
-  { name: "Hubdoc", slug: "hubdoc-automation", shortLabel: "Hubdoc", detail: "Document capture" },
-  { name: "Dext", slug: "dext-automation", shortLabel: "Dext", detail: "Receipts and bills" },
-  { name: "SAP Concur", slug: "concur-automation", shortLabel: "Concur", detail: "Expense" },
-  { name: "Excel", slug: "excel-automation", shortLabel: "Excel", detail: "Model and workbook" },
-  { name: "Bank feeds", slug: "bank-automation", shortLabel: "Bank", detail: "Portals and feeds" },
-  { name: "Outlook", slug: "outlook-automation", shortLabel: "Outlook", detail: "Email workflow" },
-  { name: "Power BI", slug: "power-bi-automation", shortLabel: "Power BI", detail: "Reporting layer" },
-];
+import { platforms } from "@/lib/platforms";
 
 export function Platforms() {
   return (

@@ -1,7 +1,8 @@
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site";
 
 type Step = {
   number: string;
@@ -129,14 +130,14 @@ export function HealthCheck() {
             </ul>
 
             <div className="mt-7 border-t border-line-soft pt-6">
-              <HealthCheckButton
+              <Button
+                href={siteConfig.ctas.healthCheck.href}
                 variant="primary"
                 size="lg"
-                source="home-health-check"
                 className="w-full"
               >
                 Book your Health Check
-              </HealthCheckButton>
+              </Button>
               <p className="mt-3 text-center text-xs text-ink-muted">
                 Fixed scope. No obligation. Typically within 7 working days.
               </p>

@@ -3,25 +3,37 @@ import { siteConfig } from "@/lib/site";
 import { Wordmark } from "@/components/brand/wordmark";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { HealthCheckButton } from "@/components/health-check/health-check-button";
+import { footerPlatforms } from "@/lib/platforms";
 
 const footerNav = [
   {
-    heading: "Automation",
+    heading: "Automation guides",
     links: [
-      { label: "Accounts Payable", href: "/services/accounts-payable" },
-      { label: "Accounts Receivable", href: "/services/accounts-receivable" },
-      { label: "Reconciliations", href: "/services/reconciliations" },
-      { label: "Reporting & Month-End", href: "/services/reporting" },
+      {
+        label: "Accounts Payable",
+        href: "/guides/accounts-payable-automation",
+      },
+      {
+        label: "Accounts Receivable",
+        href: "/guides/accounts-receivable-automation",
+      },
+      {
+        label: "Reconciliations",
+        href: "/guides/reconciliations-automation",
+      },
+      {
+        label: "Month-End Close",
+        href: "/guides/month-end-close-automation",
+      },
     ],
   },
   {
     heading: "Platforms",
     links: [
-      { label: "Xero", href: "/platforms/xero-automation" },
-      { label: "MYOB", href: "/platforms/myob-automation" },
-      { label: "QuickBooks", href: "/platforms/quickbooks-automation" },
-      { label: "NetSuite", href: "/platforms/netsuite-automation" },
+      ...footerPlatforms.map((p) => ({
+        label: p.shortLabel,
+        href: `/platforms/${p.slug}`,
+      })),
       { label: "All platforms", href: "/platforms" },
     ],
   },
@@ -30,7 +42,6 @@ const footerNav = [
     links: [
       { label: "About", href: "/about" },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Insights", href: "/insights" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -51,9 +62,12 @@ export function SiteFooter() {
               <Button href={siteConfig.ctas.scorecard.href} variant="inverse">
                 {siteConfig.ctas.scorecard.label}
               </Button>
-              <HealthCheckButton variant="primary" source="site-footer">
+              <Button
+                href={siteConfig.ctas.healthCheck.href}
+                variant="primary"
+              >
                 {siteConfig.ctas.healthCheck.label}
-              </HealthCheckButton>
+              </Button>
             </div>
           </div>
 

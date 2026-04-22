@@ -12,10 +12,8 @@ export const siteConfig = {
   abn: "TBD",
   email: "hello@ordron.com",
   nav: [
-    { label: "Services", href: "/services" },
     { label: "Platforms", href: "/platforms" },
     { label: "Case Studies", href: "/case-studies" },
-    { label: "Insights", href: "/insights" },
     { label: "About", href: "/about" },
   ],
   ctas: {
