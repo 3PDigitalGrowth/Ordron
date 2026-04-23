@@ -34,10 +34,10 @@ export function PlatformCalculator({ platform }: Props) {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-              Slide in your team size, invoice volume and close duration. The
-              headline number is always visible. Enter your email to unlock
-              the full line-by-line breakdown and the top three automations
-              for {platform.name}.
+              Slide in your team size, invoice volume and close duration.
+              The headline number and the line-by-line breakdown are
+              always visible. Enter your email to unlock the top three
+              automations for {platform.name} and the written roadmap PDF.
             </p>
           </Reveal>
         </div>
@@ -49,7 +49,8 @@ export function PlatformCalculator({ platform }: Props) {
             defaultPlatformSlug={platform.slug}
             eyebrow={`${platform.name} calculator`}
             heading={`The ${platform.name} hours, in dollars.`}
-            intro={`Pre-set to ${platform.name}. Change team size and volume to match yours. Full written breakdown emailed on request.`}
+            intro={`Pre-set to ${platform.name}. Change team size and volume to match yours. Written roadmap PDF emailed on request.`}
+            gateLevel="light"
           />
         </Reveal>
       </Container>

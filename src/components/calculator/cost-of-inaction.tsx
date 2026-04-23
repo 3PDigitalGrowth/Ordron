@@ -35,6 +35,20 @@ import {
 
 type Variant = "card" | "hero" | "compact";
 
+/**
+ * Gate aggressiveness:
+ *   - "full" (default): blur both the line-by-line breakdown and the top
+ *     three automations until the email is captured. Use on the standalone
+ *     /cost-of-inaction page and the /platforms index where the calculator
+ *     is effectively the whole page.
+ *   - "light": always show the headline cost and the "Where the waste
+ *     lives" breakdown; only gate the "Top three automations" deep dive
+ *     plus the emailed PDF roadmap. Use on long-form platform hub pages
+ *     where the calculator is one section and hiding core output before
+ *     the user has scanned the page creates premature friction.
+ */
+type GateLevel = "full" | "light";
+
 type Props = {
   variant?: Variant;
   /** Override the starting platform (e.g. on /platforms/xero-automation). */
@@ -47,6 +61,8 @@ type Props = {
   heading?: string;
   /** Optional sub-copy under the heading. */
   intro?: string;
+  /** How much of the results column to gate behind the email capture. */
+  gateLevel?: GateLevel;
   className?: string;
 };
 
@@ -63,6 +79,7 @@ export function CostOfInactionCalculator({
   eyebrow = "Cost of inaction calculator",
   heading = "See exactly what manual finance is costing your team.",
   intro = "Slide the four inputs. The headline updates live. Enter your email to unlock the line-by-line breakdown and the prioritised roadmap.",
+  gateLevel = "full",
   className,
 }: Props) {
   const [inputs, setInputs] = useState<CalculatorInputs>({
@@ -254,7 +271,7 @@ export function CostOfInactionCalculator({
             </p>
           </div>
 
-          {/* Gated content: blurred breakdown + automations, overlaid email gate */}
+          {/* Gated content: breakdown + automations, overlaid email gate */}
           <GatedDetail
             unlocked={unlocked}
             result={result}
@@ -268,6 +285,7 @@ export function CostOfInactionCalculator({
             setCompany={setCompany}
             onSubmit={onSubmit}
             idPrefix={id("gate")}
+            gateLevel={gateLevel}
           />
 
           {unlocked ? (
@@ -459,6 +477,7 @@ type GatedDetailProps = {
   setCompany: (v: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   idPrefix: string;
+  gateLevel: GateLevel;
 };
 
 function GatedDetail({
@@ -474,37 +493,84 @@ function GatedDetail({
   setCompany,
   onSubmit,
   idPrefix,
+  gateLevel,
 }: GatedDetailProps) {
-  return (
-    <div className="relative">
-      <div
-        className={cn(
-          "flex flex-col gap-6 transition-[filter,opacity] duration-500",
-          !unlocked && "blur-[6px] select-none",
-        )}
-        aria-hidden={!unlocked}
-        inert={!unlocked}
-      >
-        <BreakdownList result={result} />
-        <AutomationsList automations={result.automations} />
-      </div>
+  const gateBreakdown = gateLevel === "full" && !unlocked;
+  const gateAutomations = !unlocked;
 
-      {!unlocked ? (
-        <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
-          <EmailGateCard
-            state={submitState}
-            email={email}
-            name={name}
-            company={company}
-            setEmail={setEmail}
-            setName={setName}
-            setCompany={setCompany}
-            onSubmit={onSubmit}
-            idPrefix={idPrefix}
-            platformLabel={platformLabel}
-          />
+  // Full-gate behaviour: single blur surface covering breakdown + automations,
+  // email card floats in the centre. Kept intact so /cost-of-inaction and the
+  // /platforms index render exactly as before.
+  if (gateLevel === "full") {
+    return (
+      <div className="relative">
+        <div
+          className={cn(
+            "flex flex-col gap-6 transition-[filter,opacity] duration-500",
+            gateBreakdown && "blur-[6px] select-none",
+          )}
+          aria-hidden={gateBreakdown}
+          inert={gateBreakdown}
+        >
+          <BreakdownList result={result} />
+          <AutomationsList automations={result.automations} />
         </div>
-      ) : null}
+
+        {!unlocked ? (
+          <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
+            <EmailGateCard
+              state={submitState}
+              email={email}
+              name={name}
+              company={company}
+              setEmail={setEmail}
+              setName={setName}
+              setCompany={setCompany}
+              onSubmit={onSubmit}
+              idPrefix={idPrefix}
+              platformLabel={platformLabel}
+            />
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  // Light-gate behaviour (platform hub embeds): breakdown is always readable,
+  // only the automations deep dive + emailed PDF sits behind the email gate.
+  return (
+    <div className="flex flex-col gap-6">
+      <BreakdownList result={result} />
+
+      <div className="relative">
+        <div
+          className={cn(
+            "transition-[filter,opacity] duration-500",
+            gateAutomations && "blur-[6px] select-none",
+          )}
+          aria-hidden={gateAutomations}
+          inert={gateAutomations}
+        >
+          <AutomationsList automations={result.automations} />
+        </div>
+
+        {!unlocked ? (
+          <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
+            <EmailGateCard
+              state={submitState}
+              email={email}
+              name={name}
+              company={company}
+              setEmail={setEmail}
+              setName={setName}
+              setCompany={setCompany}
+              onSubmit={onSubmit}
+              idPrefix={idPrefix}
+              platformLabel={platformLabel}
+            />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
