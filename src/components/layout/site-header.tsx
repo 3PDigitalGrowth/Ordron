@@ -16,7 +16,7 @@ export function SiteHeader() {
           <Wordmark priority />
         </Link>
 
-        <div className="hidden flex-1 md:flex">
+        <div className="hidden flex-1 lg:flex">
           <MegaMenu />
         </div>
 

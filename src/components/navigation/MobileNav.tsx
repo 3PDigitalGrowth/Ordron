@@ -63,7 +63,7 @@ export function MobileNav() {
   }, [open]);
 
   return (
-    <div className="flex items-center md:hidden">
+    <div className="flex items-center lg:hidden">
       <button
         ref={triggerRef}
         type="button"
