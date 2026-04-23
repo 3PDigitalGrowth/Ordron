@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { HeroDashboard } from "@/components/art/hero-dashboard";
+import { PlatformLogo } from "@/components/brand/platform-logo";
 import { siteConfig } from "@/lib/site";
 import { platforms } from "@/lib/platforms";
 
@@ -92,23 +93,26 @@ export function Hero() {
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
             Built for Australian finance teams running on
           </p>
-          <ul className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-3">
+          <ul className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-5">
             {platforms.map((p) => (
               <li
                 key={p.slug}
-                className="font-display text-base font-semibold text-ink-faint transition-colors hover:text-ink sm:text-lg"
+                className="text-ink-faint transition-colors hover:text-ink"
               >
                 <Link
                   href={`/platforms/${p.slug}`}
-                  className="tracking-tight"
+                  aria-label={`${p.name} automation`}
+                  title={p.name}
+                  className="group inline-flex items-center rounded-sm outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[color:var(--ordron-blue)]"
                 >
-                  {p.shortLabel}
+                  <PlatformLogo slug={p.slug} label={p.name} />
                 </Link>
               </li>
             ))}
-            <li className="font-display text-base font-semibold text-ink-faint transition-colors hover:text-ink sm:text-lg">
-              <Link href="/platforms" className="tracking-tight">
+            <li className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-ink">
+              <Link href="/platforms" className="inline-flex items-center gap-1">
                 See all platforms
+                <span aria-hidden>→</span>
               </Link>
             </li>
           </ul>

@@ -92,6 +92,17 @@
     text-rendering: optimizeLegibility;
   }
 
+  /*
+    Smooth scroll for in-page anchor jumps (mega-menu Results column,
+    table-of-contents links, etc). Disabled when the user has reduced
+    motion set at the OS level.
+  */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     background: var(--ordron-surface);
     color: var(--ordron-ink);

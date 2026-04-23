@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ordron
 
-## Getting Started
+Finance automation infrastructure for Australian mid-market businesses. Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, and Framer Motion.
 
-First, run the development server:
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and populate the values you need. No environment variable is required to run the site locally; they only gate the specific integrations listed below.
 
-## Learn More
+### Contact form (Resend)
 
-To learn more about Next.js, take a look at the following resources:
+The `/contact` form posts to `/api/contact`, which does three things in order:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Validate** the payload (manual validation, matching the other Ordron capture routes).
+2. **Append** the submission to `.data/contact-submissions.jsonl` on disk, so no lead is ever lost if email dispatch fails.
+3. **Send** an email via [Resend](https://resend.com) when `RESEND_API_KEY` is configured. A failure here is logged and the handler still returns success, because the on-disk record is enough to recover from.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Environment variables:
 
-## Deploy on Vercel
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API key. When unset, submissions are logged to disk only and a warning is logged to the server console. |
+| `CONTACT_INBOX_EMAIL` | Destination address for contact notifications. Defaults to `hello@ordron.com`. |
+| `CONTACT_FROM_EMAIL` | "From" header on outbound notifications. Must be a verified sender on the Resend domain. Defaults to `Ordron Contact <hello@ordron.com>`. |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Spam protection
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The contact route layers three defences:
+
+- **Honeypot field** (`company_url`). If populated, the handler returns success silently.
+- **Time trap.** Submissions under two seconds from form mount are treated as bots and dropped silently.
+- **Rate limit.** Five submissions per IP per hour. Implemented in-memory at `src/lib/rate-limit.ts` and shared across other forms. Because state lives in a module-level Map, this resets on every serverless cold start and is not shared across instances. Swap for `@upstash/ratelimit` (or equivalent) when the site graduates to multi-instance production traffic.
+
+## Deployment
+
+Deploy to [Vercel](https://vercel.com/new). Add the environment variables above under Project Settings > Environment Variables.

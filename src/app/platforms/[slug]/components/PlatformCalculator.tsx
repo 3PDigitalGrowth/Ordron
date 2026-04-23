@@ -50,7 +50,6 @@ export function PlatformCalculator({ platform }: Props) {
             eyebrow={`${platform.name} calculator`}
             heading={`The ${platform.name} hours, in dollars.`}
             intro={`Pre-set to ${platform.name}. Change team size and volume to match yours. Written roadmap PDF emailed on request.`}
-            gateLevel="light"
           />
         </Reveal>
       </Container>
