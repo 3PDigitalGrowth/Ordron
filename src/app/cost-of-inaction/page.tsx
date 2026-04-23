@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Container } from "@/components/ui/container";
@@ -165,7 +166,15 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
                 Ballpark numbers tell you whether to bother. A real answer
                 needs sixty minutes with your workflows. The Health Check does
                 exactly that, with a written report and a prioritised roadmap
-                delivered within 48 hours.
+                delivered within 48 hours. If you want the full reference
+                first, read{" "}
+                <Link
+                  href="/finance-automation-australia"
+                  className="font-semibold text-[color:var(--ordron-blue-deep)] hover:underline"
+                >
+                  Finance automation in Australia
+                </Link>
+                .
               </p>
             </div>
 

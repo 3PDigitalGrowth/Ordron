@@ -14,33 +14,31 @@ import {
   getCaseStudyBySlug,
   getRelatedCaseStudies,
 } from "@/lib/case-studies";
+import { getPlatformBySlug } from "@/lib/platforms";
 import { siteConfig } from "@/lib/site";
 
-type PageParams = { slug: string };
+type CaseStudyPageProps = {
+  params: Promise<{ slug: string }>;
+};
 
-export function generateStaticParams(): PageParams[] {
+export async function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<PageParams>;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: CaseStudyPageProps,
+): Promise<Metadata> {
   const { slug } = await params;
   const study = getCaseStudyBySlug(slug);
-  if (!study) {
-    return {
-      title: "Case study not found",
-    };
-  }
+  if (!study) return { title: "Case study not found" };
+
   return {
     title: study.metaTitle,
     description: study.metaDescription,
     alternates: { canonical: `/case-studies/${study.slug}` },
     openGraph: {
-      title: study.title,
-      description: study.summary,
+      title: study.metaTitle,
+      description: study.metaDescription,
       url: `/case-studies/${study.slug}`,
       type: "article",
     },
@@ -49,14 +47,15 @@ export async function generateMetadata({
 
 export default async function CaseStudyDetailPage({
   params,
-}: {
-  params: Promise<PageParams>;
-}) {
+}: CaseStudyPageProps) {
   const { slug } = await params;
   const study = getCaseStudyBySlug(slug);
   if (!study) notFound();
 
-  const related = getRelatedCaseStudies(slug);
+  const related = getRelatedCaseStudies(study.slug);
+  const calculatorPlatform = study.calculatorPlatformSlug
+    ? getPlatformBySlug(study.calculatorPlatformSlug)
+    : undefined;
 
   return (
     <>
@@ -69,26 +68,12 @@ export default async function CaseStudyDetailPage({
             className="pointer-events-none absolute inset-x-0 -top-32 h-96"
             style={{
               backgroundImage:
-                "radial-gradient(at 50% 20%, rgba(0,171,255,0.12), transparent 65%)",
+                "radial-gradient(at 20% 20%, rgba(0,171,255,0.12), transparent 65%)",
             }}
           />
           <Container className="relative">
-            <nav
-              aria-label="Breadcrumb"
-              className="mb-6 text-sm text-ink-muted"
-            >
-              <ol className="flex flex-wrap items-center gap-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-[color:var(--ordron-blue)]"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden className="text-ink-faint">
-                  /
-                </li>
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
                 <li>
                   <Link
                     href="/case-studies"
@@ -100,100 +85,129 @@ export default async function CaseStudyDetailPage({
                 <li aria-hidden className="text-ink-faint">
                   /
                 </li>
-                <li className="text-ink">{study.cardTitle}</li>
+                <li className="text-ink">{study.industry}</li>
               </ol>
             </nav>
 
-            <div className="max-w-3xl">
-              <div className="flex flex-wrap items-center gap-2">
-                <Badge tone="brand">{study.industry}</Badge>
-                {study.tags.slice(0, 3).map((t) => (
-                  <Badge key={t} tone="neutral">
-                    {t}
-                  </Badge>
-                ))}
-              </div>
-
-              <h1 className="mt-6 text-balance">{study.title}</h1>
-
-              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-                {study.summary}
-              </p>
-
-              <p className="mt-6 text-sm uppercase tracking-[0.14em] text-ink-muted">
-                {study.companyDescriptor}
-              </p>
-
-              <p className="mt-10 font-display text-3xl font-semibold tracking-tight text-[color:var(--ordron-blue)] sm:text-4xl">
-                {study.headlineStat}
-              </p>
-            </div>
-
-            {/* Client profile panel */}
-            <dl className="mt-14 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-line bg-surface p-5">
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                  Industry
-                </dt>
-                <dd className="mt-2 font-display text-base font-semibold text-ink">
-                  {study.industry}
-                </dd>
-              </div>
-              <div className="rounded-2xl border border-line bg-surface p-5">
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                  Platforms involved
-                </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-ink">
-                  {study.platforms.join(", ")}
-                </dd>
-              </div>
-              <div className="rounded-2xl border border-line bg-surface p-5">
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                  Automation focus
-                </dt>
-                <dd className="mt-2 flex flex-wrap gap-1.5">
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-16">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge tone="brand">{study.industry}</Badge>
                   {study.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full bg-surface-2 px-2 py-0.5 text-[11px] font-medium text-ink-soft"
+                      className="rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-medium text-ink-soft"
                     >
                       {t}
                     </span>
                   ))}
-                </dd>
+                </div>
+
+                <h1 className="mt-6 text-balance">{study.title}</h1>
+
+                <p className="mt-5 text-[15px] uppercase tracking-[0.14em] text-[color:var(--ordron-blue)]">
+                  {study.headlineStat}
+                </p>
+
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+                  {study.summary}
+                </p>
+
+                <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
+                  {study.companyDescriptor}
+                </p>
+
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <Button
+                    href={siteConfig.ctas.healthCheck.href}
+                    variant="primary"
+                    size="md"
+                  >
+                    Book a Health Check
+                  </Button>
+                  <Button
+                    href={siteConfig.ctas.scorecard.href}
+                    variant="ghost"
+                    size="md"
+                  >
+                    Score your own stack
+                  </Button>
+                </div>
               </div>
-            </dl>
+
+              {/* At a glance panel */}
+              <aside
+                aria-label="At a glance"
+                className="h-max rounded-3xl border border-line bg-surface-2 p-6 sm:p-8"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+                  At a glance
+                </p>
+
+                <dl className="mt-5 space-y-5 text-sm">
+                  <div>
+                    <dt className="text-ink-muted">Industry</dt>
+                    <dd className="mt-1 font-medium text-ink">
+                      {study.industry}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-muted">Platforms involved</dt>
+                    <dd className="mt-1 font-medium text-ink">
+                      {study.platforms.join(", ")}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-muted">Headline outcome</dt>
+                    <dd className="mt-1 font-medium text-ink">
+                      {study.headlineStat}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-ink-muted">Focus areas</dt>
+                    <dd className="mt-2 flex flex-wrap gap-1.5">
+                      {study.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-ink-soft"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                </dl>
+              </aside>
+            </div>
           </Container>
         </Section>
 
         {/* Challenge */}
         <Section tone="surface-2" size="md">
           <Container width="narrow">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:gap-16">
+            <div className="grid gap-10 md:grid-cols-[180px_minmax(0,1fr)]">
               <div>
-                <Eyebrow>The challenge</Eyebrow>
-                <h2 className="mt-4 text-balance">Where hours were going.</h2>
+                <Eyebrow>01 · Challenge</Eyebrow>
+                <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  Where they started.
+                </h2>
               </div>
-              <div>
-                <ul className="space-y-5">
-                  {study.challenge.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="flex gap-4 rounded-2xl border border-line bg-surface p-5"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#FFF6E6] text-xs font-semibold text-[#9B6A10]"
-                      >
-                        {idx + 1}
-                      </span>
-                      <p className="text-[15px] leading-relaxed text-ink-soft">
-                        {item}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-4">
+                {study.challenge.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-4 rounded-2xl border border-line bg-surface p-5"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-1 h-5 w-5 shrink-0 rounded-full bg-[#FFF6E6] ring-1 ring-[color:var(--ordron-amber)]/30"
+                    />
+                    <p className="text-[15px] leading-relaxed text-ink">
+                      {item}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </Container>
         </Section>
@@ -201,47 +215,52 @@ export default async function CaseStudyDetailPage({
         {/* Solution */}
         <Section tone="surface" size="md">
           <Container width="narrow">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,220px)_minmax(0,1fr)] lg:gap-16">
+            <div className="grid gap-10 md:grid-cols-[180px_minmax(0,1fr)]">
               <div>
-                <Eyebrow>The solution</Eyebrow>
-                <h2 className="mt-4 text-balance">What Ordron shipped.</h2>
+                <Eyebrow>02 · Solution</Eyebrow>
+                <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  What Ordron shipped.
+                </h2>
               </div>
               <div>
                 <p className="text-[17px] leading-relaxed text-ink">
                   {study.solution.lead}
                 </p>
+
                 <ul className="mt-8 space-y-3">
-                  {study.solution.bullets.map((b, idx) => (
-                    <li
-                      key={idx}
-                      className="flex gap-3 rounded-2xl border border-line bg-surface-2 p-5"
-                    >
-                      <span
+                  {study.solution.bullets.map((b, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
                         aria-hidden
-                        className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--ordron-blue)] text-white"
+                        className="mt-0.5 shrink-0 text-[color:var(--ordron-blue)]"
                       >
-                        <svg
-                          width="11"
-                          height="11"
-                          viewBox="0 0 11 11"
-                          aria-hidden
-                        >
-                          <path
-                            d="M1.5 5.5 4 8l5.5-5.5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <p className="text-[15px] leading-relaxed text-ink">
+                        <path
+                          d="M4.5 10.5l3.25 3.25L15.5 6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                        />
+                      </svg>
+                      <span className="text-[15px] leading-relaxed text-ink-soft">
                         {b}
-                      </p>
+                      </span>
                     </li>
                   ))}
                 </ul>
+
+                <div className="mt-10 rounded-2xl border border-line bg-surface-2 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+                    Platforms involved
+                  </p>
+                  <p className="mt-2 text-[15px] text-ink">
+                    {study.platforms.join(" · ")}
+                  </p>
+                </div>
               </div>
             </div>
           </Container>
@@ -251,79 +270,76 @@ export default async function CaseStudyDetailPage({
         <Section tone="surface-2" size="md">
           <Container>
             <div className="max-w-2xl">
-              <Eyebrow>The impact</Eyebrow>
-              <h2 className="mt-4 text-balance">
+              <Eyebrow>03 · Impact</Eyebrow>
+              <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                 What changed after go-live.
               </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+                Every figure below is a number the client saw, not an
+                aspirational projection.
+              </p>
             </div>
 
-            <dl className="mt-12 grid gap-5 sm:grid-cols-3">
-              {study.impact.stats.map((s) => (
+            <dl className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {study.impact.stats.map((s, i) => (
                 <div
-                  key={s.label}
-                  className="rounded-2xl border border-line bg-surface p-8"
+                  key={`${s.label}-${i}`}
+                  className="rounded-2xl border border-[color:var(--ordron-teal)]/30 bg-mint p-6"
                 >
-                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--ordron-teal)]">
                     {s.label}
                   </dt>
-                  <dd className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl numeric">
+                  <dd className="mt-3 font-display text-3xl font-semibold tracking-tight text-ink numeric">
                     {s.value}
                   </dd>
                 </div>
               ))}
             </dl>
 
-            <ul className="mt-10 space-y-3">
-              {study.impact.bullets.map((b, idx) => (
+            <ul className="mt-12 grid gap-5 md:grid-cols-3">
+              {study.impact.bullets.map((b, i) => (
                 <li
-                  key={idx}
-                  className="flex gap-3 rounded-2xl border border-line bg-surface p-5"
+                  key={i}
+                  className="rounded-2xl border border-line bg-surface p-6"
                 >
                   <span
                     aria-hidden
-                    className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--ordron-teal)]/15 text-[color:var(--ordron-teal)]"
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[color:var(--ordron-blue)]/10 text-[13px] font-semibold text-[color:var(--ordron-blue)] numeric"
                   >
-                    <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden>
-                      <path
-                        d="M1.5 5.5 4 8l5.5-5.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    {i + 1}
                   </span>
-                  <p className="text-[15px] leading-relaxed text-ink">{b}</p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-ink">
+                    {b}
+                  </p>
                 </li>
               ))}
             </ul>
           </Container>
         </Section>
 
-        {/* Cost of inaction calculator — platform-aware where possible */}
+        {/* Cost of Inaction (contextual) */}
         <Section tone="surface" size="md">
           <Container>
             <div className="mx-auto max-w-2xl text-center">
-              <Eyebrow>What about your team?</Eyebrow>
+              <Eyebrow>What it could look like for you</Eyebrow>
               <h2 className="mt-4 text-balance">
-                Get your own annual cost of manual finance.
+                Run the numbers for your own finance stack.
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                {study.calculatorPlatformSlug
-                  ? `Pre-populated for the platform in this case study. Change it if your stack is different.`
-                  : `Drop your platform and team size in below. You get a headline number, likely payback, and the three automations that would move the needle on your stack.`}
+                {calculatorPlatform
+                  ? `Pre-set to ${calculatorPlatform.name}. Change platform and team size to match yours.`
+                  : "Pick your platform and team size. The calculator returns an annual cost of manual finance and a likely payback window."}
               </p>
             </div>
 
             <div className="mx-auto mt-12 max-w-6xl">
               <CostOfInactionCalculator
                 variant="hero"
-                source={`case-study-${study.slug}`}
+                source={`case-study:${study.slug}`}
+                defaultPlatformSlug={study.calculatorPlatformSlug}
                 eyebrow="Calculator"
                 heading="Your stack, your number."
                 intro="Full written breakdown emailed on request."
-                defaultPlatformSlug={study.calculatorPlatformSlug}
               />
             </div>
           </Container>
@@ -335,35 +351,63 @@ export default async function CaseStudyDetailPage({
             <Container>
               <div className="max-w-2xl">
                 <Eyebrow>Related case studies</Eyebrow>
-                <h2 className="mt-4 text-balance">
-                  Similar stacks, similar outcomes.
+                <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  Closest pattern matches.
                 </h2>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+                  Different industries, similar shape of problem.
+                </p>
               </div>
 
-              <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {related.map((c) => (
-                  <li key={c.slug}>
+              <ul className="mt-10 grid gap-5 md:grid-cols-3">
+                {related.map((r) => (
+                  <li key={r.slug}>
                     <Link
-                      href={`/case-studies/${c.slug}`}
+                      href={`/case-studies/${r.slug}`}
                       className="group flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-[color:var(--ordron-blue)]/30 hover:shadow-soft"
                     >
-                      <Badge tone="brand">{c.industry}</Badge>
+                      <div className="flex items-center justify-between gap-3">
+                        <Badge tone="brand">{r.industry}</Badge>
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 20 20"
+                          aria-hidden
+                          className="shrink-0 text-ink-faint transition-colors group-hover:text-[color:var(--ordron-blue)]"
+                        >
+                          <path
+                            d="M4 10h12m0 0-5-5m5 5-5 5"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            fill="none"
+                          />
+                        </svg>
+                      </div>
                       <h3 className="mt-5 font-display text-lg font-semibold tracking-tight text-ink">
-                        {c.cardTitle}
+                        {r.cardTitle}
                       </h3>
-                      <p className="mt-3 text-[13px] uppercase tracking-[0.12em] text-[color:var(--ordron-blue)]">
-                        {c.headlineStat}
+                      <p className="mt-3 text-[12px] uppercase tracking-[0.12em] text-[color:var(--ordron-blue)]">
+                        {r.headlineStat}
                       </p>
                       <p className="mt-3 text-[14px] leading-relaxed text-ink-soft">
-                        {c.summary}
+                        {r.summary}
                       </p>
-                      <span className="mt-auto pt-6 text-sm font-semibold text-ink group-hover:text-[color:var(--ordron-blue)]">
-                        Read the case study →
-                      </span>
                     </Link>
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-10">
+                <Link
+                  href="/case-studies"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-[color:var(--ordron-blue)]"
+                >
+                  <span aria-hidden>←</span>
+                  Back to all case studies
+                </Link>
+              </div>
             </Container>
           </Section>
         )}
@@ -382,29 +426,29 @@ export default async function CaseStudyDetailPage({
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
               <div className="max-w-2xl">
                 <h2 className="text-balance text-white">
-                  Want a result like this for your finance team?
+                  Want a result like this one?
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  The Health Check is the shortest path to a named automation
-                  plan on your platform. You get a written report with
-                  specific workflows, the hours they remove, and a payback
-                  estimate, whether you engage Ordron or not.
+                  The Scorecard takes five minutes and surfaces where your
+                  stack is leaking hours. The Health Check goes deeper and
+                  gives you a written report with specific automations named,
+                  whether you engage Ordron or not.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
-                  href={siteConfig.ctas.healthCheck.href}
+                  href={siteConfig.ctas.scorecard.href}
                   variant="primary"
                   size="lg"
                 >
-                  Book a Health Check
+                  Take the Scorecard
                 </Button>
                 <Button
-                  href={siteConfig.ctas.scorecard.href}
+                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Take the Scorecard
+                  Book a Health Check
                 </Button>
               </div>
             </div>

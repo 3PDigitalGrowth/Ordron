@@ -24,7 +24,9 @@ export type CaseStudyTagKind =
   | "Risk & compliance"
   | "Legacy systems"
   | "Dashboards"
-  | "Mobile";
+  | "Mobile"
+  | "Custom software"
+  | "Data integration";
 
 export type CaseStudyIndustry =
   | "Logistics"
@@ -33,7 +35,8 @@ export type CaseStudyIndustry =
   | "Construction"
   | "Industrial Services"
   | "Legal"
-  | "Financial Services";
+  | "Financial Services"
+  | "Professional Services";
 
 export type CaseStudyStat = {
   /** The headline value, e.g., "85%", "160+ hours", "4 hrs → 15 min". */
@@ -199,7 +202,7 @@ export const caseStudies: CaseStudy[] = [
     metaTitle:
       "Case study: Distribution group moves from overnight reporting to on-demand",
     metaDescription:
-      "How Ordron compiled daily management packs from Xero, a transport management system and Excel exports — delivered to department heads before 8 a.m.",
+      "How Ordron compiled daily management packs from Xero, a transport management system and Excel exports, delivered to department heads before 8 a.m.",
     challenge: [
       "Daily performance reports were compiled by hand each morning.",
       "Data was pulled separately from Xero, the transport management system, and a set of spreadsheets.",
@@ -464,7 +467,7 @@ export const caseStudies: CaseStudy[] = [
         "Audit conversations became straightforward because the evidence was already there.",
       ],
     },
-    relatedSlugs: ["legal-ai-contracts", "industrial-mobile-procurement"],
+    relatedSlugs: ["legal-ai-contracts", "asset-mgmt-data-integration"],
   },
 
   {
@@ -479,7 +482,7 @@ export const caseStudies: CaseStudy[] = [
     calculatorPlatformSlug: "xero-automation",
     headlineStat: "160+ hours per month saved",
     summary:
-      "RPA bot that drives a legacy ERP interface, validates with SQL, and syncs clean data into Xero and reporting dashboards — without replacing the ERP.",
+      "RPA bot that drives a legacy ERP interface, validates with SQL, and syncs clean data into Xero and reporting dashboards, without replacing the ERP.",
     metaTitle:
       "Case study: Family-owned logistics operator bridges a 20-year-old ERP with RPA",
     metaDescription:
@@ -512,7 +515,413 @@ export const caseStudies: CaseStudy[] = [
         "The team got the ERP replacement benefit without the ERP replacement cost.",
       ],
     },
-    relatedSlugs: ["freight-xero-ar", "distribution-ondemand-reporting"],
+    relatedSlugs: ["freight-xero-ar", "manufacturing-multi-system-flows"],
+  },
+
+  {
+    slug: "manufacturing-multi-system-flows",
+    title: "Mid-sized manufacturer: multi-system data flows",
+    cardTitle: "Multi-system data flows",
+    industry: "Manufacturing",
+    companyDescriptor:
+      "Mid-sized manufacturer running finance in Xero, a custom inventory tracker and Excel forecasting models.",
+    tags: ["Reporting", "RPA", "Dashboards", "Data integration"],
+    platforms: ["Xero", "Custom inventory", "Excel", "SQL"],
+    calculatorPlatformSlug: "xero-automation",
+    headlineStat: "Monthly close cycle cut by 80%",
+    summary:
+      "Hybrid RPA and rule-based transforms consolidate Xero, a custom inventory tracker and Excel forecasts into a single SQL-backed reporting layer.",
+    metaTitle:
+      "Case study: Mid-sized manufacturer cuts monthly close cycle by 80% with multi-system data flows",
+    metaDescription:
+      "How Ordron used RPA and rule-based transformations to unify Xero, a custom inventory tracker and Excel forecasting into a single SQL-backed reporting layer for a mid-sized manufacturer.",
+    challenge: [
+      "Finance lived in Xero, inventory lived in a custom tracker with no API, and forecasting lived in Excel.",
+      "Staff copied data between systems by hand, which kept forecasts out of step with the finance numbers.",
+      "Monthly management packs took two to three days to compile.",
+      "Production planning was always working off slightly stale data.",
+    ],
+    solution: {
+      lead:
+        "Ordron designed a hybrid automation workflow that unified the three sources without rebuilding any of them.",
+      bullets: [
+        "RPA drove the custom inventory tracker where no API existed, on a schedule.",
+        "Rule-based transformations aligned finance and operations data against a shared definition.",
+        "Consolidated data landed in a SQL hub that fed automated dashboards.",
+        "Exceptions were surfaced so the team could investigate mismatches instead of hunt for them.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "80%", label: "Faster monthly reporting cycle" },
+        { value: "Eliminated", label: "Finance / ops mismatches" },
+        { value: "Real-time", label: "Production planning signal" },
+      ],
+      bullets: [
+        "Production planning and finance stopped arguing about whose spreadsheet was right.",
+        "The monthly pack became a review exercise, not a data-wrangling exercise.",
+        "Adding a new data source became a configuration change, not a rebuild.",
+      ],
+    },
+    relatedSlugs: [
+      "manufacturing-invoice-hub",
+      "distribution-ondemand-reporting",
+      "logistics-legacy-erp-rpa",
+    ],
+  },
+
+  {
+    slug: "enterprise-ap-idu",
+    title:
+      "Enterprise finance team: AP automation with intelligent document understanding",
+    cardTitle: "Enterprise AP with IDU",
+    industry: "Distribution",
+    companyDescriptor:
+      "Large enterprise finance team processing high monthly invoice volumes across multiple cost centres.",
+    tags: ["Accounts Payable", "Document capture", "AI / NLP", "RPA"],
+    platforms: ["Native AP", "ERP", "Intelligent Document Understanding"],
+    headlineStat: ">95% coding accuracy, 65% faster invoice processing",
+    summary:
+      "RPA combined with intelligent document understanding reads, PO-matches and codes supplier invoices, routing only exceptions to humans.",
+    metaTitle:
+      "Case study: Enterprise AP automation, >95% coding accuracy with intelligent document understanding",
+    metaDescription:
+      "How Ordron combined RPA and intelligent document understanding to cut invoice processing time by 65%, achieve >95% coding accuracy and free finance staff from data entry.",
+    challenge: [
+      "Finance relied on manual invoice entry, reconciliations and reporting.",
+      "Headcount costs were high, coding errors were common, and the process did not scale.",
+      "Month-end slipped regularly because exceptions piled up without a named owner.",
+    ],
+    solution: {
+      lead:
+        "Ordron implemented an automation stack that combined RPA with intelligent document understanding, tuned to the organisation's chart of accounts.",
+      bullets: [
+        "Invoices were read automatically, with line-level extraction across multiple layouts.",
+        "Each invoice was matched against the existing PO set and coded to the correct accounts.",
+        "Exceptions were flagged to a human queue with reason codes, not dumped into a shared inbox.",
+        "Throughput was preserved through volume spikes without adding headcount.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "65%", label: "Faster invoice processing" },
+        { value: ">95%", label: "Coding accuracy" },
+        { value: "Reduced", label: "Finance headcount needs" },
+      ],
+      bullets: [
+        "Finance staff moved out of data entry and into analysis and supplier work.",
+        "Exception rates dropped as the system learned the organisation's own patterns.",
+        "Close stopped being blocked by invoice backlog.",
+      ],
+    },
+    relatedSlugs: [
+      "manufacturing-invoice-hub",
+      "intelligent-invoice-multisplit",
+      "logistics-ap-ocr",
+    ],
+  },
+
+  {
+    slug: "transport-ops-workflow",
+    title: "Transport operator: daily operations workflow automation",
+    cardTitle: "Daily ops workflow automation",
+    industry: "Logistics",
+    companyDescriptor:
+      "Transport and logistics operator running multi-cost-centre resource allocation and compliance-sensitive incident reporting.",
+    tags: ["Operations", "RPA", "Risk & compliance", "Dashboards"],
+    platforms: ["Ops systems", "ERP", "Mobile"],
+    headlineStat: "40% less manual admin, compliance reporting tightened",
+    summary:
+      "Digital incident capture and automated driver-and-resource allocation across cost centres, with real-time manager visibility.",
+    metaTitle:
+      "Case study: Transport operator cuts daily admin by 40% with ops workflow automation",
+    metaDescription:
+      "How Ordron automated daily resource allocation and incident reporting for a transport operator, cutting admin by 40% and improving compliance reporting accuracy.",
+    challenge: [
+      "Daily driver and resource allocation was run manually, across multiple cost centres.",
+      "Incident reporting was paper-and-email, slow, inconsistent, and a compliance risk.",
+      "Managers did not have real-time visibility of what was happening on the road.",
+    ],
+    solution: {
+      lead:
+        "Ordron built automation workflows that replaced the manual admin without disrupting dispatch.",
+      bullets: [
+        "Captured and classified incidents digitally at source, with required fields enforced.",
+        "Automated daily driver and resource allocation across cost centres.",
+        "Routed exceptions and escalations to the right manager automatically.",
+        "Gave dispatch and compliance a live picture instead of end-of-day spreadsheets.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "40%", label: "Less manual admin time" },
+        { value: "Tightened", label: "Compliance reporting accuracy" },
+        { value: "Real-time", label: "Manager visibility" },
+      ],
+      bullets: [
+        "Resource allocation became faster and more consistent across cost centres.",
+        "Compliance reporting stopped being a month-end scramble.",
+        "Managers moved from firefighting to forward planning.",
+      ],
+    },
+    relatedSlugs: [
+      "industrial-mobile-procurement",
+      "logistics-legacy-erp-rpa",
+      "construction-ops-visibility",
+    ],
+  },
+
+  {
+    slug: "intelligent-invoice-multisplit",
+    title:
+      "Multi-supplier operator: intelligent invoices with multi-department cost splits",
+    cardTitle: "Intelligent invoices with cost splits",
+    industry: "Distribution",
+    companyDescriptor:
+      "Multi-supplier operator processing thousands of invoices monthly with complex multi-department cost allocations.",
+    tags: ["Accounts Payable", "Document capture", "AI / NLP"],
+    platforms: ["Intelligent Document Understanding", "ERP"],
+    headlineStat: "80%+ of complex invoices auto-processed",
+    summary:
+      "Custom-trained OCR and intelligent document understanding classifies invoices by supplier and department, splits costs across cost centres, and posts directly to the GL.",
+    metaTitle:
+      "Case study: Multi-supplier operator automates 80%+ of complex invoices with cost-split coding",
+    metaDescription:
+      "How Ordron used custom-trained OCR and intelligent document understanding to automate 80%+ of complex multi-department invoice splits, replacing ongoing SaaS with a one-time build.",
+    challenge: [
+      "Off-the-shelf tools handled simple invoices but failed on anything that needed a multi-department cost split.",
+      "Manual intervention crept back in for the exact invoices that cost the most to process by hand.",
+      "Ongoing SaaS costs did not track with the value actually being automated.",
+    ],
+    solution: {
+      lead:
+        "Ordron deployed intelligent document understanding with custom-trained OCR tuned to the operator's supplier mix.",
+      bullets: [
+        "Classified invoices automatically by supplier and department profile.",
+        "Split costs across multiple cost centres against configurable rules.",
+        "Posted results directly into the accounting system, with audit trail.",
+        "Scaled to new suppliers and invoice formats without vendor dependency.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "80%+", label: "Invoices fully automated" },
+        { value: "~5%", label: "Manual intervention rate" },
+        { value: "One-time build", label: "Instead of recurring SaaS" },
+      ],
+      bullets: [
+        "Complex multi-split invoices stopped being a manual bottleneck.",
+        "The finance team could onboard new suppliers without a vendor ticket.",
+        "Automation economics moved from subscription to a defined build cost.",
+      ],
+    },
+    relatedSlugs: [
+      "enterprise-ap-idu",
+      "manufacturing-invoice-hub",
+      "logistics-ap-ocr",
+    ],
+  },
+
+  {
+    slug: "events-logistics-platform",
+    title: "Events logistics operator: custom coordination platform",
+    cardTitle: "Custom events coordination platform",
+    industry: "Logistics",
+    companyDescriptor:
+      "Events logistics operator coordinating staff, vehicles and equipment across large setups.",
+    tags: ["Custom software", "Operations", "Mobile", "Dashboards"],
+    platforms: ["Custom web app", "Mobile"],
+    headlineStat: "40% faster project delivery",
+    summary:
+      "Centralised booking and scheduling, automated inventory tracking and a mobile field interface replacing spreadsheet-and-email coordination.",
+    metaTitle:
+      "Case study: Events logistics operator lifts project delivery speed 40% with a custom platform",
+    metaDescription:
+      "How Ordron built a custom coordination platform for an events logistics operator: centralised scheduling, automated inventory tracking and a mobile field interface.",
+    challenge: [
+      "Equipment, staff and deliveries were tracked across spreadsheets and email threads.",
+      "As project scale grew, miscommunication and missed inventory became the norm.",
+      "Clients had no live view of setup progress, which ate into trust at the point of delivery.",
+    ],
+    solution: {
+      lead:
+        "Ordron built a custom web application that replaced the spreadsheet coordination layer, without throwing away what worked.",
+      bullets: [
+        "Centralised booking and scheduling of staff, vehicles and equipment.",
+        "Automated inventory tracking for event materials, with real-time availability.",
+        "Mobile interface for on-site staff to log deliveries and resolve issues at source.",
+        "Live progress view for clients, without the back-and-forth email chain.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "40%", label: "Faster project delivery" },
+        { value: "Eliminated", label: "Manual coordination errors" },
+        { value: "Live", label: "Client visibility of setup" },
+      ],
+      bullets: [
+        "Coordination effort across staff, vehicles and equipment collapsed into a single workflow.",
+        "On-site teams resolved issues without waiting on office callbacks.",
+        "Project profitability improved as missing-inventory rework disappeared.",
+      ],
+    },
+    relatedSlugs: [
+      "construction-ops-visibility",
+      "industrial-mobile-procurement",
+      "transport-ops-workflow",
+    ],
+  },
+
+  {
+    slug: "advisory-excel-to-enterprise",
+    title:
+      "Financial advisory firm: from Excel models to an enterprise platform",
+    cardTitle: "Excel models to an enterprise platform",
+    industry: "Professional Services",
+    companyDescriptor:
+      "Mid-sized financial advisory firm running client deliverables inside complex, long-lived Excel models.",
+    tags: ["Custom software", "Operations", "Legacy systems", "Dashboards"],
+    platforms: ["Excel", "Cloud application"],
+    calculatorPlatformSlug: "excel-automation",
+    headlineStat: "2x client capacity without adding headcount",
+    summary:
+      "Secure cloud application that preserves the spreadsheet logic, adds multi-user access and role permissions, and automates consolidation.",
+    metaTitle:
+      "Case study: Financial advisory firm doubles client capacity without added headcount by retiring Excel bottlenecks",
+    metaDescription:
+      "How Ordron translated a financial advisory firm's Excel-based client workflow into a secure cloud platform with multi-user access, role permissions and automated consolidation.",
+    challenge: [
+      "Complex Excel models worked for a smaller book, but broke as client volume grew.",
+      "No version control and no meaningful multi-user access made collaboration painful.",
+      "Manual consolidation across spreadsheets created silent errors with real commercial impact.",
+    ],
+    solution: {
+      lead:
+        "Ordron built a custom enterprise application that kept the firm's hard-earned model logic and retired the spreadsheet fragility.",
+      bullets: [
+        "Translated critical Excel workflows into a secure, cloud-based application.",
+        "Introduced multi-user access with role-based permissions on every record.",
+        "Automated data consolidation across models, with validated inputs.",
+        "Preserved the domain logic the firm had refined over years.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "2×", label: "Client capacity without extra staff" },
+        { value: "Eliminated", label: "Spreadsheet-driven errors" },
+        { value: "Centralised", label: "Source of truth for client data" },
+      ],
+      bullets: [
+        "Advisor collaboration became concurrent instead of sequential.",
+        "Onboarding new clients stopped depending on cloning a fragile workbook.",
+        "The firm could grow the book without growing the headcount in lock-step.",
+      ],
+    },
+    relatedSlugs: [
+      "asset-mgmt-data-integration",
+      "pe-analytics-ai-ready",
+      "manufacturing-multi-system-flows",
+    ],
+  },
+
+  {
+    slug: "asset-mgmt-data-integration",
+    title: "Regional asset manager: custom data integration platform",
+    cardTitle: "Custom data integration platform",
+    industry: "Financial Services",
+    companyDescriptor:
+      "Regional asset management firm with client and market data fragmented across external APIs, internal spreadsheets and third-party systems.",
+    tags: ["Data integration", "Reporting", "Dashboards", "Operations"],
+    platforms: ["Market data APIs", "Excel", "Cloud database"],
+    headlineStat: "70% less manual data prep",
+    summary:
+      "External market APIs, internal Excel and third-party sources unified into a single validated cloud database with real-time advisor dashboards.",
+    metaTitle:
+      "Case study: Regional asset manager cuts manual data prep 70% with a custom data integration platform",
+    metaDescription:
+      "How Ordron unified a regional asset manager's market APIs, Excel sheets and third-party feeds into a single validated cloud database, surfaced as real-time advisor dashboards.",
+    challenge: [
+      "Critical client and market data lived across market feeds, client spreadsheets and third-party APIs.",
+      "Advisors aggregated it by hand, which caused integrity issues and delays.",
+      "Reporting lagged the underlying data, and the book was running faster than the process.",
+    ],
+    solution: {
+      lead:
+        "Ordron delivered a custom integration layer that pulled, standardised and served the data the advisors already needed.",
+      bullets: [
+        "Pulled data automatically from external APIs and internal Excel sources on schedule.",
+        "Standardised and validated every field before storing in a secure cloud database.",
+        "Exposed a real-time dashboard and automated reports to the advisor team.",
+        "Built so new providers could be added without a rebuild.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "70%", label: "Less manual data prep" },
+        { value: "Real-time", label: "Advisor access to client data" },
+        { value: "Scalable", label: "For additional data providers" },
+      ],
+      bullets: [
+        "Advisors stopped starting every client meeting with a reconciliation pass.",
+        "Data integrity issues became rare and surfaced fast when they did appear.",
+        "The firm could onboard new data providers without re-engineering the pipeline.",
+      ],
+    },
+    relatedSlugs: [
+      "advisory-excel-to-enterprise",
+      "pe-analytics-ai-ready",
+      "financial-services-risk-ai",
+    ],
+  },
+
+  {
+    slug: "pe-analytics-ai-ready",
+    title: "Private equity analytics provider: AI-ready portfolio platform",
+    cardTitle: "AI-ready portfolio platform",
+    industry: "Professional Services",
+    companyDescriptor:
+      "Private equity analytics provider building a portfolio management platform with a clear AI roadmap and no premature bets.",
+    tags: ["Custom software", "AI / NLP", "Data integration", "Dashboards"],
+    platforms: ["Custom application", "Cloud"],
+    headlineStat: "Lean MVP live, modular AI roadmap in place",
+    summary:
+      "Modular, API-first architecture that delivers a lean MVP now and treats AI capabilities as plug-in modules for later.",
+    metaTitle:
+      "Case study: Private equity analytics provider ships a lean, AI-ready portfolio platform",
+    metaDescription:
+      "How Ordron designed a modular, API-first platform that shipped a lean MVP for a PE analytics provider while leaving a clear AI roadmap — predictive analytics and NLP as plug-in modules.",
+    challenge: [
+      "The team wanted the platform future-proofed for AI, but not loaded up with features that might go obsolete before they were used.",
+      "Investors expected an AI story without being sold vapourware.",
+      "A classic trade-off: ship something practical now, or build for a future that had not arrived yet.",
+    ],
+    solution: {
+      lead:
+        "Ordron built the application with a modular, API-first design so the AI story could land incrementally.",
+      bullets: [
+        "Core system delivered the immediate MVP that users needed on day one.",
+        "AI capabilities were scoped as optional plug-in modules, not baked into the core.",
+        "Examples in the roadmap included predictive analytics and NLP-driven insights.",
+        "Architecture was designed to evolve with AI advances, without a rebuild.",
+      ],
+    },
+    impact: {
+      stats: [
+        { value: "Lean MVP", label: "Launched on time" },
+        { value: "Modular", label: "AI roadmap for investors" },
+        { value: "Upgrade-friendly", label: "Architecture" },
+      ],
+      bullets: [
+        "The client launched quickly with a product users could actually use.",
+        "Future investors had a concrete, credible AI integration story.",
+        "AI modules could be added on evidence, not on hype.",
+      ],
+    },
+    relatedSlugs: [
+      "advisory-excel-to-enterprise",
+      "asset-mgmt-data-integration",
+      "legal-ai-contracts",
+    ],
   },
 ];
 
@@ -524,6 +933,7 @@ export const caseStudyIndustries: CaseStudyIndustry[] = [
   "Industrial Services",
   "Legal",
   "Financial Services",
+  "Professional Services",
 ];
 
 export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
@@ -538,13 +948,24 @@ export function getRelatedCaseStudies(slug: string): CaseStudy[] {
     .filter((c): c is CaseStudy => Boolean(c));
 }
 
+/** Case studies grouped by industry, used on the /case-studies index page. */
+export const caseStudiesByIndustry: {
+  industry: CaseStudyIndustry;
+  studies: CaseStudy[];
+}[] = caseStudyIndustries
+  .map((industry) => ({
+    industry,
+    studies: caseStudies.filter((c) => c.industry === industry),
+  }))
+  .filter((group) => group.studies.length > 0);
+
 /**
  * Aggregate headline metrics shown on the /case-studies hero strip.
  * Values are factual across the case studies above.
  */
 export const caseStudyAggregates = {
   totalCaseStudies: caseStudies.length,
-  industriesCovered: caseStudyIndustries.length,
+  industriesCovered: caseStudiesByIndustry.length,
   topManualReduction: "85%",
   topHoursReturned: "160+",
 } as const;

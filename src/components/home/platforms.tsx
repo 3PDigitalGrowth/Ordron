@@ -62,7 +62,14 @@ export function Platforms() {
         <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[15px] text-ink-soft">
             Running something else? If it has an API or a structured interface,
-            we can usually automate against it.
+            we can usually automate against it. Read the full AU pillar guide:{" "}
+            <Link
+              href="/finance-automation-australia"
+              className="font-semibold text-[color:var(--ordron-blue-deep)] hover:underline"
+            >
+              Finance automation in Australia
+            </Link>
+            .
           </p>
           <Button href="/platforms" variant="ghost" size="md">
             See all platforms

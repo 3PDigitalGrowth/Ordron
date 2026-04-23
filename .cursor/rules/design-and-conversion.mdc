@@ -1,0 +1,67 @@
+---
+description: Premium design principles and conversion strategy for Ordron
+alwaysApply: true
+---
+
+# Ordron Design & Conversion Principles
+
+Apply these when they produce a positive improvement to UX flow or conversion opportunities. Not every page needs every principle — pick the ones that lift the work. If a suggestion would be purely decorative or slow the site down, skip it.
+
+## Part A — 2026 Design System (Premium Feel)
+
+Filter every layout, component, and visual decision through these:
+
+1. **Human-Made Authenticity** — avoid the soulless "AI-generated" look. Give pages a point of view, a voice, imperfections a machine wouldn't choose.
+2. **Strategic Design Thinking** — ask *why* before *what*. Every section must serve a business goal (trust, conversion, education), not just look nice.
+3. **Organic Layouts (Anti-Grid)** — favour asymmetry, fluid compositions, magazine-style flow over rigid boxy grids. Guide the eye on a journey.
+4. **Motion Narrative** — scroll-triggered animations and transitions that *guide*, never distract. Cinematic, not carnival.
+5. **Glassmorphism 2.0** — subtle frosted layers, soft shadows, diffused blurs for hierarchy. Mature, not sterile or gimmicky.
+6. **Archival Index Aesthetic** — for content-heavy pages (platform hubs, automation catalogue, guides), use clean grids, strong labeling, editorial typography. Organisation *is* the aesthetic.
+7. **Purposeful Micro-Interactions** — hover, submit, reveal — every feedback moment should feel responsive and human.
+8. **Accessibility-First** — contrast, alt text, keyboard nav, plain language — from the start, not bolted on.
+9. **AI as Creative Partner** — AI generates drafts and handles tedium; human judgment owns the soul and strategy.
+10. **Performance-First Creativity** — speed is a design feature. Optimise images, ship clean code, LCP/CLS matter.
+
+## Part B — Conversion Strategy Frameworks
+
+### The Premium Framework
+- **Halo Effect (first 50ms)** — hero sections must signal instant authority. Typography, whitespace, and imagery above the fold do 80% of the trust work.
+- **Cognitive Fluency** — reduce mental load with generous whitespace, strong hierarchy, and scannable copy. Protect the lazy brain.
+- **Peak-End Rule** — end every page with a memorable moment. Micro-interactions + a strong closing CTA create the "peak" emotion users remember.
+
+### Schwartz's 5 Levels of Awareness
+
+Match copy and CTA strength to where the reader actually is:
+
+| Level              | They know…                          | Serve them with…                          |
+|--------------------|-------------------------------------|-------------------------------------------|
+| Unaware            | Nothing about the problem           | Story / provocation / stat                |
+| Problem-Aware      | They have a pain                    | Framing + diagnosis (Readiness Checklist) |
+| Solution-Aware     | Solutions exist, unsure which       | Comparisons, guides (13x130, AP/AR guides)|
+| Product-Aware      | They know Ordron / automation       | Proof (case studies, Cost of Inaction)    |
+| Most Aware         | They're ready                       | Hard CTA (Scorecard, Health Check)        |
+
+Ordron's ICP — AU finance leaders — typically lands at **Problem-Aware to Solution-Aware**. Default copy tone should meet them there.
+
+### Brand Archetype
+Ordron's voice leans **Sage + Ruler**: authoritative, precise, evidence-led, no hype. Numbers over adjectives. "Here's how it works and what it costs you not to act."
+
+## Part C — Page Construction Checklist
+
+For every new page or significant redesign, address:
+
+1. **Hero (Halo)** — what does the first 50ms communicate? Headline matches awareness level; sub-headline answers "so what for me?"; visual signals quality instantly.
+2. **Narrative flow (5 sections max)** — each section has a single purpose tied to the reader's awareness level, high-density expertise copy, and reduces cognitive load.
+3. **Primary action per section** — one clear action. Protect whitespace around it.
+4. **Three micro-interactions** — purposeful feedback moments (button response, reveal, scroll cue). Never gratuitous.
+5. **The End (Peak)** — final section should leave confidence, not friction. Hard CTA + soft magnet per the lead magnet rule.
+6. **Accessibility pass** — contrast, alt text, keyboard, plain language.
+7. **Performance budget** — images optimised, no layout shift, LCP under target.
+
+## Part D — What to Avoid
+
+- Stock-photo hero sections. Use diagrams, data, or real artefacts.
+- Grid-of-four-feature-cards syndrome. Prefer asymmetric, story-led layouts.
+- Decorative animation that delays interaction or inflates bundle size.
+- Generic copy ("streamline your workflow"). Be specific, numeric, AU-context.
+- Pretty-but-purposeless sections. If a section doesn't map to awareness level or the conversion ladder, cut it.

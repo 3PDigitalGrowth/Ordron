@@ -315,6 +315,14 @@ export default function PlatformsPage() {
             <p className="mt-10 text-sm text-white/60">
               We list {platforms.length} platforms publicly. If you run
               something else that has an API or a structured interface, ask.
+              Prefer the long read first?{" "}
+              <Link
+                href="/finance-automation-australia"
+                className="font-semibold text-white/90 hover:text-white hover:underline"
+              >
+                Finance automation in Australia
+              </Link>
+              .
             </p>
           </Container>
         </Section>

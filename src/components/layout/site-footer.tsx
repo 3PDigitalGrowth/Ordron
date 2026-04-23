@@ -10,6 +10,10 @@ const footerNav = [
     heading: "Automation guides",
     links: [
       {
+        label: "Finance automation in AU",
+        href: "/finance-automation-australia",
+      },
+      {
         label: "Accounts Payable",
         href: "/guides/accounts-payable-automation",
       },

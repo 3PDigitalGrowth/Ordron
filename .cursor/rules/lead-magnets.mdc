@@ -1,0 +1,70 @@
+---
+description: Lead magnet strategy and conversion ladder for Ordron
+alwaysApply: true
+---
+
+# Ordron Lead Magnet Strategy
+
+We are adopting a **6-rung conversion ladder** to close the middle of the funnel between the homepage and the two existing hard CTAs (Scorecard and Health Check). Every new page, component, and content addition should be evaluated against this ladder.
+
+## The Conversion Ladder
+
+| Rung | Commit     | Offer                                   | They give              | They get                          |
+|------|------------|-----------------------------------------|------------------------|-----------------------------------|
+| 1    | Zero       | Free article / cluster guide            | Nothing                | Read on site                      |
+| 2    | Low        | Checklist (PDF)                         | Email only             | Instant download link             |
+| 3    | Low-mid    | Playbook / deep-dive guide (PDF)        | Email + company        | Emailed PDF + optional follow-up  |
+| 4    | Mid        | Interactive calculator (Cost of Inaction, ROI) | Email for full report | Instant on-screen + emailed report |
+| 5    | High       | Scorecard                               | 10 questions + email   | Pillar-by-pillar breakdown        |
+| 6    | Highest    | Health Check                            | Full booking + 60 min  | Written report in 48 hrs          |
+
+Each rung must step the reader **up** to the next — not just down to "book a call".
+
+## Tier A — Wave 1 Magnets (build first)
+
+1. **"13 Platforms, 130 Automations" Guide** — PDF, email-gated. Primary content magnet. Offered on homepage, every platform hub, every automation page.
+2. **Cost of Inaction Calculator** — interactive, email to receive full report. Inputs: team size, weekly invoice volume, month-end close days, current platform. Outputs: annual $ waste, payback period, top 3 applicable automations. (Merges with the earlier "ROI Calculator" concept.)
+3. **Finance Automation Readiness Checklist** — PDF, email-only. 15 yes/no statements across AP, AR, reconciliations, reporting. One page, two-minute read.
+
+## Tier B — Wave 2+
+
+- Month-End Close Acceleration Guide (PDF)
+- Per-platform automation checklists (13, one per platform hub)
+- AP Automation Guide & AR Automation Guide (double as cluster page body + PDF)
+- Case study deep-dives (PDF per study)
+
+## Tier C — Later
+
+- Annual AU Finance Automation Benchmark Report (survey-based)
+- RFP template, ROI template (Excel)
+- Skip the 3-question micro-quiz (Scorecard is the single assessment)
+
+## Always-Be-Selling Page Mapping
+
+Every page gets a **hard CTA** + one **contextually-matched soft magnet**:
+
+| Page                              | Hard CTA                    | Soft magnet                              |
+|-----------------------------------|-----------------------------|------------------------------------------|
+| `/` (home)                        | Scorecard + Health Check    | 13x130 Guide                             |
+| `/health-check`                   | Book Health Check           | Readiness Checklist                      |
+| `/scorecard`                      | Unlock + Book               | Cost of Inaction Calculator (post-score) |
+| `/platforms`                      | Scorecard + Health Check    | 13x130 Guide                             |
+| `/platforms/<slug>`               | Scorecard + Health Check    | That platform's automation checklist     |
+| `/guides/<cluster>`               | Scorecard + Health Check    | Cluster-specific PDF (AP guide, etc.)    |
+| `/case-studies/*`                 | Health Check                | Case study PDF                           |
+| `/finance-automation-australia`   | Scorecard + Health Check    | 13x130 Guide + Cost of Inaction          |
+| `/about`, `/contact`              | Scorecard + Health Check    | None (trust surfaces)                    |
+| `/lp/*` (campaigns)               | Whatever the hook demands   | Usually one magnet per LP                |
+
+## Reusable Mechanism
+
+Build it once, use it everywhere. Mirror the `src/lib/platforms.ts` pattern:
+
+1. **Data module** — `src/lib/lead-magnets.ts`. Single source of truth. Each entry: `id`, `title`, `description`, `pdfPath` (or `"emailed"`), `thumbnail`, `commitmentRung`.
+2. **Three presentation components** — all consuming the same data:
+   - `<LeadMagnetCard slug="..." />` — inline placement
+   - `<LeadMagnetRibbon slug="..." />` — pre-footer ribbon
+   - `<LeadMagnetAside slug="..." />` — sticky sidebar on long content pages
+3. **One API route** — `/api/lead-magnet-request`. Same JSONL pre-launch pattern as `/api/scorecard-unlock` and `/api/health-check-booking`. Accepts `{ magnetId, email, name?, company?, source }`, writes to `.data/lead-magnet-requests.jsonl`, returns download URL or "we'll email you within 60 seconds".
+
+Adding the 14th magnet = one data entry + PDF upload. No new pages, components, or routes.

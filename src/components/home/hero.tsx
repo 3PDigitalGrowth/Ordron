@@ -28,8 +28,8 @@ export function Hero() {
         }}
       />
 
-      <Container>
-        <div className="grid items-center gap-14 xl:grid-cols-[minmax(0,1fr)_minmax(0,560px)] xl:gap-20">
+      <Container width="wide">
+        <div className="grid items-center gap-14 xl:grid-cols-[minmax(0,1fr)_minmax(0,700px)] xl:gap-16">
           <div>
             <Eyebrow>For CFOs and finance leaders</Eyebrow>
             <h1
@@ -90,10 +90,8 @@ export function Hero() {
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-[36px] bg-gradient-to-br from-[#E6F6FF] to-[#F7FBFF]" />
+          <div className="relative xl:-mr-10 2xl:-mr-16">
             <HeroDashboard />
-            <div className="pointer-events-none absolute -bottom-4 left-4 right-4 h-24 bg-gradient-to-t from-surface to-transparent" />
           </div>
         </div>
 
