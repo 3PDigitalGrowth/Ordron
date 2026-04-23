@@ -19,9 +19,9 @@ type Props = {
 
 /** Map functional category to the cluster guide slug (if any). */
 const CATEGORY_GUIDE: Record<AutomationCategory, string | null> = {
-  "Accounts Payable": "ap-automation-australia",
-  "Accounts Receivable": "ar-automation-australia",
-  Reconciliations: "bank-reconciliation-automation",
+  "Accounts Payable": "accounts-payable-automation",
+  "Accounts Receivable": "accounts-receivable-automation",
+  Reconciliations: "reconciliations-automation",
   "Month-end close": "month-end-close-automation",
   Reporting: null,
   Operations: null,

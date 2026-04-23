@@ -21,7 +21,14 @@ export type Platform = {
    * Ordron's focus area for this platform, in plain terms.
    * Used on the /platforms hub grouping.
    */
-  focus: "accounting" | "erp" | "capture" | "expense" | "ops" | "reporting";
+  focus:
+    | "accounting"
+    | "erp"
+    | "capture"
+    | "expense"
+    | "ops"
+    | "reporting"
+    | "practice";
 };
 
 export const platforms: Platform[] = [
@@ -116,6 +123,13 @@ export const platforms: Platform[] = [
     detail: "Reporting layer",
     focus: "reporting",
   },
+  {
+    name: "Ignition",
+    shortLabel: "Ignition",
+    slug: "ignition-automation",
+    detail: "Practice management",
+    focus: "practice",
+  },
 ];
 
 /**
@@ -173,6 +187,13 @@ export const platformGroups: {
     summary:
       "Dashboards that pull from the stack above, not from a manual export.",
     platforms: platforms.filter((p) => p.focus === "reporting"),
+  },
+  {
+    id: "practice",
+    heading: "Practice management",
+    summary:
+      "Proposal-to-invoice and client lifecycle platforms that sit above the ledger for Australian accounting practices.",
+    platforms: platforms.filter((p) => p.focus === "practice"),
   },
 ];
 

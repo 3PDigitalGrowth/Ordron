@@ -108,6 +108,17 @@ function Reporting(props: GlyphProps) {
   );
 }
 
+function Practice(props: GlyphProps) {
+  // Briefcase with signature line, for practice management
+  return (
+    <svg {...base(props)}>
+      <rect x="3" y="6" width="14" height="10" rx="1.5" />
+      <path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6" />
+      <path d="M6 12h8" />
+    </svg>
+  );
+}
+
 const GLYPHS: Record<Platform["focus"], (p: GlyphProps) => React.ReactElement> = {
   accounting: Accounting,
   erp: Erp,
@@ -115,4 +126,5 @@ const GLYPHS: Record<Platform["focus"], (p: GlyphProps) => React.ReactElement> =
   expense: Expense,
   ops: Ops,
   reporting: Reporting,
+  practice: Practice,
 };
