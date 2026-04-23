@@ -123,17 +123,17 @@ export default function CaseStudiesIndexPage() {
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="md"
-                >
-                  Score your own finance stack
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="ghost"
                   size="md"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="md"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>
@@ -419,10 +419,10 @@ export default function CaseStudiesIndexPage() {
                   Want numbers like these for your finance team?
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  The 5-minute Scorecard surfaces the biggest drag across the
-                  platforms you run. The Health Check goes deeper and gives you
-                  a written report with specific automations named, whether
-                  you engage Ordron or not.
+                  The 5-minute automation diagnostic surfaces the biggest drag
+                  across the platforms you run. The Automation Roadmap goes
+                  deeper and gives you a written report with specific
+                  automations named, whether you engage Ordron or not.
                 </p>
                 <p className="mt-4 text-sm text-white/55">
                   {caseStudies.length} published case studies.{" "}
@@ -432,17 +432,17 @@ export default function CaseStudiesIndexPage() {
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="lg"
-                >
-                  Take the Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="lg"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>

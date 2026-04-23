@@ -129,8 +129,9 @@ export function FrictionSignals() {
             </h2>
           </div>
           <p className="text-[15px] leading-relaxed text-ink-soft lg:text-right">
-            The Ordron Scorecard scores each of the four pillars below, so you
-            know where the pain is concentrated before we ever get on a call.
+            The Ordron Automation Diagnostic scores each of the four pillars
+            below, so you know where the pain is concentrated before we ever
+            get on a call.
           </p>
         </div>
 
@@ -163,10 +164,10 @@ export function FrictionSignals() {
         <div className="mt-12 flex flex-col items-center justify-between gap-5 rounded-[28px] border border-line bg-surface p-7 sm:flex-row sm:p-8">
           <div>
             <p className="font-display text-xl font-semibold text-ink">
-              Score yourself across all four pillars in 5 minutes.
+              Find your automation quick wins across all four pillars.
             </p>
             <p className="mt-1 text-[15px] text-ink-muted">
-              10 questions. Instant score. No sales call required.
+              5-minute diagnostic. Instant results.
             </p>
           </div>
           <Button
@@ -174,7 +175,7 @@ export function FrictionSignals() {
             variant="primary"
             size="lg"
           >
-            Take the Scorecard
+            Find your automation quick wins
           </Button>
         </div>
       </Container>

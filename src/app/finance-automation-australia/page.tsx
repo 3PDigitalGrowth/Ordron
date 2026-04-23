@@ -173,7 +173,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How long does a first automation project take?",
-    a: "Most AP or AR builds go from kick-off to go-live in four to eight weeks. The Health Check precedes that with sixty minutes of shadowing and a written roadmap delivered within 48 hours. Fixed scope from the outset.",
+    a: "Most AP or AR builds go from kick-off to go-live in four to eight weeks. The Automation Roadmap precedes that with sixty minutes of shadowing and a written roadmap delivered within 48 hours. Fixed scope from the outset.",
   },
   {
     q: "What about BAS, GST, PAYG and STP?",
@@ -185,7 +185,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I know if I am ready for automation?",
-    a: "Download the Readiness Checklist. Fifteen yes/no statements. If you answer yes to fewer than ten, the Health Check will tell you what to fix first. No point automating a broken process.",
+    a: "Download the Readiness Checklist. Fifteen yes/no statements. If you answer yes to fewer than ten, the Automation Roadmap will tell you what to fix first. No point automating a broken process.",
   },
   {
     q: "What does a typical project cost?",
@@ -227,23 +227,23 @@ export default function FinanceAutomationAustraliaPage() {
                 <div className="mt-8 flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center">
                   <Button
                     href={siteConfig.ctas.scorecard.href}
-                    variant="primary"
-                    size="lg"
-                  >
-                    Take the 5-minute Scorecard
-                  </Button>
-                  <Button
-                    href={siteConfig.ctas.healthCheck.href}
                     variant="ghost"
                     size="lg"
                   >
-                    Book a Health Check
+                    Find your automation quick wins
+                  </Button>
+                  <Button
+                    href={siteConfig.ctas.healthCheck.href}
+                    variant="primary"
+                    size="lg"
+                  >
+                    Book your Roadmap
                   </Button>
                 </div>
 
                 <p className="mt-5 text-sm text-ink-muted">
-                  Both free to start. Scorecard is instant. Health Check is
-                  sixty minutes, fixed scope, you keep the report.
+                  5-minute diagnostic. Instant results. 60-minute Roadmap, you
+                  keep the report.
                 </p>
 
                 <dl className="mt-10 grid max-w-md grid-cols-3 gap-3">
@@ -650,12 +650,12 @@ export default function FinanceAutomationAustraliaPage() {
                   your month-end takes.
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                  Scorecard bands map to these rungs directly.{" "}
+                  Diagnostic bands map to these rungs directly.{" "}
                   <Link
                     href={siteConfig.ctas.scorecard.href}
                     className="font-semibold text-[color:var(--ordron-blue-deep)] underline decoration-[color:var(--ordron-blue)]/40 underline-offset-2 hover:decoration-[color:var(--ordron-blue)]"
                   >
-                    Take the Scorecard
+                    Find your automation quick wins
                   </Link>{" "}
                   to see which one applies to your team right now.
                 </p>
@@ -859,17 +859,17 @@ export default function FinanceAutomationAustraliaPage() {
                 },
                 {
                   step: "2",
-                  title: "Take the 5-minute Scorecard",
+                  title: "Find your automation quick wins",
                   body: "Ten questions. Precise score across four pillars. Your band, and the top three fixes with business impact.",
                   href: siteConfig.ctas.scorecard.href,
-                  cta: "Take the Scorecard",
+                  cta: "Find your automation quick wins",
                 },
                 {
                   step: "3",
-                  title: "Book a Health Check",
+                  title: "Book your Roadmap",
                   body: "Sixty-minute diagnostic, 48-hour written report, prioritised roadmap. You keep the report.",
                   href: siteConfig.ctas.healthCheck.href,
-                  cta: "Book a Health Check",
+                  cta: "Book your Roadmap",
                 },
               ].map((s) => (
                 <li
@@ -973,27 +973,27 @@ export default function FinanceAutomationAustraliaPage() {
                   Finance automation, the AU mid-market way.
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  No imported US benchmarks. No vendor pretending they
-                  built the platform. No ten-page proposal before you
-                  have a number. Start with the Scorecard, or go
-                  straight to a Health Check if you already know the
+                  No imported US benchmarks. No vendor pretending they built
+                  the platform. No ten-page proposal before you have a
+                  number. Start with the automation diagnostic, or go
+                  straight to the Automation Roadmap if you already know the
                   number is too big to ignore.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="lg"
-                >
-                  Take the Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="lg"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>

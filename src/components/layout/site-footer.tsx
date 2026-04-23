@@ -63,7 +63,10 @@ export function SiteFooter() {
               businesses. 130 frameworks, 13 platforms, built in Sydney.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button href={siteConfig.ctas.scorecard.href} variant="inverse">
+              <Button
+                href={siteConfig.ctas.scorecard.href}
+                variant="inverse"
+              >
                 {siteConfig.ctas.scorecard.label}
               </Button>
               <Button
@@ -73,6 +76,9 @@ export function SiteFooter() {
                 {siteConfig.ctas.healthCheck.label}
               </Button>
             </div>
+            <p className="mt-3 text-xs text-white/55">
+              60 minutes. Written report. Yours to keep.
+            </p>
           </div>
 
           <div className="grid flex-1 gap-10 sm:grid-cols-3">

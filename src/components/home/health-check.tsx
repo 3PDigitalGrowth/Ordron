@@ -31,7 +31,7 @@ const steps: Step[] = [
     title: "Deliver",
     duration: "48 hrs",
     detail:
-      "You receive a branded Health Check report with a prioritised roadmap and ROI projections on the top 3 opportunities.",
+      "You receive a branded Automation Roadmap report with a prioritised roadmap and ROI projections on the top 3 opportunities.",
   },
   {
     number: "04",
@@ -61,7 +61,7 @@ export function HealthCheck() {
       <Container className="relative">
         <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-20">
           <div>
-            <Eyebrow>The Ordron Health Check</Eyebrow>
+            <Eyebrow>The Ordron Automation Roadmap</Eyebrow>
             <h2 className="mt-4 text-balance">
               A proper diagnostic, not a sales call with a certificate at the
               end.
@@ -104,7 +104,7 @@ export function HealthCheck() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
               What you walk away with
             </p>
-            <h3 className="mt-3 text-xl">Your Health Check report</h3>
+            <h3 className="mt-3 text-xl">Your Automation Roadmap report</h3>
             <ul className="mt-5 space-y-3">
               {deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-3 text-[15px] text-ink-soft">
@@ -136,10 +136,10 @@ export function HealthCheck() {
                 size="lg"
                 className="w-full"
               >
-                Book your Health Check
+                Book your Roadmap
               </Button>
               <p className="mt-3 text-center text-xs text-ink-muted">
-                Fixed scope. No obligation. Typically within 7 working days.
+                60 minutes. Written report. Yours to keep.
               </p>
             </div>
           </aside>

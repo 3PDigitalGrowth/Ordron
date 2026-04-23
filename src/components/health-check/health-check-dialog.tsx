@@ -14,10 +14,10 @@ import {
 import { cn } from "@/lib/utils";
 
 /*
-  Health Check booking dialog.
+  Automation Roadmap booking dialog.
 
   One modal, one provider, one hook. The modal is mounted once near the
-  root so any "Book a Health Check" CTA can trigger it via
+  root so any "Book your Roadmap" CTA can trigger it via
   useHealthCheckDialog().open(). The client never renders an email link
   or a dead route; the form is the destination.
 
@@ -166,10 +166,10 @@ function DialogHeader({
   return (
     <div className="relative border-b border-line bg-gradient-to-b from-[color:var(--ordron-mint)] to-surface px-7 pt-7 pb-6 sm:px-9 sm:pt-9">
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-deep">
-        The Ordron Health Check
+        The Ordron Automation Roadmap
       </p>
       <h2 id={titleId} className="mt-2 font-display text-[26px] font-semibold leading-tight text-ink sm:text-[28px]">
-        Book your Health Check.
+        Book your Roadmap.
       </h2>
       <p id={descId} className="mt-2 text-[14.5px] leading-relaxed text-ink-soft">
         60 minutes of workflow mapping, a written report within 48 hours,
@@ -444,7 +444,7 @@ function HealthCheckForm({
           disabled={state === "submitting"}
           className="inline-flex h-13 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#00ABFF] px-8 text-base font-semibold tracking-tight text-white shadow-ink transition-all duration-200 hover:-translate-y-px hover:bg-[#0096e0] disabled:opacity-60 disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
         >
-          {state === "submitting" ? "Sending..." : "Request my Health Check"}
+          {state === "submitting" ? "Sending..." : "Request my Roadmap"}
           {state !== "submitting" && (
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>
               <path

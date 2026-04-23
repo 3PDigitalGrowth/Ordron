@@ -26,11 +26,11 @@ const items: FaqItem[] = [
   },
   {
     q: "What about data security and audit trails?",
-    a: "Each client gets isolated, encrypted infrastructure on Azure. Every automated action is logged with inputs, outputs and the source system, so your auditors can trace exactly what ran, when, and why. We can brief your IT lead directly during the Health Check.",
+    a: "Each client gets isolated, encrypted infrastructure on Azure. Every automated action is logged with inputs, outputs and the source system, so your auditors can trace exactly what ran, when, and why. We can brief your IT lead directly during the Automation Roadmap session.",
   },
   {
     q: "What does a project cost?",
-    a: "Most projects sit between $5,000 and $50,000 depending on scope, with partnerships from around $1,600 per month for ongoing work. We never quote before the Health Check because the Health Check is what produces the scope and the ROI to justify the spend.",
+    a: "Most projects sit between $5,000 and $50,000 depending on scope, with partnerships from around $1,600 per month for ongoing work. We never quote before the Automation Roadmap because the Roadmap is what produces the scope and the ROI to justify the spend.",
   },
 ];
 

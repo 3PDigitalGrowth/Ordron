@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ordron automation catalogue",
     description:
-      "130 named automations across 13 finance platforms. Search, filter and shortlist before you book a Health Check.",
+      "130 named automations across 13 finance platforms. Search, filter and shortlist before you book your Automation Roadmap.",
     url: "/guide/automations",
     type: "website",
   },
@@ -44,7 +44,7 @@ const howToRead: { title: string; body: string }[] = [
   },
   {
     title: "Where pre-requisites get called out",
-    body: "Some workflows need clean supplier master data or a defined chart of accounts before they are worth starting. Those are flagged honestly in the Health Check, not buried in a footnote.",
+    body: "Some workflows need clean supplier master data or a defined chart of accounts before they are worth starting. Those are flagged honestly in the Automation Roadmap, not buried in a footnote.",
   },
 ];
 
@@ -79,17 +79,17 @@ export default function AutomationsHubPage() {
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                   <Button
                     href={siteConfig.ctas.scorecard.href}
-                    variant="primary"
-                    size="md"
-                  >
-                    Start with the 5-minute Scorecard
-                  </Button>
-                  <Button
-                    href={siteConfig.ctas.healthCheck.href}
                     variant="ghost"
                     size="md"
                   >
-                    Book a Health Check
+                    Find your automation quick wins
+                  </Button>
+                  <Button
+                    href={siteConfig.ctas.healthCheck.href}
+                    variant="primary"
+                    size="md"
+                  >
+                    Book your Roadmap
                   </Button>
                 </div>
               </div>
@@ -157,7 +157,8 @@ export default function AutomationsHubPage() {
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                 The same 130 automations, indexed by platform, team size and
                 finance function. Hours returned per workflow. Pre-requisites
-                called out. Share it with your controller before a Health Check.
+                called out. Share it with your controller before booking your
+                Automation Roadmap.
               </p>
             </div>
 
@@ -233,10 +234,10 @@ export default function AutomationsHubPage() {
               />
               <CrossLinkCard
                 eyebrow="Diagnose first"
-                title="Score your own stack."
+                title="Find your quick wins."
                 body="Five minutes, ten questions, a pillar-by-pillar view of where your finance team is losing time today."
                 href={siteConfig.ctas.scorecard.href}
-                cta="Take the Scorecard"
+                cta="Find your automation quick wins"
               />
             </div>
           </Container>
@@ -297,10 +298,10 @@ export default function AutomationsHubPage() {
                   Shortlist three. We will tell you which one to start with.
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  The Scorecard surfaces the biggest drag on your finance team
-                  in five minutes. The Health Check goes deeper and gives you
-                  a written report with specific automations named, whether
-                  you engage Ordron or not.
+                  The automation diagnostic surfaces the biggest drag on your
+                  finance team in five minutes. The Automation Roadmap goes
+                  deeper and gives you a written report with specific
+                  automations named, whether you engage Ordron or not.
                 </p>
                 <p className="mt-4 text-sm text-white/55">
                   {automations.length} automations listed. {platforms.length}{" "}
@@ -310,17 +311,17 @@ export default function AutomationsHubPage() {
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="lg"
-                >
-                  Take the Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="lg"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>

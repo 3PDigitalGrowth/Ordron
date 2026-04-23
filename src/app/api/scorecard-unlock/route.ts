@@ -3,7 +3,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 /*
-  Scorecard email-unlock handler.
+  Automation Diagnostic email-unlock handler.
 
   For the scaffold we log each unlock to a JSONL file inside .data so
   Alex can audit captures during QA. The ESP integration (Mailchimp,

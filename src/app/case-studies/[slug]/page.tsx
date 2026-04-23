@@ -123,14 +123,14 @@ export default async function CaseStudyDetailPage({
                     variant="primary"
                     size="md"
                   >
-                    Book a Health Check
+                    Book your Roadmap
                   </Button>
                   <Button
                     href={siteConfig.ctas.scorecard.href}
                     variant="ghost"
                     size="md"
                   >
-                    Score your own stack
+                    Find your automation quick wins
                   </Button>
                 </div>
               </div>
@@ -429,26 +429,26 @@ export default async function CaseStudyDetailPage({
                   Want a result like this one?
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  The Scorecard takes five minutes and surfaces where your
-                  stack is leaking hours. The Health Check goes deeper and
-                  gives you a written report with specific automations named,
-                  whether you engage Ordron or not.
+                  The automation diagnostic takes five minutes and surfaces
+                  where your stack is leaking hours. The Automation Roadmap
+                  goes deeper and gives you a written report with specific
+                  automations named, whether you engage Ordron or not.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="lg"
-                >
-                  Take the Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="lg"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>

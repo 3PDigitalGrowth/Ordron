@@ -19,7 +19,7 @@ type Stage = "intro" | "question" | "result";
 type UnlockState = "locked" | "submitting" | "unlocked" | "error";
 
 /*
-  Inline Ordron Finance Automation Health Check Scorecard.
+  Inline Ordron Finance Automation Diagnostic.
 
   UX intent (per the strategy doc and client brief):
     - 10 questions, one at a time, to keep cognitive load low
@@ -28,7 +28,8 @@ type UnlockState = "locked" | "submitting" | "unlocked" | "error";
         2. Blurred until email unlock: pillar commentary, automation
            candidates, indicative annual waste, personalised next step
     - The unlocked block clarifies the problem; it does not solve it.
-      The prioritised roadmap is explicitly deferred to the Health Check.
+      The prioritised roadmap is explicitly deferred to the Automation
+      Roadmap session.
 */
 
 export function Scorecard() {
@@ -194,7 +195,7 @@ function Intro({ onStart }: { onStart: () => void }) {
           onClick={onStart}
           className="inline-flex h-13 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#00ABFF] px-8 text-base font-semibold tracking-tight text-white shadow-ink transition-all duration-200 hover:-translate-y-px hover:bg-[#0096e0] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
         >
-          Start the Scorecard
+          Start the diagnostic
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>
             <path
               d="M3.5 9h11m0 0-4-4m4 4-4 4"
@@ -371,7 +372,7 @@ function ProgressBar({
   return (
     <div>
       <div className="flex items-baseline justify-between text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-        <span>Scorecard progress</span>
+        <span>Diagnostic progress</span>
         <span className="numeric text-ink">
           {Math.round(((currentIndex + 1) / totalQuestions) * 100)}%
         </span>
@@ -555,14 +556,14 @@ function Result({
               fill="none"
             />
           </svg>
-          Retake the Scorecard
+          Retake the diagnostic
         </button>
         <button
           type="button"
           onClick={() => openHealthCheck("scorecard-result")}
           className="inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#00ABFF] px-8 text-base font-semibold tracking-tight text-white shadow-ink transition-all duration-200 hover:-translate-y-px hover:bg-[#0096e0] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
         >
-          Book your Health Check
+          Book your Roadmap
         </button>
       </div>
     </div>
@@ -665,13 +666,13 @@ function UnlockedReport({
         Your full breakdown
       </p>
       <h3 className="mt-3 text-pretty text-2xl leading-tight sm:text-[28px]">
-        Where the Scorecard says your finance team is losing the most time.
+        Where the diagnostic says your finance team is losing the most time.
       </h3>
       <p className="mt-4 max-w-2xl text-[15.5px] leading-relaxed text-ink-soft">
         Based on your answers, these are the three pillars with the most
         friction. Each pillar lists the automations Ordron most commonly builds
         to address it. The full prioritised roadmap, indicative savings and
-        build sequence come from the Health Check.
+        build sequence come from the Automation Roadmap session.
       </p>
 
       <ul className="mt-8 space-y-5">
@@ -749,8 +750,8 @@ function UnlockedReport({
             {estimatedAnnualWaste(result.total)}
           </p>
           <p className="mt-2 text-sm text-white/72">
-            An order-of-magnitude estimate based on your score. Your Health
-            Check produces the real number.
+            An order-of-magnitude estimate based on your score. Your
+            Automation Roadmap produces the real number.
           </p>
         </div>
         <button
@@ -758,7 +759,7 @@ function UnlockedReport({
           onClick={() => openHealthCheck("scorecard-unlocked")}
           className="inline-flex h-13 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-7 text-base font-semibold text-ink transition-all duration-200 hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
         >
-          Book your Health Check
+          Book your Roadmap
         </button>
       </div>
     </div>

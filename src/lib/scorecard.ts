@@ -1,10 +1,9 @@
 /*
-  Ordron Finance Automation Health Check Scorecard.
+  Ordron Finance Automation Diagnostic.
 
   Content is lifted directly from the working draft supplied by the
-  client (see Ordron Health Check Scorecard - Working Draft (1).docx).
-  Scoring follows the document's 0 to 4 points per answer model, with
-  the four result bands from section 6.
+  client. Scoring follows the document's 0 to 4 points per answer
+  model, with the four result bands from section 6.
 
   Question to pillar mapping follows the "Why this matters" reasoning
   in the source doc. Because the four pillars contain different numbers
@@ -233,7 +232,7 @@ export const bands: Band[] = [
     headline: "Your finance operation already shows structure and maturity.",
     summary:
       "There may still be targeted opportunities to improve efficiency, reporting speed, or process control, but the foundations are in good shape.",
-    cta: "Explore what a Health Check would still surface",
+    cta: "Explore what an Automation Roadmap would still surface",
   },
   {
     id: "moderate-opportunity",
@@ -245,19 +244,19 @@ export const bands: Band[] = [
       "Your team is likely losing time to avoidable manual work and disconnected systems.",
     summary:
       "A focused review would likely uncover practical improvement opportunities and a clear plan to release hours back to the team.",
-    cta: "Book a Health Check to pinpoint the opportunities",
+    cta: "Book your Roadmap to pinpoint the opportunities",
   },
   {
     id: "strong-case",
-    label: "Strong case for a full Health Check",
+    label: "Strong case for an Automation Roadmap",
     shortLabel: "Strong case",
     range: [21, 30],
     tone: "warning",
     headline:
       "Your score suggests clear manual process drag and visibility gaps across finance workflows.",
     summary:
-      "A full Ordron Health Check would help pinpoint where automation creates the fastest return, and in what order to sequence the work.",
-    cta: "Book your full Health Check",
+      "An Ordron Automation Roadmap would help pinpoint where automation creates the fastest return, and in what order to sequence the work.",
+    cta: "Book your Automation Roadmap",
   },
   {
     id: "high-value",
@@ -268,8 +267,8 @@ export const bands: Band[] = [
     headline:
       "Your finance process is heavily dependent on manual work, fragmented systems and exception handling.",
     summary:
-      "There is likely a strong case for immediate improvement through a full Health Check and prioritised automation roadmap, with fast payback on the first two or three wins.",
-    cta: "Book your Health Check now",
+      "There is likely a strong case for immediate improvement through an Automation Roadmap, with fast payback on the first two or three wins.",
+    cta: "Book your Roadmap now",
   },
 ];
 
@@ -318,8 +317,9 @@ export function scoreAnswers(
 /*
   Pillar-specific automation candidates. These are used in the unlocked
   result block to clarify the problem rather than solve it. The full
-  prioritised roadmap is explicitly deferred to the Health Check so the
-  scorecard "motivates the next step" rather than doing the next step.
+  prioritised roadmap is explicitly deferred to the Automation Roadmap
+  session so the diagnostic "motivates the next step" rather than doing
+  the next step.
 */
 
 export const pillarAutomations: Record<PillarId, string[]> = {
@@ -352,7 +352,7 @@ export const pillarAutomations: Record<PillarId, string[]> = {
 /*
   Simple indicative annual waste estimate, scaled to the total score.
   Used only in the blurred-unlock block as a "rough order of magnitude",
-  not a binding figure. The Health Check produces the real number.
+  not a binding figure. The Automation Roadmap produces the real number.
 */
 
 export function estimatedAnnualWaste(total: number): string {

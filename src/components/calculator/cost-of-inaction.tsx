@@ -276,10 +276,10 @@ export function CostOfInactionCalculator({
                 Next step
               </p>
               <p className="mt-2 text-sm leading-relaxed text-white/90">
-                Ready to see which of these automations actually apply to your
-                workflows? The 60-minute Health Check walks your stack in
-                detail and leaves you with a written roadmap. You keep the
-                report whether you engage Ordron or not.
+                Ready to see which of these automations actually apply to
+                your workflows? The 60-minute Automation Roadmap walks your
+                stack in detail and leaves you with a written roadmap. You
+                keep the report whether you engage Ordron or not.
               </p>
               <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                 <Button
@@ -287,7 +287,7 @@ export function CostOfInactionCalculator({
                   variant="inverse"
                   size="md"
                 >
-                  Book a Health Check
+                  Book your Roadmap
                 </Button>
                 <Button
                   href={siteConfig.ctas.scorecard.href}
@@ -295,7 +295,7 @@ export function CostOfInactionCalculator({
                   size="md"
                   className="text-white border-white/20 hover:bg-white/10 hover:border-white/40"
                 >
-                  Take the 5-minute Scorecard
+                  Find your automation quick wins
                 </Button>
               </div>
             </div>

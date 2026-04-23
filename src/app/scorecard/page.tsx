@@ -11,14 +11,14 @@ import { pillars } from "@/lib/scorecard";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Finance Automation Health Check Scorecard",
+  title: "Finance Automation Diagnostic | Ordron",
   description:
-    "A 5-minute, 10-question self-assessment that scores your finance operation across four pillars: manual workload, system disconnects, errors and delays, and scalability.",
+    "A 5-minute, 10-question Finance Automation Diagnostic that scores your finance operation across four pillars: manual workload, system disconnects, errors and delays, and scalability.",
   alternates: { canonical: "/scorecard" },
   openGraph: {
-    title: "Ordron Finance Automation Health Check Scorecard",
+    title: "Ordron Finance Automation Diagnostic",
     description:
-      "Score your finance team across four pillars in 5 minutes. Instant result. No sales call required.",
+      "Find your finance automation quick wins across four pillars in 5 minutes. Instant result. No sales call required.",
     url: "/scorecard",
     type: "website",
   },
@@ -41,7 +41,7 @@ export default function ScorecardPage() {
           />
           <Container className="relative">
             <div className="mx-auto max-w-3xl text-center">
-              <Eyebrow>Finance Automation Health Check</Eyebrow>
+              <Eyebrow>Finance Automation Diagnostic</Eyebrow>
               <h1 className="mt-5 text-balance">
                 Where are your finance hours going?
               </h1>
@@ -76,29 +76,29 @@ export default function ScorecardPage() {
           </Container>
         </Section>
 
-        {/* Scorecard */}
+        {/* Diagnostic */}
         <Section tone="surface-2" size="md" className="pt-0 sm:pt-4">
           <Container width="narrow">
             <Scorecard />
           </Container>
         </Section>
 
-        {/* Trust + Health Check tee-up */}
+        {/* Trust + Automation Roadmap tee-up */}
         <Section tone="surface" size="md">
           <Container>
             <div className="grid gap-10 rounded-[28px] border border-line bg-surface-2 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-16">
               <div>
                 <Eyebrow>What happens next</Eyebrow>
                 <h2 className="mt-4 text-balance">
-                  The Scorecard clarifies the problem. The Health Check builds
-                  the plan.
+                  The diagnostic clarifies the problem. The roadmap builds the
+                  plan.
                 </h2>
                 <p className="mt-5 text-[15.5px] leading-relaxed text-ink-soft">
-                  The Scorecard is designed to give you a fast, honest read on
-                  where your finance friction is concentrated. It does not
-                  produce a roadmap. That is deliberate: a real plan needs a
-                  look at your actual workflows, systems and volumes. That is
-                  what the Health Check is for.
+                  The Automation Diagnostic is designed to give you a fast,
+                  honest read on where your finance friction is concentrated.
+                  It does not produce a roadmap. That is deliberate: a real
+                  plan needs a look at your actual workflows, systems and
+                  volumes. That is what the Automation Roadmap session is for.
                 </p>
 
                 <ul className="mt-6 space-y-3">
@@ -139,8 +139,11 @@ export default function ScorecardPage() {
                     variant="primary"
                     size="lg"
                   >
-                    Book your Health Check
+                    Book your Roadmap
                   </Button>
+                  <p className="mt-3 text-xs text-ink-muted">
+                    60 minutes. Written report. Yours to keep.
+                  </p>
                 </div>
               </div>
 

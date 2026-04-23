@@ -5,15 +5,7 @@ import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { HeroDashboard } from "@/components/art/hero-dashboard";
 import { siteConfig } from "@/lib/site";
-
-const platformLogos = [
-  "Xero",
-  "MYOB",
-  "QuickBooks",
-  "NetSuite",
-  "SAP",
-  "Dynamics",
-];
+import { platforms } from "@/lib/platforms";
 
 export function Hero() {
   return (
@@ -59,7 +51,7 @@ export function Hero() {
                 variant="primary"
                 size="lg"
               >
-                Take the 5-minute Scorecard
+                Find your automation quick wins
                 <svg
                   width="18"
                   height="18"
@@ -81,12 +73,12 @@ export function Hero() {
                 variant="ghost"
                 size="lg"
               >
-                Book a Health Check
+                Book your Roadmap
               </Button>
             </div>
 
             <p className="mt-5 text-sm text-ink-muted">
-              10 questions. 5 minutes. Instant score. No sales call required.
+              5-minute diagnostic. Instant results.
             </p>
           </div>
 
@@ -101,21 +93,23 @@ export function Hero() {
             Built for Australian finance teams running on
           </p>
           <ul className="mt-5 flex flex-wrap items-center gap-x-7 gap-y-3">
-            {platformLogos.map((name) => (
+            {platforms.map((p) => (
               <li
-                key={name}
+                key={p.slug}
                 className="font-display text-base font-semibold text-ink-faint transition-colors hover:text-ink sm:text-lg"
               >
                 <Link
-                  href={`/platforms/${name.toLowerCase()}-automation`}
+                  href={`/platforms/${p.slug}`}
                   className="tracking-tight"
                 >
-                  {name}
+                  {p.shortLabel}
                 </Link>
               </li>
             ))}
-            <li className="font-display text-base font-semibold text-ink-faint sm:text-lg">
-              + 7 more
+            <li className="font-display text-base font-semibold text-ink-faint transition-colors hover:text-ink sm:text-lg">
+              <Link href="/platforms" className="tracking-tight">
+                See all platforms
+              </Link>
             </li>
           </ul>
         </div>

@@ -18,7 +18,7 @@ export function ClosingCta() {
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="max-w-2xl">
             <h2 className="text-balance text-white">
-              Start with the Scorecard. Finish with a finance team that gets
+              Start with the diagnostic. Finish with a finance team that gets
               its week back.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-white/72">
@@ -30,17 +30,17 @@ export function ClosingCta() {
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
             <Button
               href={siteConfig.ctas.scorecard.href}
-              variant="primary"
-              size="lg"
-            >
-              Take the 5-minute Scorecard
-            </Button>
-            <Button
-              href={siteConfig.ctas.healthCheck.href}
               variant="inverse"
               size="lg"
             >
-              Book a Health Check
+              Find your automation quick wins
+            </Button>
+            <Button
+              href={siteConfig.ctas.healthCheck.href}
+              variant="primary"
+              size="lg"
+            >
+              Book your Roadmap
             </Button>
           </div>
         </div>

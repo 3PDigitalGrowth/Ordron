@@ -98,7 +98,7 @@ export function IcpMirror() {
                   variant="primary"
                   size="md"
                 >
-                  Start with the Scorecard
+                  Find your automation quick wins
                 </Button>
               </div>
             </article>

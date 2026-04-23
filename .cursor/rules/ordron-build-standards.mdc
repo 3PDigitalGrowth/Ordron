@@ -1,0 +1,129 @@
+---
+description: Ordron website build standards, brand, tone, CTA language, SEO, and technical requirements. Apply to every page, component, and content change.
+globs: src/**/*.{tsx,ts,md,mdx}
+alwaysApply: true
+---
+
+## Brand and tone
+
+Ordron is an Australian finance automation agency based in Sydney. Brand archetype is The Magician (transformation, making the manual work disappear). Voice is confident, specific, numbers-led, and grown-up. We write for CFOs and finance directors at mid-market businesses ($10M to $50M revenue, 20 to 200 staff) and for owner-operators running finance themselves.
+
+Write in Australian English. Spelling, punctuation, and idiom follow Australian convention (organise, automation, recognise, analyse, optimise). Dollar figures are AUD, formatted as $10,000 or $1.2M. Never use em dashes in any copy. Use commas, colons, semicolons, or sentence breaks instead. This rule is absolute and applies to hero copy, body copy, captions, buttons, microcopy, alt text, and meta descriptions.
+
+Avoid marketing clichés. No "unlock", no "supercharge", no "game-changing", no "seamless", no "revolutionary", no "cutting-edge". Instead write plainly and specifically. "We cut AP processing from 4 hours to 15 minutes" beats "We revolutionise your AP workflow". Numbers beat adjectives every time.
+
+Sentence case for all headings. No title case, no all caps except for short uppercase labels like section eyebrows (max 3 words).
+
+## Visual direction
+
+We are building premium, editorial, high-trust. Not plastic, not AI-generated, not startup-flat. Reference points: The Economist, Stripe Press, a serious professional services firm's website. Fluid and asymmetrical where it serves a section, clean and structured where it serves legibility.
+
+Design principles in order of priority:
+
+1. Human-made authenticity. Avoid the "dead AI site" feeling. Strategic asymmetry, considered whitespace, real content density where appropriate.
+2. Business-first strategy. Every section must serve the ICP's journey. If a section doesn't move them closer to the Automation Diagnostic or Automation Roadmap, cut it.
+3. Organic layouts over rigid grids. Break the grid intentionally where it improves narrative flow. Think magazine spread, not spreadsheet.
+4. Motion narrative. Scroll-triggered reveals on statistics, numbers, case study tiles, and section transitions. Subtle, cinematic, not showy. Use Framer Motion or GSAP ScrollTrigger.
+5. Glassmorphism 2.0 where it adds depth to a key module (floating stat card over a background image, for example). Use sparingly and purposefully. Never decorative.
+6. Purposeful micro-interactions. Buttons have a subtle press state. Cards have a gentle hover lift. Form fields give clear focus feedback. Counters animate into view on scroll.
+7. Accessibility from the start. Minimum WCAG AA contrast. All imagery has meaningful alt text. Forms are keyboard-navigable. Respect `prefers-reduced-motion`.
+
+Use actual photography or AI-generated imagery that looks like real photography, never stock-style vector illustrations or generic "corporate handshake" photos. Where illustrations are used, lean toward editorial line-art or structured data visualisations. Never use emoji or cartoon-style icons.
+
+Typography: the existing site uses a clean sans-serif pair. Maintain it. Headings should be large and confident (h1 around 48-64px on desktop). Body copy 16-18px with generous line-height (1.6 minimum).
+
+Colour palette: the Ordron teal green (#1D9E75) is the primary accent. Use it intentionally for CTAs, key stats, and section accents. Never as large blocks of background. Cream and off-white surfaces, not pure white, for warmth. Charcoal text, not pure black.
+
+Spacing: generous. Hero sections should breathe. Never cram. Use whitespace as a premium signal.
+
+## CTA language
+
+These are the only CTAs that should appear anywhere on the site:
+
+Primary CTA (highest commitment): **Book your Roadmap**
+- Links to `/health-check`
+- Supporting microcopy where appropriate: "60 minutes. Written report. Yours to keep."
+
+Secondary CTA (lower commitment): **Find your automation quick wins**
+- Links to `/scorecard`
+- Supporting microcopy where appropriate: "5-minute diagnostic. Instant results."
+
+Page labels and internal references:
+- The Scorecard page labels itself as "Finance Automation Diagnostic"
+- The Health Check page labels itself as "Finance Automation Roadmap"
+
+Never use "Take the Scorecard", "Book a Health Check", "Free Health Check", "Health Check Assessment", or any variation of that older language anywhere on the site.
+
+## Lead magnet rules
+
+Every page must surface at least one lead magnet contextually relevant to that page's topic. Lead magnets are always positioned as value exchanges, not lead-grabs. Currently available lead magnets:
+
+1. Finance Automation Playbook (48-page PDF). The 13 platforms and 130 automations catalogue. Gated by email. Best for top-of-funnel and problem-awareness content.
+2. Cost of Inaction Calculator (interactive tool at `/cost-of-inaction`). For anyone quantifying value.
+3. Finance Automation Diagnostic (Scorecard at `/scorecard`). For anyone who wants to self-assess.
+4. Finance Automation Roadmap (Health Check at `/health-check`). The primary conversion point.
+5. Case Studies library (at `/case-studies`). Social proof as a soft magnet.
+
+Every page should include at minimum one of the above as an in-line module. On longer pages (pillar guides, platform hubs), include two: one mid-page and one at the end.
+
+## SEO requirements
+
+Every page must include:
+
+- A unique, specific page title under 60 characters
+- A meta description under 155 characters that includes the primary keyword and a CTA
+- One h1 (only one) that matches or closely aligns to the page title
+- Semantic heading hierarchy (h2, h3, h4) with no skipped levels
+- Primary keyword in the first 100 words of body copy
+- At least 3 internal links to other Ordron pages (cluster guides, platform hubs, case studies, or calculator)
+- At least 1 internal link to the Finance Automation Roadmap (`/health-check`)
+- Descriptive, keyword-rich alt text on every image
+- OpenGraph and Twitter meta tags for social sharing
+- Schema.org structured data where appropriate (FAQPage, Article, Service, Breadcrumb)
+
+## Internal linking pattern
+
+Every page cross-links to at least:
+
+- 1 related cluster guide (AP, AR, Reconciliations, or Month-End Close)
+- 1 related platform hub (Xero, MYOB, etc.)
+- 1 related case study
+- The Cost of Inaction calculator
+- The Finance Automation Diagnostic
+- The Finance Automation Roadmap
+
+This creates the topical authority signals Google needs to rank the site for finance automation queries, and gives the user multiple escape routes at every stage of the funnel.
+
+## Image generation
+
+Generate all required images using Cursor's image generation. Follow this aesthetic direction:
+
+- Editorial, premium, restrained
+- No stock-photo clichés (no pointing at laptops, no handshakes, no cartoon finance characters)
+- Real textures, real environments, considered composition
+- Consistent colour grading across the site (warm, slightly desaturated, with teal accent pulls where it fits naturally)
+- Alt text for every generated image, written for the ICP not for Google
+
+## Technical standards
+
+- Next.js 14 app router
+- TypeScript throughout
+- Tailwind for styling (no inline styles, no separate CSS modules unless the existing site uses them)
+- Framer Motion for scroll animations
+- Lucide React for icons where needed
+- Mobile-first responsive design. Every page must be tested at 375px, 768px, and 1440px before it ships
+- Lighthouse Performance score above 90
+- First Contentful Paint under 1.5s
+- Cumulative Layout Shift under 0.1
+- All images as Next.js `<Image />` components with proper sizing and lazy loading
+
+## Code quality rules
+
+- Component names use PascalCase
+- Files match component names
+- Reuse existing components from the codebase where they exist (check `/src/components` first before building new)
+- New shared components go in `/src/components/[category]`
+- Page-specific components go in `/src/app/[route]/components`
+- Keep prop interfaces explicit and typed
+- Add JSDoc comments for any non-obvious logic
+- No "magic numbers" in layouts, use Tailwind design tokens

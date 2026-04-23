@@ -3,7 +3,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 /*
-  Health Check booking handler.
+  Automation Roadmap booking handler.
 
   Pre-launch we log each submission to a JSONL file inside .data so we
   can audit captures during QA. Resend (or whichever ESP the client

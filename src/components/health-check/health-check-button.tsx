@@ -52,7 +52,7 @@ const variants: Record<Variant, string> = {
 };
 
 export function HealthCheckButton({
-  children = "Book a Health Check",
+  children = "Book your Roadmap",
   variant = "primary",
   size = "md",
   source,

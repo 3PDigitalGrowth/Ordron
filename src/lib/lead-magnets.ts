@@ -77,13 +77,13 @@ export const leadMagnets: LeadMagnet[] = [
     description:
       "Fifteen yes/no statements across AP, AR, reconciliations and reporting. Two-minute read, one-page print.",
     longDescription:
-      "If you cannot answer yes to at least ten of these, you are not yet ready for automation and the Health Check will tell you what to fix first. A brutal, useful filter before you spend money on tooling.",
+      "If you cannot answer yes to at least ten of these, you are not yet ready for automation and the Automation Roadmap will tell you what to fix first. A brutal, useful filter before you spend money on tooling.",
     delivery: { type: "emailed" },
     highlights: [
       "Fifteen statements across the four finance pillars",
       "Scoring key included on the second page",
       "Print-ready one-pager for your leadership team",
-      "Maps directly to the Scorecard pillars",
+      "Maps directly to the Automation Diagnostic pillars",
     ],
     formatLabel: "PDF checklist, 2 pages",
     commitmentRung: "checklist",
@@ -113,7 +113,7 @@ export const leadMagnets: LeadMagnet[] = [
     description:
       "How AU mid-market finance teams cut their close from ten working days to two, without new headcount.",
     longDescription:
-      "A detailed walk-through of the close acceleration playbook Ordron uses in Health Check engagements. Covers reconciliation readiness, journal automation, variance commentary, and the controller checklist.",
+      "A detailed walk-through of the close acceleration playbook Ordron uses in Automation Roadmap engagements. Covers reconciliation readiness, journal automation, variance commentary, and the controller checklist.",
     delivery: { type: "emailed" },
     highlights: [
       "The close bottleneck map for mid-market AU businesses",

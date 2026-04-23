@@ -96,8 +96,8 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                   Change our assumptions to yours and the totals move. Ordron
-                  does the same exercise in the Health Check, only with your
-                  actual workflow shadowed for sixty minutes first.
+                  does the same exercise in the Automation Roadmap, only with
+                  your actual workflow shadowed for sixty minutes first.
                 </p>
               </div>
 
@@ -164,10 +164,10 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                 Ballpark numbers tell you whether to bother. A real answer
-                needs sixty minutes with your workflows. The Health Check does
-                exactly that, with a written report and a prioritised roadmap
-                delivered within 48 hours. If you want the full reference
-                first, read{" "}
+                needs sixty minutes with your workflows. The Automation
+                Roadmap does exactly that, with a written report and a
+                prioritised roadmap delivered within 48 hours. If you want
+                the full reference first, read{" "}
                 <Link
                   href="/finance-automation-australia"
                   className="font-semibold text-[color:var(--ordron-blue-deep)] hover:underline"
@@ -187,12 +187,12 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
                 },
                 {
                   step: "2",
-                  title: "Take the 10-question Scorecard",
+                  title: "Find your automation quick wins",
                   body: "Precise score across four pillars. Band. Top three fixes with business impact.",
                 },
                 {
                   step: "3",
-                  title: "Book a Health Check",
+                  title: "Book your Roadmap",
                   body: "Sixty-minute diagnostic, 48-hour report, and a prioritised roadmap you keep.",
                 },
               ].map((s) => (
@@ -232,7 +232,7 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
                   Already know the number is too big to ignore?
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  Book a Health Check. Sixty minutes. A written report within
+                  Book your Roadmap. Sixty minutes. A written report within
                   48 hours. A prioritised roadmap with ROI projections on the
                   top three automations for your stack. Fixed scope. You keep
                   the report whether you engage Ordron or not.
@@ -244,14 +244,14 @@ export default async function CostOfInactionPage({ searchParams }: PageProps) {
                   variant="primary"
                   size="lg"
                 >
-                  Book a Health Check
+                  Book your Roadmap
                 </Button>
                 <Button
                   href={siteConfig.ctas.scorecard.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Take the Scorecard
+                  Find your automation quick wins
                 </Button>
               </div>
             </div>

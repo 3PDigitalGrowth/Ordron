@@ -55,17 +55,17 @@ export default function PlatformsPage() {
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="md"
-                >
-                  Start with the 5-minute Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="ghost"
                   size="md"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="md"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function PlatformsPage() {
                   variant="ghost"
                   size="md"
                 >
-                  Take the Scorecard first
+                  Find your automation quick wins first
                 </Button>
               </div>
             </div>
@@ -288,26 +288,27 @@ export default function PlatformsPage() {
                   Not sure which platform is costing you the most hours?
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
-                  The 5-minute Scorecard surfaces the biggest drag on your
-                  finance team across every platform you run. The Health Check
-                  goes deeper and gives you a written report with specific
-                  automations named, whether you engage Ordron or not.
+                  The 5-minute automation diagnostic surfaces the biggest drag
+                  on your finance team across every platform you run. The
+                  Automation Roadmap goes deeper and gives you a written
+                  report with specific automations named, whether you engage
+                  Ordron or not.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
                 <Button
                   href={siteConfig.ctas.scorecard.href}
-                  variant="primary"
-                  size="lg"
-                >
-                  Take the Scorecard
-                </Button>
-                <Button
-                  href={siteConfig.ctas.healthCheck.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Book a Health Check
+                  Find your automation quick wins
+                </Button>
+                <Button
+                  href={siteConfig.ctas.healthCheck.href}
+                  variant="primary"
+                  size="lg"
+                >
+                  Book your Roadmap
                 </Button>
               </div>
             </div>

@@ -18,11 +18,11 @@ export const siteConfig = {
   ],
   ctas: {
     scorecard: {
-      label: "Take the Scorecard",
+      label: "Find your automation quick wins",
       href: "/scorecard",
     },
     healthCheck: {
-      label: "Book a Health Check",
+      label: "Book your Roadmap",
       href: "/health-check",
     },
   },

@@ -10,14 +10,14 @@ import { HealthCheckButton } from "@/components/health-check/health-check-button
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Finance Automation Health Check",
+  title: "Finance Automation Roadmap | Ordron",
   description:
-    "A 60-minute workflow diagnostic, a written report within 48 hours, and a prioritised automation roadmap for your finance team. Fixed scope. No obligation to proceed. You keep the report whether you engage Ordron or not.",
+    "A 60-minute workflow diagnostic, a written report within 48 hours, and a prioritised automation roadmap for your finance team. Fixed scope. No obligation. You keep the report.",
   alternates: { canonical: "/health-check" },
   openGraph: {
-    title: "The Ordron Finance Automation Health Check",
+    title: "The Ordron Finance Automation Roadmap",
     description:
-      "60-minute diagnostic. Written report. Prioritised roadmap. No obligation.",
+      "60 minutes. Written report. Prioritised automation roadmap. No obligation.",
     url: "/health-check",
     type: "website",
   },
@@ -117,12 +117,12 @@ const triggers = [
 
 const faqs = [
   {
-    q: "How much does the Health Check cost?",
-    a: "Commercials for the Health Check are settled in the booking conversation, not on this page. The session has a fixed scope, there is no obligation to engage Ordron afterwards, and you keep the written report whether or not you go on to build anything with us.",
+    q: "How much does the Automation Roadmap cost?",
+    a: "Commercials for the Automation Roadmap are settled in the booking conversation, not on this page. The session has a fixed scope, there is no obligation to engage Ordron afterwards, and you keep the written report whether or not you go on to build anything with us.",
   },
   {
     q: "Is this a sales call with a certificate at the end?",
-    a: "No. The report stands on its own. About half our Health Check clients go on to a paid project, and half use the report to either do the work internally or with another provider. We would rather you have a roadmap you trust than a vendor you do not.",
+    a: "No. The report stands on its own. About half our Automation Roadmap clients go on to a paid project, and half use the report to either do the work internally or with another provider. We would rather you have a roadmap you trust than a vendor you do not.",
   },
   {
     q: "What does the 60-minute call actually cover?",
@@ -138,7 +138,7 @@ const faqs = [
   },
   {
     q: "What if we are already using some automation?",
-    a: "Most finance teams at your size have a mix of working automations and half-finished ones. The Health Check is especially useful here; we map what you already have, surface what is duplicated or under-used, and only recommend new builds where the ROI is obvious.",
+    a: "Most finance teams at your size have a mix of working automations and half-finished ones. The Automation Roadmap is especially useful here; we map what you already have, surface what is duplicated or under-used, and only recommend new builds where the ROI is obvious.",
   },
   {
     q: "Do you share our data or add us to a list?",
@@ -163,16 +163,15 @@ export default function HealthCheckPage() {
           />
           <Container className="relative">
             <div className="mx-auto max-w-3xl text-center">
-              <Eyebrow>The Ordron Finance Automation Health Check</Eyebrow>
+              <Eyebrow>Finance Automation Roadmap</Eyebrow>
               <h1 className="mt-5 text-balance">
-                Find out exactly where automation will save your finance team
-                the most hours.
+                Book your automation roadmap
               </h1>
               <p className="mt-5 text-lg leading-relaxed text-ink-soft">
                 One 60-minute workflow diagnostic. A written report within 48
-                hours. A prioritised roadmap with ROI projections on the top
-                three opportunities. You keep the report whether you engage
-                Ordron or not.
+                hours. A prioritised automation roadmap with ROI projections
+                on the top three opportunities. You keep the report whether
+                you engage Ordron or not.
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -181,18 +180,18 @@ export default function HealthCheckPage() {
                   size="lg"
                   source="health-check-hero"
                 >
-                  Book your Health Check
+                  Book your Roadmap
                 </HealthCheckButton>
                 <Button
                   href={siteConfig.ctas.scorecard.href}
                   variant="ghost"
                   size="lg"
                 >
-                  Take the 5-minute Scorecard first
+                  Find your automation quick wins first
                 </Button>
               </div>
               <p className="mt-5 text-xs text-ink-muted">
-                Fixed scope. One session, one report. No obligation to proceed.
+                60 minutes. Written report. Yours to keep.
               </p>
             </div>
 
@@ -224,23 +223,24 @@ export default function HealthCheckPage() {
           <Container>
             <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:items-start lg:gap-20">
               <div>
-                <Eyebrow>What the Health Check is</Eyebrow>
+                <Eyebrow>What the Automation Roadmap is</Eyebrow>
                 <h2 className="mt-4 text-balance">
                   A diagnostic you would pay a consultant to run, packaged as
                   one session.
                 </h2>
                 <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-                  The Health Check exists because most finance teams know
-                  something is slowing them down, but cannot quantify it
-                  precisely enough to act. The goal of the session is to leave
-                  you with a document specific enough to take to your exec
-                  team, your board, or another provider, and act on.
+                  The Automation Roadmap exists because most finance teams
+                  know something is slowing them down, but cannot quantify it
+                  precisely enough to act. The goal of the session is to
+                  leave you with a document specific enough to take to your
+                  exec team, your board, or another provider, and act on.
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                   It is not a sales call with a report stapled to the end. It
                   is a working diagnostic that stands on its own. About half
-                  our Health Check participants go on to a paid engagement with
-                  Ordron. Half do not. Both are fine outcomes for us.
+                  our Automation Roadmap participants go on to a paid
+                  engagement with Ordron. Half do not. Both are fine outcomes
+                  for us.
                 </p>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -282,7 +282,7 @@ export default function HealthCheckPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
                   What you walk away with
                 </p>
-                <h3 className="mt-2 text-xl">The Health Check report</h3>
+                <h3 className="mt-2 text-xl">The Automation Roadmap report</h3>
                 <ul className="mt-5 space-y-4">
                   {deliverables.slice(0, 4).map((d) => (
                     <li key={d.title} className="flex items-start gap-3">
@@ -320,10 +320,10 @@ export default function HealthCheckPage() {
                     source="health-check-what-is"
                     className="w-full"
                   >
-                    Book your Health Check
+                    Book your Roadmap
                   </HealthCheckButton>
                   <p className="mt-3 text-center text-xs text-ink-muted">
-                    Typically within 7 working days.
+                    60 minutes. Written report. Yours to keep.
                   </p>
                 </div>
               </aside>
@@ -340,10 +340,11 @@ export default function HealthCheckPage() {
                 Six sections. Written in plain English. Numbers you can defend.
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                Every Health Check report follows the same structure so it is
-                straightforward to read, share internally and action. No
-                boilerplate, no vendor fluff; just the parts of your finance
-                operation where automation has a measurable payback.
+                Every Automation Roadmap report follows the same structure
+                so it is straightforward to read, share internally and
+                action. No boilerplate, no vendor fluff; just the parts of
+                your finance operation where automation has a measurable
+                payback.
               </p>
             </div>
 
@@ -380,9 +381,9 @@ export default function HealthCheckPage() {
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                 From the time you submit the booking form to the follow-up
-                call, a Health Check takes around 10 to 14 working days. Most
-                of that window is Ordron writing the report. Your time
-                commitment is the 60-minute diagnostic plus a 30-minute
+                call, an Automation Roadmap takes around 10 to 14 working
+                days. Most of that window is Ordron writing the report. Your
+                time commitment is the 60-minute diagnostic plus a 30-minute
                 follow-up if you want one.
               </p>
             </div>
@@ -417,7 +418,7 @@ export default function HealthCheckPage() {
         <Section tone="surface" size="md">
           <Container>
             <div className="max-w-2xl">
-              <Eyebrow>Who the Health Check is for</Eyebrow>
+              <Eyebrow>Who the Automation Roadmap is for</Eyebrow>
               <h2 className="mt-4 text-balance">
                 Built for the finance leader who already knows manual work is
                 costing them, but wants the specifics.
@@ -469,7 +470,7 @@ export default function HealthCheckPage() {
                       />
                     </svg>
                   </span>
-                  <h3 className="text-ink">The Health Check is not for you if</h3>
+                  <h3 className="text-ink">The Automation Roadmap is not for you if</h3>
                 </div>
                 <ul className="mt-5 space-y-3">
                   {notForYou.map((p) => (
@@ -491,7 +492,7 @@ export default function HealthCheckPage() {
                     href={siteConfig.ctas.scorecard.href}
                     className="font-semibold text-[color:var(--ordron-blue-deep)] underline-offset-2 hover:underline"
                   >
-                    5-minute Scorecard
+                    5-minute automation diagnostic
                   </Link>{" "}
                   is probably the better starting point.
                 </p>
@@ -506,12 +507,13 @@ export default function HealthCheckPage() {
             <div className="max-w-2xl">
               <Eyebrow>When finance leaders book</Eyebrow>
               <h2 className="mt-4 text-balance">
-                Four moments when a Health Check tends to land best.
+                Four moments when an Automation Roadmap tends to land best.
               </h2>
               <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-                You do not need a trigger to book a Health Check, but these are
-                the four that tend to drive the highest-value engagements. Each
-                one has a built-in deadline the automation work slots into.
+                You do not need a trigger to book an Automation Roadmap, but
+                these are the four that tend to drive the highest-value
+                engagements. Each one has a built-in deadline the automation
+                work slots into.
               </p>
             </div>
 
@@ -590,8 +592,8 @@ export default function HealthCheckPage() {
                 <p className="mt-4 text-lg leading-relaxed text-white/72">
                   Book one 60-minute session. Get a written roadmap back within
                   two business days. Act on it however you want. If the
-                  Scorecard is a better fit first, start there and come back
-                  once you have a score you want explained.
+                  automation diagnostic is a better fit first, start there and
+                  come back once you have a score you want explained.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
@@ -600,20 +602,20 @@ export default function HealthCheckPage() {
                   size="lg"
                   source="health-check-closing"
                 >
-                  Book your Health Check
+                  Book your Roadmap
                 </HealthCheckButton>
                 <Button
                   href={siteConfig.ctas.scorecard.href}
                   variant="inverse"
                   size="lg"
                 >
-                  Take the Scorecard
+                  Find your automation quick wins
                 </Button>
               </div>
             </div>
             <p className="mt-10 text-sm text-white/60">
-              Fixed scope. One session, one report. No obligation to proceed.
-              You keep the report whether you engage Ordron or not.
+              60 minutes. Written report. Yours to keep. Fixed scope, no
+              obligation to proceed.
             </p>
           </Container>
         </Section>
