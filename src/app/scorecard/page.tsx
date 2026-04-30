@@ -155,12 +155,12 @@ export default function ScorecardPage() {
                 <ul className="mt-5 space-y-3 text-[15px]">
                   <li>
                     <Link
-                      href="/services"
+                      href="/guide/automations"
                       className="group flex items-start justify-between gap-3 rounded-xl border border-line p-4 transition-colors hover:border-[color:var(--ordron-blue)]/30"
                     >
                       <span>
                         <span className="block font-display font-semibold text-ink">
-                          Automation services
+                          Automation explorer
                         </span>
                         <span className="block text-sm text-ink-muted">
                           AP, AR, reconciliations, reporting

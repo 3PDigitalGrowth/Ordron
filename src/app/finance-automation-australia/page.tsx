@@ -8,6 +8,7 @@ import { Eyebrow } from "@/components/ui/eyebrow";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CostOfInactionCalculator } from "@/components/calculator/cost-of-inaction";
+import { FaqGrid } from "@/components/ui/faq-grid";
 import { LeadMagnetCard } from "@/components/lead-magnets/lead-magnet-card";
 import { LeadMagnetRibbon } from "@/components/lead-magnets/lead-magnet-ribbon";
 import { AuStackDiagram } from "@/components/art/au-stack-diagram";
@@ -904,7 +905,7 @@ export default function FinanceAutomationAustraliaPage() {
           id="faq"
           className="scroll-mt-24"
         >
-          <Container width="narrow">
+          <Container width="wide">
             <div className="max-w-2xl">
               <Eyebrow>FAQ</Eyebrow>
               <h2 className="mt-4 text-balance">
@@ -912,36 +913,11 @@ export default function FinanceAutomationAustraliaPage() {
               </h2>
             </div>
 
-            <dl className="mt-10 divide-y divide-line rounded-3xl border border-line bg-surface">
-              {FAQS.map((f) => (
-                <details
-                  key={f.q}
-                  className="group px-6 py-5 sm:px-8 sm:py-6"
-                >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                    <dt className="font-display text-base font-semibold text-ink sm:text-lg">
-                      {f.q}
-                    </dt>
-                    <span
-                      aria-hidden
-                      className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-ink-soft transition-transform group-open:rotate-45"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 12 12">
-                        <path
-                          d="M6 1v10M1 6h10"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </span>
-                  </summary>
-                  <dd className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                    {f.a}
-                  </dd>
-                </details>
-              ))}
-            </dl>
+            <FaqGrid
+              className="mt-10"
+              accent="blue"
+              items={FAQS.map((f) => ({ question: f.q, answer: f.a }))}
+            />
           </Container>
         </Section>
 

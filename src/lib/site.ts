@@ -9,7 +9,7 @@ export const siteConfig = {
     postcode: "2059",
     country: "Australia",
   },
-  abn: "TBD",
+  abn: "75 695 388 893",
   email: "hello@ordron.com",
   nav: [
     { label: "Platforms", href: "/platforms" },

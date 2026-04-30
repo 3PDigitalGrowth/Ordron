@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
+import Link from "next/link";
 
 export function ClosingCta() {
   return (
@@ -27,7 +28,7 @@ export function ClosingCta() {
               about it. Then it is up to you.
             </p>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:gap-4">
+          <div className="flex flex-col items-start gap-3 lg:items-stretch">
             <Button
               href={siteConfig.ctas.scorecard.href}
               variant="inverse"
@@ -35,13 +36,15 @@ export function ClosingCta() {
             >
               Find your automation quick wins
             </Button>
-            <Button
+            <p className="text-sm text-white/60">
+              5-minute diagnostic. Instant results.
+            </p>
+            <Link
               href={siteConfig.ctas.healthCheck.href}
-              variant="primary"
-              size="lg"
+              className="inline-flex items-center text-sm font-semibold text-white/68 transition-colors hover:text-white"
             >
-              Book your Roadmap
-            </Button>
+              Or book a full Roadmap diagnostic <span aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </Container>

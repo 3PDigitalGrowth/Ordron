@@ -1,7 +1,18 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { CostOfInactionCalculator } from "@/components/calculator/cost-of-inaction";
+
+const reportPreviewAvailable = existsSync(
+  path.join(
+    process.cwd(),
+    "public",
+    "lead-magnets",
+    "cost-of-inaction-report-preview.png",
+  ),
+);
 
 export function CostOfInaction() {
   return (
@@ -34,6 +45,8 @@ export function CostOfInaction() {
             eyebrow="Cost of inaction calculator"
             heading="Your team, your platform, your number."
             intro="Four inputs. Headline annual waste. Likely payback. Top three automations for your stack. Full written breakdown emailed on request."
+            enhancedGate
+            reportPreviewAvailable={reportPreviewAvailable}
           />
         </div>
       </Container>

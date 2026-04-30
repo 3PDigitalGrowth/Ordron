@@ -6,6 +6,7 @@ import { IcpMirror } from "@/components/home/icp-mirror";
 import { FrictionSignals } from "@/components/home/friction-signals";
 import { Methodology } from "@/components/home/methodology";
 import { Proof } from "@/components/home/proof";
+import { BenchmarkReport } from "@/components/home/benchmark-report";
 import { Platforms } from "@/components/home/platforms";
 import { HealthCheck } from "@/components/home/health-check";
 import { Faq } from "@/components/home/faq";
@@ -22,6 +23,7 @@ export default function HomePage() {
         <FrictionSignals />
         <Methodology />
         <Proof />
+        <BenchmarkReport />
         <Platforms />
         <HealthCheck />
         <Faq />

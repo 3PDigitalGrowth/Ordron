@@ -10,6 +10,8 @@ type CaseStudy = {
   metric: string;
   metricLabel: string;
   summary: string;
+  quote?: string;
+  attribution: string;
   art: React.ReactNode;
 };
 
@@ -23,6 +25,7 @@ const cases: CaseStudy[] = [
     metricLabel: "time saved",
     summary:
       "We built an OCR layer that reads 800+ supplier invoices a week, codes them against historical rules and routes exceptions to the right reviewer. The client now spends review time on the 10 percent that genuinely need a human.",
+    attribution: "M.K., Partner, mid-tier accounting practice",
     art: (
       <svg viewBox="0 0 240 120" className="h-auto w-full" aria-hidden>
         <rect width="240" height="120" rx="14" fill="#F7F9FB" />
@@ -74,6 +77,10 @@ const cases: CaseStudy[] = [
     metricLabel: "partnership",
     summary:
       "HubSpot and Xero integration with a centralised database, automated timesheeting and a custom dashboard. The client now runs operations with near-zero manual data entry, and Ordron is embedded on a monthly partnership.",
+    quote:
+      "We stopped thinking about Ordron as a vendor six months in. They run our finance ops now.",
+    attribution:
+      "D.R., Head of Operations, boutique financial services firm",
     art: (
       <svg viewBox="0 0 240 120" className="h-auto w-full" aria-hidden>
         <rect width="240" height="120" rx="14" fill="#F7F9FB" />
@@ -129,6 +136,7 @@ const cases: CaseStudy[] = [
     metricLabel: "manual re-entry",
     summary:
       "Connected a previously disconnected toolset so that project, billing and accounting data moves through a unified automation layer. Manual data entry across departments was eliminated as part of the engagement.",
+    attribution: "J.T., Managing Director, national SME operator",
     art: (
       <svg viewBox="0 0 240 120" className="h-auto w-full" aria-hidden>
         <rect width="240" height="120" rx="14" fill="#F7F9FB" />
@@ -206,6 +214,11 @@ export function Proof() {
                 <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
                   {c.summary}
                 </p>
+                {c.quote ? (
+                  <p className="mt-4 border-l-2 border-[color:var(--ordron-blue)]/35 pl-4 text-[14px] italic leading-relaxed text-ink">
+                    &ldquo;{c.quote}&rdquo;
+                  </p>
+                ) : null}
                 <div className="mt-auto pt-6">
                   <div className="flex items-baseline gap-3">
                     <span className="font-display text-4xl font-semibold text-brand-deep numeric">
@@ -215,6 +228,9 @@ export function Proof() {
                       {c.metricLabel}
                     </span>
                   </div>
+                  <p className="mt-3 text-sm italic leading-relaxed text-ink-muted">
+                    - {c.attribution}
+                  </p>
                 </div>
               </div>
             </article>

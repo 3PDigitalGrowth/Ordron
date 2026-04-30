@@ -15,6 +15,7 @@ import { AboutFinalCta } from "./components/AboutFinalCta";
 
 const PAGE_URL = "/about";
 
+const LAITH_LINKEDIN = "https://www.linkedin.com/in/laith-alamin/";
 const AANA_LINKEDIN = "https://www.linkedin.com/in/aana-mahajan/";
 
 export const metadata: Metadata = {
@@ -58,15 +59,36 @@ export default function AboutPage() {
     ],
   };
 
+  const laithSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${pageUrl}#laith`,
+    name: "Laith Alamin",
+    jobTitle: "Co-founder & Chief Executive Officer",
+    worksFor: { "@id": `${baseUrl}#organization` },
+    sameAs: [LAITH_LINKEDIN],
+    image: `${baseUrl}/about/laith.jpg`,
+  };
+
   const aanaSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": `${pageUrl}#aana`,
     name: "Aana Mahajan",
-    jobTitle: "Founder",
+    jobTitle: "Co-founder & Chief Operating Officer",
     worksFor: { "@id": `${baseUrl}#organization` },
     sameAs: [AANA_LINKEDIN],
     image: `${baseUrl}/about/aana.jpg`,
+  };
+
+  const yazanSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${pageUrl}#yazan`,
+    name: "Yazan Alamin",
+    jobTitle: "Automation & AI Engineer",
+    worksFor: { "@id": `${baseUrl}#organization` },
+    image: `${baseUrl}/about/yazan.png`,
   };
 
   const organizationSchema = {
@@ -80,7 +102,10 @@ export default function AboutPage() {
     description:
       "Ordron designs and builds custom finance automation infrastructure for Australian mid-market businesses. 130 named automation frameworks across 13 finance platforms.",
     foundingDate: "2025",
-    founders: [{ "@id": `${pageUrl}#aana` }],
+    founders: [
+      { "@id": `${pageUrl}#laith` },
+      { "@id": `${pageUrl}#aana` },
+    ],
     legalName: "Ordron Pty Ltd",
     taxID: "75 695 388 893",
     areaServed: { "@type": "Country", name: "Australia" },
@@ -91,7 +116,7 @@ export default function AboutPage() {
       addressCountry: "AU",
     },
     email: siteConfig.email,
-    sameAs: [AANA_LINKEDIN],
+    sameAs: [LAITH_LINKEDIN, AANA_LINKEDIN],
   };
 
   return (
@@ -121,7 +146,15 @@ export default function AboutPage() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(laithSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aanaSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(yazanSchema) }}
       />
     </>
   );

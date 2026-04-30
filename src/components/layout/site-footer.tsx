@@ -113,11 +113,8 @@ export function SiteFooter() {
             <Link href="/privacy" className="hover:text-white">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-white">
-              Terms
-            </Link>
-            <Link href="/security" className="hover:text-white">
-              Security
+            <Link href="/contact" className="hover:text-white">
+              Contact
             </Link>
           </div>
         </div>

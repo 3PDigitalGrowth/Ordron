@@ -59,6 +59,21 @@ export function Platforms() {
           ))}
         </ul>
 
+        <div className="mt-10 rounded-[28px] border border-line bg-surface/70 p-6 text-center shadow-soft sm:p-8">
+          <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">
+            Not sure which automations apply to your stack?
+          </h3>
+          <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+            The 5-minute diagnostic maps the top three for your platform and
+            team size.
+          </p>
+          <div className="mt-5">
+            <Button href="/scorecard" variant="primary" size="md">
+              Find your automation quick wins
+            </Button>
+          </div>
+        </div>
+
         <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[15px] text-ink-soft">
             Running something else? If it has an API or a structured interface,

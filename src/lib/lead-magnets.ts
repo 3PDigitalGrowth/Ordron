@@ -89,6 +89,24 @@ export const leadMagnets: LeadMagnet[] = [
     commitmentRung: "checklist",
   },
   {
+    id: "benchmark-2026",
+    title: "2026 Australian Finance Team Benchmark Report",
+    ctaLabel: "Register for early access",
+    description:
+      "Month-end close, invoice throughput, manual hours and automation coverage benchmarks for Australian mid-market finance teams.",
+    longDescription:
+      "A benchmark report comparing Australian mid-market finance operations across eight core metrics, including close speed, invoices per FTE, manual hours and automation coverage.",
+    delivery: { type: "emailed" },
+    highlights: [
+      "Peer benchmarks for $10M to $50M Australian businesses",
+      "Month-end close and invoice throughput comparison points",
+      "Manual hours and automation coverage indicators",
+      "Early-access delivery when the report publishes",
+    ],
+    formatLabel: "PDF report, 2026",
+    commitmentRung: "guide",
+  },
+  {
     id: "cost-of-inaction",
     title: "Cost of Inaction Calculator",
     ctaLabel: "Open the calculator",

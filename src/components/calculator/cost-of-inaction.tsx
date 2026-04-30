@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -63,6 +64,10 @@ type Props = {
   intro?: string;
   /** How much of the results column to gate behind the email capture. */
   gateLevel?: GateLevel;
+  /** Homepage-only CRO treatment for the email gate. Defaults off for shared embeds. */
+  enhancedGate?: boolean;
+  /** Whether the generated report preview PNG exists under /public. */
+  reportPreviewAvailable?: boolean;
   className?: string;
 };
 
@@ -80,6 +85,8 @@ export function CostOfInactionCalculator({
   heading = "See exactly what manual finance is costing your team.",
   intro = "Slide the four inputs. The headline updates live. Enter your email to unlock the line-by-line breakdown and the prioritised roadmap.",
   gateLevel = "full",
+  enhancedGate = false,
+  reportPreviewAvailable = false,
   className,
 }: Props) {
   const [inputs, setInputs] = useState<CalculatorInputs>({
@@ -286,10 +293,15 @@ export function CostOfInactionCalculator({
             onSubmit={onSubmit}
             idPrefix={id("gate")}
             gateLevel={gateLevel}
+            enhancedGate={enhancedGate}
+            reportPreviewAvailable={reportPreviewAvailable}
           />
 
           {unlocked ? (
-            <div className="rounded-2xl bg-ink p-5 text-white animate-hc-fade">
+            enhancedGate ? (
+              <ReportSuccessCard />
+            ) : (
+              <div className="rounded-2xl bg-ink p-5 text-white animate-hc-fade">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
                 Next step
               </p>
@@ -317,6 +329,7 @@ export function CostOfInactionCalculator({
                 </Button>
               </div>
             </div>
+            )
           ) : null}
         </div>
       </div>
@@ -478,6 +491,8 @@ type GatedDetailProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   idPrefix: string;
   gateLevel: GateLevel;
+  enhancedGate: boolean;
+  reportPreviewAvailable: boolean;
 };
 
 function GatedDetail({
@@ -494,6 +509,8 @@ function GatedDetail({
   onSubmit,
   idPrefix,
   gateLevel,
+  enhancedGate,
+  reportPreviewAvailable,
 }: GatedDetailProps) {
   const gateBreakdown = gateLevel === "full" && !unlocked;
   const gateAutomations = !unlocked;
@@ -520,6 +537,7 @@ function GatedDetail({
           <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
             <EmailGateCard
               state={submitState}
+              annualCost={result.totalAnnualWaste}
               email={email}
               name={name}
               company={company}
@@ -529,6 +547,8 @@ function GatedDetail({
               onSubmit={onSubmit}
               idPrefix={idPrefix}
               platformLabel={platformLabel}
+              enhanced={enhancedGate}
+              reportPreviewAvailable={reportPreviewAvailable}
             />
           </div>
         ) : null}
@@ -558,6 +578,7 @@ function GatedDetail({
           <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4">
             <EmailGateCard
               state={submitState}
+              annualCost={result.totalAnnualWaste}
               email={email}
               name={name}
               company={company}
@@ -567,6 +588,8 @@ function GatedDetail({
               onSubmit={onSubmit}
               idPrefix={idPrefix}
               platformLabel={platformLabel}
+              enhanced={enhancedGate}
+              reportPreviewAvailable={reportPreviewAvailable}
             />
           </div>
         ) : null}
@@ -666,6 +689,7 @@ function EligibilityNote({ inputs }: { inputs: CalculatorInputs }) {
 
 type EmailGateProps = {
   state: SubmitState;
+  annualCost: number;
   email: string;
   name: string;
   company: string;
@@ -675,10 +699,13 @@ type EmailGateProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   idPrefix: string;
   platformLabel: string;
+  enhanced: boolean;
+  reportPreviewAvailable: boolean;
 };
 
 function EmailGateCard({
   state,
+  annualCost,
   email,
   name,
   company,
@@ -688,6 +715,8 @@ function EmailGateCard({
   onSubmit,
   idPrefix,
   platformLabel,
+  enhanced,
+  reportPreviewAvailable,
 }: EmailGateProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -710,26 +739,60 @@ function EmailGateCard({
         "sm:p-6 animate-hc-pop",
       )}
     >
-      <div className="flex items-center gap-2.5">
-        <LockGlyph />
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--ordron-blue-deep)]">
-          Unlock your breakdown
-        </p>
-      </div>
-      <p className="mt-3 text-base font-display font-semibold leading-snug text-ink">
-        See every line, plus the prioritised roadmap for {platformLabel}.
-      </p>
-      <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+      {enhanced ? (
+        <div className="flex items-start gap-4">
+          <ReportPreview available={reportPreviewAvailable} />
+          <div className="min-w-0 flex-1">
+            <p className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--ordron-blue-deep)]">
+              Your full breakdown
+            </p>
+            <p className="mt-2 font-display text-[18px] font-semibold leading-tight text-ink">
+              Your team is losing{" "}
+              <span className="text-[color:var(--ordron-blue-deep)] tabular-nums">
+                {formatAud(annualCost)}
+              </span>{" "}
+              a year.
+            </p>
+            <p className="mt-2 text-[12.5px] leading-relaxed text-ink-soft">
+              Every line of waste costed out, the three automations that
+              recover the most hours, and a prioritised roadmap tailored to{" "}
+              {platformLabel}. Delivered as a written PDF to your inbox.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="flex items-center gap-2.5">
+            <LockGlyph />
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--ordron-blue-deep)]">
+              Unlock your breakdown
+            </p>
+          </div>
+          <p className="mt-3 text-base font-display font-semibold leading-snug text-ink">
+            See every line, plus the prioritised roadmap for {platformLabel}.
+          </p>
+        </>
+      )}
+
+      <p className={cn("text-[11px] leading-relaxed text-ink-muted", enhanced ? "mt-3" : "mt-2")}>
         One email. Unsubscribes in a click. You keep the report either way.
       </p>
 
-      <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+      <div
+        className={cn(
+          "grid gap-2 sm:grid-cols-2",
+          enhanced ? "mt-3" : "mt-4 gap-2.5",
+        )}
+      >
         <input
           type="text"
           placeholder="Name (optional)"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="h-10 rounded-lg border border-line bg-surface px-3 text-sm text-ink focus:border-ink focus:outline-none"
+          className={cn(
+            "rounded-lg border border-line bg-surface px-3 text-sm text-ink focus:border-ink focus:outline-none",
+            enhanced ? "h-9" : "h-10",
+          )}
           aria-label="Your name"
           id={`${idPrefix}-name`}
           autoComplete="given-name"
@@ -739,13 +802,17 @@ function EmailGateCard({
           placeholder="Company (optional)"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="h-10 rounded-lg border border-line bg-surface px-3 text-sm text-ink focus:border-ink focus:outline-none"
+          className={cn(
+            "rounded-lg border border-line bg-surface px-3 text-sm text-ink focus:border-ink focus:outline-none",
+            enhanced ? "h-9" : "h-10",
+          )}
           aria-label="Your company"
           id={`${idPrefix}-company`}
           autoComplete="organization"
         />
       </div>
-      <div className="mt-2.5 flex flex-col gap-2 sm:flex-row">
+
+      <div className={cn("flex flex-col gap-2 sm:flex-row", enhanced ? "mt-2" : "mt-3")}>
         <input
           type="email"
           required
@@ -767,12 +834,93 @@ function EmailGateCard({
           {state.status === "submitting" ? "Unlocking..." : "Unlock"}
         </Button>
       </div>
+
       {state.status === "error" ? (
         <p className="mt-2 text-xs font-semibold text-[color:#b23a2f]">
           {state.message}
         </p>
       ) : null}
     </form>
+  );
+}
+
+function ReportPreview({ available }: { available: boolean }) {
+  return (
+    <div className="shrink-0 w-[92px]">
+      {available ? (
+        <Image
+          src="/lead-magnets/cost-of-inaction-report-preview.png"
+          alt="Preview of the Ordron Cost of Inaction Report PDF"
+          width={360}
+          height={480}
+          className="h-auto w-full rounded-xl shadow-float"
+        />
+      ) : (
+        <div className="aspect-[3/4] rounded-xl border border-line bg-ink p-2.5 text-white shadow-float">
+          <div className="h-full rounded-lg border border-white/10 bg-white/[0.04] p-2.5">
+            <p className="text-[8px] font-semibold uppercase tracking-[0.12em] text-white/60">
+              Preview
+            </p>
+            <div className="mt-3 h-1 w-10 rounded-full bg-teal" />
+            <div className="mt-2.5 space-y-1">
+              {[40, 56, 32, 48].map((width) => (
+                <div
+                  key={width}
+                  className="h-1 rounded-full bg-white/18"
+                  style={{ width }}
+                />
+              ))}
+            </div>
+            <div className="mt-3 grid grid-cols-4 items-end gap-1">
+              {[12, 22, 16, 28].map((height) => (
+                <div
+                  key={height}
+                  className="rounded-t-[2px] bg-white/28"
+                  style={{ height }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReportSuccessCard() {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="rounded-2xl border border-teal/30 bg-teal/5 p-5 text-ink animate-hc-fade"
+    >
+      <p className="font-display text-xl font-semibold">
+        Your report is on its way.
+      </p>
+      <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+        Check your inbox in the next 5 minutes. It includes every line of
+        waste, the three priority automations for your stack, and a prioritised
+        roadmap you can walk your CFO through.
+      </p>
+      <div className="mt-5 rounded-2xl bg-surface p-5 shadow-soft">
+        <p className="font-display text-base font-semibold text-ink">
+          Ready for the full diagnostic?
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+          The Automation Roadmap goes deeper. 60 minutes with our team, a
+          written report back within 48 hours, and a scoped project cost. Yours
+          to keep either way.
+        </p>
+        <div className="mt-4">
+          <Button href={siteConfig.ctas.healthCheck.href} variant="primary" size="md">
+            Book your Roadmap
+          </Button>
+          <p className="mt-2 text-xs text-ink-muted">
+            60 minutes. Written report. Yours to keep.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

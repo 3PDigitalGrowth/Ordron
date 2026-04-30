@@ -40,13 +40,12 @@ export function Hero() {
               a year to manual finance work.
             </h1>
             <p className="mt-6 max-w-[560px] text-pretty text-lg leading-relaxed text-ink-soft">
-              Ordron builds the finance automation infrastructure that runs AP,
-              AR, reconciliations and reporting on autopilot. 130 frameworks
-              across 13 finance platforms, delivered for Australian mid-market
-              businesses.
+              Automate the AP, AR, reconciliations and reporting work draining
+              your team. Built on 130 proven frameworks, tuned to your stack,
+              delivered turnkey for Australian mid-market businesses.
             </p>
 
-            <div className="mt-9 flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col items-start gap-3">
               <Button
                 href={siteConfig.ctas.scorecard.href}
                 variant="primary"
@@ -69,18 +68,17 @@ export function Hero() {
                   />
                 </svg>
               </Button>
-              <Button
+              <p className="text-sm text-ink-muted">
+                5-minute diagnostic. Instant results.
+              </p>
+              <Link
                 href={siteConfig.ctas.healthCheck.href}
-                variant="ghost"
-                size="lg"
+                className="inline-flex items-center text-sm font-semibold text-ink-muted transition-colors hover:text-ink"
               >
-                Book your Roadmap
-              </Button>
+                Or book a full Roadmap diagnostic <span aria-hidden>→</span>
+              </Link>
             </div>
 
-            <p className="mt-5 text-sm text-ink-muted">
-              5-minute diagnostic. Instant results.
-            </p>
           </div>
 
           <div className="relative xl:-mr-10 2xl:-mr-16">

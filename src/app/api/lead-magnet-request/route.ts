@@ -20,6 +20,7 @@ type RequestBody = {
   email?: unknown;
   name?: unknown;
   company?: unknown;
+  role?: unknown;
   source?: unknown;
 };
 
@@ -54,6 +55,7 @@ export async function POST(request: Request) {
     email,
     name: typeof body.name === "string" ? body.name.trim() : null,
     company: company || null,
+    role: typeof body.role === "string" ? body.role.trim() : null,
     source: typeof body.source === "string" ? body.source : "unknown",
     submittedAt: new Date().toISOString(),
     userAgent: request.headers.get("user-agent"),

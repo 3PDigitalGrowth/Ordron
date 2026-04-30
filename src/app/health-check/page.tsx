@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { Eyebrow } from "@/components/ui/eyebrow";
 import { Button } from "@/components/ui/button";
+import { FaqGrid } from "@/components/ui/faq-grid";
 import { HealthCheckButton } from "@/components/health-check/health-check-button";
 import { siteConfig } from "@/lib/site";
 
@@ -535,7 +536,7 @@ export default function HealthCheckPage() {
 
         {/* FAQ */}
         <Section tone="surface" size="md">
-          <Container width="narrow">
+          <Container>
             <div className="max-w-2xl">
               <Eyebrow>Questions finance leaders ask</Eyebrow>
               <h2 className="mt-4 text-balance">
@@ -543,33 +544,11 @@ export default function HealthCheckPage() {
               </h2>
             </div>
 
-            <ul className="mt-12 divide-y divide-line rounded-[28px] border border-line bg-surface">
-              {faqs.map((f, i) => (
-                <li key={f.q}>
-                  <details className="group p-6 sm:p-8" open={i === 0}>
-                    <summary className="flex cursor-pointer items-start justify-between gap-6 font-display text-lg font-semibold text-ink [&::-webkit-details-marker]:hidden">
-                      <span>{f.q}</span>
-                      <span
-                        aria-hidden
-                        className="mt-1 shrink-0 text-ink-muted transition-transform group-open:rotate-45"
-                      >
-                        <svg width="18" height="18" viewBox="0 0 18 18">
-                          <path
-                            d="M9 3v12M3 9h12"
-                            stroke="currentColor"
-                            strokeWidth="1.75"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                      {f.a}
-                    </p>
-                  </details>
-                </li>
-              ))}
-            </ul>
+            <FaqGrid
+              className="mt-12"
+              accent="blue"
+              items={faqs.map((f) => ({ question: f.q, answer: f.a }))}
+            />
           </Container>
         </Section>
 
