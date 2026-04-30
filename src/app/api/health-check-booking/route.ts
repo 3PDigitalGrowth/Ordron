@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
+import { escapeHtml, sendSubmissionEmails } from "@/lib/transactional-email";
+import { siteConfig } from "@/lib/site";
 /*
   Automation Roadmap booking handler.
 
@@ -100,6 +102,46 @@ export async function POST(request: Request) {
     // faith. When Resend is wired in, this try/catch also fires the
     // notification emails and failure handling gets tightened up.
   }
+
+  const adminRows = [
+    { label: "Form", value: "Finance Automation Roadmap (booking request)" },
+    { label: "Name", value: name },
+    { label: "Work email", value: workEmail },
+    { label: "Company", value: company },
+    { label: "Role", value: role },
+    { label: "Revenue band", value: revenue },
+    ...(record.phone ? [{ label: "Phone", value: record.phone }] : []),
+    ...(record.platform ? [{ label: "Platform", value: record.platform }] : []),
+    ...(record.window ? [{ label: "Preferred window", value: record.window }] : []),
+    { label: "Source", value: record.source },
+    { label: "Pain / context", value: pain },
+    { label: "Submitted (UTC)", value: record.submittedAt },
+    ...(record.referer
+      ? [{ label: "Referer", value: record.referer }]
+      : []),
+    ...(record.userAgent
+      ? [{ label: "User agent", value: record.userAgent.slice(0, 500) }]
+      : []),
+  ];
+
+  await sendSubmissionEmails({
+    logContext: "health-check-booking",
+    formTitle: "Finance Automation Roadmap",
+    adminSubject: `[Ordron] Roadmap request: ${name} (${company})`,
+    adminRows,
+    userEmail: workEmail,
+    userSubject: "We received your Roadmap request",
+    userFirstNameSource: name,
+    userLeadText:
+      "Thank you for submitting a Finance Automation Roadmap request. We have your details and will be in touch from hello@ordron.com to align on timing and next steps.",
+    userLeadHtml: `
+      <p style="margin:0;">Thank you for submitting a Finance Automation Roadmap request. We have your details and will be in touch from <a href="mailto:${escapeHtml(siteConfig.email)}" style="color:#00ABFF;font-weight:600;text-decoration:none;">${escapeHtml(siteConfig.email)}</a> to align on timing and next steps.</p>
+    `,
+    userNextSteps: [
+      "Watch for an email from our team with proposed times and any follow-up questions.",
+      "If your timeline is urgent, reply to that message or email hello@ordron.com with your company name in the subject line.",
+    ],
+  });
 
   return NextResponse.json({ ok: true });
 }

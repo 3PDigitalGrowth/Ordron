@@ -16,7 +16,7 @@ type TeamMember = {
 const LEADERS: TeamMember[] = [
   {
     name: "Laith Alamin",
-    role: "Co-founder & CEO",
+    role: "Co-founder",
     photo: "/about/laith.jpg",
     photoAlt:
       "Portrait of Laith Alamin, co-founder and chief executive of Ordron, who sets technical direction and partnerships for the company.",
@@ -28,10 +28,10 @@ const LEADERS: TeamMember[] = [
   },
   {
     name: "Aana Mahajan",
-    role: "Co-founder & COO",
+    role: "Co-founder & CEO",
     photo: "/about/aana.jpg",
     photoAlt:
-      "Portrait of Aana Mahajan, co-founder and chief operating officer of Ordron, who leads operations, delivery and client engagements.",
+      "Portrait of Aana Mahajan, co-founder and chief executive of Ordron, who leads operations, delivery and client engagements.",
     linkedin: "https://www.linkedin.com/in/aana-mahajan/",
     bio: [
       "Aana leads Ordron day to day. Her background in operations, finance systems, and strategic communications means she reads a scope the way the client reads it, not the way engineers want to write it. She owns business development, delivery governance, and the uncomfortable conversations most agencies avoid: pricing, scope creep, when to say no to a project.",

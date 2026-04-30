@@ -1,28 +1,15 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { Resend } from "resend";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { escapeHtml, sendSubmissionEmails } from "@/lib/transactional-email";
 
 /*
   Contact page submission handler.
 
-  Three behaviours layered together:
-
-  1. Validate. Reject malformed, too-short, or honeypot-tripped
-     payloads. Matches the manual-validation style used by the other
-     Ordron capture routes (scorecard-unlock, health-check-booking)
-     so we don't drag in a new runtime dependency.
-
-  2. Log. Append the submission to .data/contact-submissions.jsonl
-     for QA and recovery. Same pattern as the other routes, so a
-     missed Resend dispatch never means a lost lead.
-
-  3. Send. If RESEND_API_KEY is configured, dispatch a plain notice
-     email to CONTACT_INBOX_EMAIL with the user's details and a
-     Reply-To header set to their address. A failure here logs and
-     continues; the visitor always sees success as long as we have
-     their data on disk.
+  1. Validate (rate limit, honeypot, time trap, field rules).
+  2. Log to .data/contact-submissions.jsonl.
+  3. Send branded admin + user emails via Resend when RESEND_API_KEY is set.
 */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,15 +43,6 @@ function str(value: unknown): string {
 function optionalStr(value: unknown): string | null {
   const trimmed = str(value);
   return trimmed.length > 0 ? trimmed : null;
-}
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
 
 export async function POST(request: Request) {
@@ -166,48 +144,42 @@ export async function POST(request: Request) {
     // via email if we can.
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const inbox = process.env.CONTACT_INBOX_EMAIL ?? "hello@ordron.com";
+  const adminRows = [
+    { label: "Form", value: "Contact page" },
+    { label: "Name", value: name },
+    { label: "Email", value: email },
+    ...(record.company ? [{ label: "Company", value: record.company }] : []),
+    { label: "Message", value: message },
+    { label: "Submitted (UTC)", value: record.submittedAt },
+    { label: "IP", value: ip },
+    ...(record.referer
+      ? [{ label: "Referer", value: record.referer }]
+      : []),
+    ...(record.userAgent
+      ? [{ label: "User agent", value: record.userAgent.slice(0, 500) }]
+      : []),
+  ];
 
-  if (apiKey) {
-    try {
-      const resend = new Resend(apiKey);
-      const fromAddress =
-        process.env.CONTACT_FROM_EMAIL ?? "Ordron Contact <hello@ordron.com>";
-      await resend.emails.send({
-        from: fromAddress,
-        to: inbox,
-        replyTo: email,
-        subject: `Contact form: ${name}${company ? ` (${company})` : ""}`,
-        text: [
-          `From: ${name} <${email}>`,
-          company ? `Company: ${company}` : null,
-          "",
-          message,
-          "",
-          `Submitted: ${record.submittedAt}`,
-          `IP: ${ip}`,
-        ]
-          .filter(Boolean)
-          .join("\n"),
-        html: `
-          <table role="presentation" style="font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.55;color:#1a2230;">
-            <tr><td><strong>From:</strong> ${escapeHtml(name)} &lt;<a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>&gt;</td></tr>
-            ${company ? `<tr><td><strong>Company:</strong> ${escapeHtml(company)}</td></tr>` : ""}
-            <tr><td style="padding-top:14px;white-space:pre-wrap;">${escapeHtml(message)}</td></tr>
-            <tr><td style="padding-top:18px;font-size:12px;color:#66727f;">Submitted ${record.submittedAt} &middot; IP ${escapeHtml(ip)}</td></tr>
-          </table>
-        `,
-      });
-    } catch (err) {
-      console.error("[contact] resend dispatch failed", err);
-      // Don't fail the request: we already saved it to disk.
-    }
-  } else {
-    console.warn(
-      "[contact] RESEND_API_KEY not set, submission logged to .data only",
-    );
-  }
+  await sendSubmissionEmails({
+    logContext: "contact",
+    formTitle: "Contact form",
+    adminSubject: `[Ordron] Contact: ${name}${company ? ` (${company})` : ""}`,
+    adminRows,
+    userEmail: email,
+    userSubject: "We received your message",
+    userFirstNameSource: name,
+    userLeadText:
+      "Thanks for getting in touch. We received your message and will reply from our team inbox. A copy of what you sent is at the end of this email for your records.",
+    userLeadHtml: `
+      <p style="margin:0;">Thanks for getting in touch. We received your message and will reply from our team inbox.</p>
+      <p style="margin:16px 0 0;">For your records, here is what you sent:</p>
+      <div style="margin:14px 0 0;padding:16px 18px;background:#F7F9FB;border-radius:14px;border:1px solid #E5EAF0;font-size:15px;line-height:1.55;color:#0B1825;white-space:pre-wrap;">${escapeHtml(message)}</div>
+    `,
+    userNextSteps: [
+      "We read every message. Expect a reply within one Australian business day, often sooner.",
+      "If your matter is urgent, email hello@ordron.com with your company name in the subject line.",
+    ],
+  });
 
   return NextResponse.json({ ok: true });
 }
