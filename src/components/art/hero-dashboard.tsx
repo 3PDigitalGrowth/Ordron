@@ -38,7 +38,7 @@ export function HeroDashboard({ className }: HeroDashboardProps) {
         width={1024}
         height={967}
         priority
-        sizes="(min-width: 1280px) 720px, (min-width: 1024px) 560px, 100vw"
+        sizes="(min-width: 1280px) 660px, (min-width: 1024px) 460px, 100vw"
         className="block h-auto w-full select-none"
       />
     </div>

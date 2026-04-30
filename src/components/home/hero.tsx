@@ -22,7 +22,7 @@ export function Hero() {
       />
 
       <Container width="wide">
-        <div className="grid items-center gap-14 xl:grid-cols-[minmax(0,1fr)_minmax(0,700px)] xl:gap-16">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,460px)] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,660px)] xl:gap-16">
           <div>
             <Eyebrow>For CFOs and finance leaders</Eyebrow>
             <h1
@@ -81,7 +81,7 @@ export function Hero() {
 
           </div>
 
-          <div className="relative xl:-mr-10 2xl:-mr-16">
+          <div className="relative xl:-mr-10 2xl:-mr-16 lg:self-center">
             <HeroDashboard />
           </div>
         </div>
