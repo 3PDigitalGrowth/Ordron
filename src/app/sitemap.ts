@@ -5,12 +5,12 @@ import { caseStudies } from "@/lib/case-studies";
 import { guides } from "@/data/guides";
 
 /**
- * Single-source sitemap. Static routes are listed by hand. Dynamic
- * routes are derived from the canonical data files so adding a
- * platform, guide or case study requires no sitemap edit.
+ * XML sitemap at `/sitemap.xml` (Next.js MetadataRoute). Declared in
+ * `robots.ts` as the canonical sitemap for crawlers.
  *
- * Priorities and changeFrequency reflect editorial value, not perfect
- * crawl tuning. Search engines treat these as hints, not directives.
+ * Static routes are listed explicitly. Dynamic routes come from
+ * `platforms`, `guides` and `case-studies` so new hubs do not need a
+ * sitemap edit. Priorities and changeFrequency are hints only.
  */
 
 type Entry = MetadataRoute.Sitemap[number];
@@ -58,10 +58,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [
+  const entries: Entry[] = [
     ...staticRoutes,
     ...platformRoutes,
     ...guideRoutes,
     ...caseStudyRoutes,
   ];
+
+  entries.sort((a, b) => a.url.localeCompare(b.url, "en-AU"));
+
+  return entries;
 }
