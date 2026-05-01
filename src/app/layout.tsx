@@ -45,6 +45,18 @@ export default function RootLayout({
       lang="en-AU"
       className={`${sora.variable} ${commissioner.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wk2da3rc31");`,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-surface text-ink">
         <HealthCheckDialogProvider>{children}</HealthCheckDialogProvider>
       </body>
