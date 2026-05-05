@@ -70,6 +70,16 @@ export async function POST(request: Request) {
 
   const result = calculate(rawInputs);
 
+  const platformLabel =
+    result.platform?.name ??
+    (result.inputs.platformSlug === "other"
+      ? "Other / generic stack"
+      : result.inputs.platformSlug);
+
+  const automationSummary = result.automations
+    .map((a) => `${a.name} (${a.id})`)
+    .join("\n");
+
   const referer = request.headers.get("referer");
 
   const record = {
@@ -115,14 +125,21 @@ export async function POST(request: Request) {
     { label: "Email", value: email },
     ...(record.name ? [{ label: "Name", value: record.name }] : []),
     ...(record.company ? [{ label: "Company", value: record.company }] : []),
+    { label: "Team size (FTE)", value: String(result.inputs.teamSize) },
+    { label: "Weekly invoice volume", value: String(result.inputs.weeklyInvoices) },
+    { label: "Month-end close (days)", value: String(result.inputs.closeDays) },
+    {
+      label: "Platform",
+      value: `${platformLabel} (slug: ${result.inputs.platformSlug})`,
+    },
     { label: "Source / embed", value: record.source },
     ...(referer ? [{ label: "Referer", value: referer }] : []),
     { label: "Modelled annual manual cost", value: wasteLine },
     { label: "Modelled annual capture (automation)", value: savingsLine },
     { label: "Modelled payback (weeks)", value: String(result.paybackWeeks) },
     {
-      label: "Suggested automation IDs",
-      value: record.automations.join(", ") || "(none)",
+      label: "Suggested automations",
+      value: automationSummary || "(none)",
     },
     { label: "Submitted (UTC)", value: record.submittedAt },
     ...(record.userAgent
@@ -130,7 +147,30 @@ export async function POST(request: Request) {
       : []),
   ];
 
-  const inputsBlock = `
+  const inputsSummaryBlock = `
+    <p style="margin:20px 0 8px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#687B89;">Sliders and selections (verbatim)</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin-bottom:20px;border:1px solid #E5EAF0;border-radius:14px;overflow:hidden;">
+      <tr>
+        <td style="padding:12px 16px 12px 0;border-bottom:1px solid #E5EAF0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#687B89;width:200px;">Field</td>
+        <td style="padding:12px 0;border-bottom:1px solid #E5EAF0;font-size:15px;line-height:1.55;color:#0B1825;">Value</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px 12px 0;border-bottom:1px solid #E5EAF0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#687B89;">Team size (FTE)</td>
+        <td style="padding:12px 0;border-bottom:1px solid #E5EAF0;font-size:15px;color:#0B1825;">${escapeHtml(String(result.inputs.teamSize))}</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px 12px 0;border-bottom:1px solid #E5EAF0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#687B89;">Weekly invoice volume</td>
+        <td style="padding:12px 0;border-bottom:1px solid #E5EAF0;font-size:15px;color:#0B1825;">${escapeHtml(String(result.inputs.weeklyInvoices))}</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px 12px 0;border-bottom:1px solid #E5EAF0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#687B89;">Month-end close (days)</td>
+        <td style="padding:12px 0;border-bottom:1px solid #E5EAF0;font-size:15px;color:#0B1825;">${escapeHtml(String(result.inputs.closeDays))}</td>
+      </tr>
+      <tr>
+        <td style="padding:12px 16px 12px 0;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#687B89;">Platform</td>
+        <td style="padding:12px 0;font-size:15px;color:#0B1825;">${escapeHtml(platformLabel)} <span style="color:#687B89;font-size:13px;">(${escapeHtml(result.inputs.platformSlug)})</span></td>
+      </tr>
+    </table>
     <p style="margin:20px 0 8px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#687B89;">Calculator inputs (JSON)</p>
     <pre style="margin:0;padding:14px 16px;background:#F7F9FB;border:1px solid #E5EAF0;border-radius:14px;font-size:12px;line-height:1.45;white-space:pre-wrap;word-break:break-word;">${escapeHtml(inputsJson)}</pre>
   `;
@@ -140,7 +180,7 @@ export async function POST(request: Request) {
     formTitle: "Cost of Inaction · calculator unlock",
     adminSubject: `[Ordron] Calculator unlock: ${email}`,
     adminRows,
-    adminDetailHtml: inputsBlock,
+    adminDetailHtml: inputsSummaryBlock,
     userEmail: email,
     userSubject: "Thank you for unlocking your Cost of Inaction breakdown",
     userFirstNameSource: record.name,

@@ -286,6 +286,39 @@ export type ScorecardResult = {
   pillarScores: PillarScore[];
 };
 
+/** Row used for admin email notifications and lead logs. */
+export type DiagnosticSelectionRow = {
+  questionNumber: number;
+  pillarShort: string;
+  prompt: string;
+  selectedLabel: string;
+  /** Answer score 0 to 4; 0 when unanswered. */
+  points: number;
+};
+
+/**
+ * Maps stored answers (question id -> option score) to human-readable rows
+ * for CRM-style admin emails.
+ */
+export function describeDiagnosticSelections(
+  answers: Record<number, number>,
+): DiagnosticSelectionRow[] {
+  return questions.map((q, index) => {
+    const points = answers[q.id];
+    const opt =
+      points === undefined
+        ? undefined
+        : q.options.find((o) => o.score === points);
+    return {
+      questionNumber: index + 1,
+      pillarShort: pillars[q.pillar].short,
+      prompt: q.prompt,
+      selectedLabel: opt?.label ?? "(not answered)",
+      points: typeof points === "number" ? points : 0,
+    };
+  });
+}
+
 export function scoreAnswers(
   answers: Record<number, number>,
 ): ScorecardResult {

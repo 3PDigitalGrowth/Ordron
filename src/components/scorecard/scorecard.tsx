@@ -143,6 +143,7 @@ export function Scorecard() {
       {stage === "result" && result && (
         <Result
           result={result}
+          answers={answers}
           unlock={unlock}
           setUnlock={setUnlock}
           onReset={handleReset}
@@ -434,11 +435,13 @@ const bandToneMap: Record<
 
 function Result({
   result,
+  answers,
   unlock,
   setUnlock,
   onReset,
 }: {
   result: ScorecardResult;
+  answers: Record<number, number>;
   unlock: UnlockState;
   setUnlock: (s: UnlockState) => void;
   onReset: () => void;
@@ -533,6 +536,7 @@ function Result({
         {!unlocked && (
           <UnlockOverlay
             result={result}
+            answers={answers}
             unlock={unlock}
             setUnlock={setUnlock}
           />
@@ -770,10 +774,12 @@ function UnlockedReport({
 
 function UnlockOverlay({
   result,
+  answers,
   unlock,
   setUnlock,
 }: {
   result: ScorecardResult;
+  answers: Record<number, number>;
   unlock: UnlockState;
   setUnlock: (s: UnlockState) => void;
 }) {
@@ -800,6 +806,7 @@ function UnlockOverlay({
           company,
           total: result.total,
           band: result.band.id,
+          answers,
           pillars: result.pillarScores.map((p) => ({
             id: p.pillar.id,
             raw: p.raw,
