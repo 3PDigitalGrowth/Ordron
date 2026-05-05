@@ -8,6 +8,7 @@ import {
   bands,
   describeDiagnosticSelections,
   questions,
+  type DiagnosticSelectionRow,
 } from "@/lib/scorecard";
 /*
   Automation Diagnostic email-unlock handler.
