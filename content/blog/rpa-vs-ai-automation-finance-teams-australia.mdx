@@ -1,0 +1,305 @@
+---
+title: "RPA vs AI Automation for Finance Teams: What Australian CFOs Need to Know in 2026"
+slug: "rpa-vs-ai-automation-finance-teams-australia"
+date: "2026-05-06"
+author: "Ordron"
+readTime: "27 min read"
+metaTitle: "RPA vs AI Automation for Finance Teams | Ordron"
+metaDescription: "Australian CFOs: understand the real difference between RPA and AI automation for finance, which processes suit each, and how to build a hybrid roadmap that delivers ROI."
+primaryKeyword: "RPA vs AI automation finance"
+keywords:
+  - "robotic process automation vs artificial intelligence finance"
+  - "RPA vs AI accounts payable"
+  - "intelligent automation finance teams Australia"
+  - "AI automation accounting Australia"
+  - "RPA finance automation comparison"
+  - "machine learning finance processes"
+tags:
+  - "finance automation"
+  - "RPA"
+  - "AI automation"
+  - "accounts payable"
+  - "Australian CFO"
+faqSchema:
+  - question: "What is the cost difference between RPA and AI automation for an Australian finance team?"
+    answer: "RPA implementations for a contained finance process typically range from $15,000 to $80,000 AUD depending on complexity and integrations. AI implementations start higher, generally $40,000 to $200,000 AUD, because they require data preparation, model training, and validation phases. The ROI comparison is most favourable for RPA in Year 1 and for AI from Year 2 onward, once the model is trained and operating at full performance."
+  - question: "Does RPA become obsolete as AI improves?"
+    answer: "No. RPA and AI solve fundamentally different problems. RPA is the right tool for deterministic, rules-based workflows requiring 100 per cent accuracy and full auditability, such as STP lodgement or bank reconciliation matching. AI does not replace this capability. What is changing is that intelligent automation platforms increasingly combine both in the same workflow, but both capabilities remain essential."
+  - question: "Which finance processes should we automate first?"
+    answer: "Start with the process that has the highest volume, the most structured inputs, and the lowest exception rate. For most Australian mid-market finance teams, that is either accounts payable invoice data entry or bank reconciliation matching. Both deliver measurable ROI within 8-12 weeks and generate the clean transaction data that AI deployments will subsequently need."
+  - question: "What skills does the finance team need to support automation?"
+    answer: "For RPA, you need at least one team member who can document process logic clearly and liaise with the implementation partner on exception handling design. You do not need developers. For AI, you benefit from someone who understands data quality concepts and can interpret model performance metrics. Neither technology requires the finance team to become technologists, but both require a dedicated process owner and quality controller."
+  - question: "How accurate is AI automation for finance processes, and what are the risks?"
+    answer: "Well-trained AI models on finance tasks typically achieve 85-97 per cent accuracy depending on the use case and data quality. The primary risks are model drift, training data bias, and explainability gaps. All three are manageable with proper implementation design and ongoing monitoring. Human-in-the-loop review for high-value or high-risk transactions is standard practice."
+  - question: "How does Australian data sovereignty affect AI automation choices?"
+    answer: "Under the Australian Privacy Act, personal financial data must be handled in compliance with the Australian Privacy Principles. For cloud-based AI services, this means confirming that data is processed and stored in Australian-region infrastructure or in an approved jurisdiction. Always obtain written confirmation of data residency before deployment and include it as a contractual obligation."
+  - question: "Can AI and RPA automation integrate with Xero and MYOB?"
+    answer: "Yes, both integrate well with current versions of Xero and MYOB. Xero's RESTful API supports real-time data access and is a strong integration target. MYOB's API supports core transaction data types in AccountRight and Business versions. For older on-premise MYOB versions, integration may require an intermediary layer. Always scope integration requirements explicitly in your project discovery phase."
+  - question: "How do we measure the success of a finance automation programme?"
+    answer: "Measure against five KPIs from day one: processing time per transaction, error rate, exception rate, cost per transaction, and cycle time. Establish baseline measurements before deployment and track monthly for the first six months. Secondary measures include staff satisfaction, audit trail completeness, and compliance incident rate."
+draft: false
+---
+
+## Introduction
+
+If you have sat through a vendor demo in the last 18 months, you have almost certainly heard robotic process automation and artificial intelligence used interchangeably. They are not the same thing. Conflating them leads to mis-scoped projects, blown budgets, and finance teams left wondering why their "AI transformation" still requires three staff members to handle exceptions every Monday morning.
+
+Australian finance leaders are under real pressure right now. The ABS reports that labour costs in the professional services and finance sector rose by 4.8 per cent in 2025, and the mid-market in particular is feeling the squeeze between enterprise-grade tooling they cannot afford to implement and spreadsheet-driven processes they cannot afford to keep. The decision is not simply "should we automate" but "what type of automation, applied where, in what order", and getting that sequence wrong is expensive.
+
+This guide gives you a definitive, no-fluff comparison of RPA and AI automation in a finance context. It covers where each technology genuinely wins, where the hybrid model outperforms both in isolation, and a practical 90-day implementation roadmap built around the Australian market, Xero, MYOB, SAP, ATO compliance, and all. By the end, you will have a decision framework you can take into your next leadership meeting.
+
+---
+
+## Key Takeaways
+
+- RPA excels at structured, rule-based, repetitive finance tasks: invoice data entry, bank file imports, reconciliation matching, and ERP data migration.
+- AI handles unstructured data, probabilistic judgement, exception handling, contract analysis, and risk scoring where rules alone cannot produce a reliable output.
+- Most Australian mid-market finance teams benefit from both in sequence: RPA first for fast ROI, AI layered on top for compounding, long-term value.
+- Starting with the wrong tool for the wrong process is the single most common reason automation projects fail to deliver on their business case.
+- Australian compliance requirements, including ATO single touch payroll, GST reporting, and data sovereignty under the Privacy Act, add specific constraints that generic vendor guidance does not address.
+- A structured health check of your current processes before selecting any platform is essential, not optional.
+
+---
+
+
+<CTA slot="primary" />
+
+## Summary Table: RPA vs AI Automation for Finance
+
+| Dimension | RPA | AI / Intelligent Automation |
+|---|---|---|
+| **Best-fit processes** | Structured, rule-based (invoice entry, bank imports, payroll file transfers) | Unstructured data, exceptions, pattern recognition, predictions |
+| **Setup cost (mid-market AU)** | $15,000 - $80,000 AUD depending on process complexity | $40,000 - $200,000+ AUD; higher for custom model training |
+| **Time to value** | 6 - 12 weeks for a contained process | 3 - 9 months; longer if data preparation is required |
+| **Accuracy on clean data** | 99%+ (deterministic) | 85 - 97% depending on training data quality |
+| **Handles exceptions?** | No, escalates or fails | Yes, core strength |
+| **Scales with volume** | Linearly (more bots for more volume) | Sub-linearly once model is trained |
+| **Requires structured input?** | Yes, breaks on format changes | No, designed for variability |
+| **Australian vendor availability** | Strong: UiPath, Automation Anywhere, Microsoft Power Automate | Growing: Microsoft Copilot, AWS AI services, local ISVs including Ordron |
+| **Xero / MYOB integration** | Native or API-based; well-supported | API-based; requires configuration |
+| **Regulatory fit (ATO, ASIC)** | High, deterministic outputs are auditable | High when outputs are logged and explainable |
+| **Data sovereignty risk** | Low if on-premise or AU-region cloud | Moderate, check model hosting location |
+
+---
+
+## Article Body
+
+### 1. What RPA and AI Actually Mean in a Finance Context
+
+Before comparing the two, it is worth being precise about definitions, because vendor marketing has blurred them almost beyond recognition.
+
+**Robotic Process Automation** is software that mimics human interactions with digital interfaces. An RPA bot logs into a system, reads data from a defined field, copies it to another system, and moves on. It does exactly what it is programmed to do. No more, no less. If the invoice arrives in a format the bot was not programmed to handle, the bot stops and raises an exception. RPA is deterministic: given the same input, it will always produce the same output. That is both its greatest strength and its hard ceiling.
+
+In a finance context, RPA is the technology behind automated bank reconciliation matching, payroll file generation, accounts payable data entry from structured PDFs, and ERP-to-ERP data migration. It does not "understand" what it is doing. It follows a script.
+
+**Artificial Intelligence** in a finance context covers a spectrum of technologies: machine learning models that identify patterns in historical data, natural language processing (NLP) that reads and interprets unstructured text such as contracts or supplier emails, optical character recognition (OCR) enhanced with AI for variable-format documents, and large language models (LLMs) that can reason across documents. The key distinction is that AI produces probabilistic outputs. It is making a prediction based on patterns, not executing a deterministic rule.
+
+When a finance team uses AI to process invoices, the system is not just reading a field, it is interpreting layout, inferring line-item categories, flagging anomalies against historical patterns, and routing exceptions intelligently. When AI is applied to contract analysis, it reads unstructured legal text and extracts payment terms, penalty clauses, and renewal dates without a human having to define every possible variation in advance.
+
+**Why the distinction matters in practice:** A finance director at a Melbourne-based logistics company once told me they had invested in what a vendor called an "AI-powered AP solution" only to discover it was a basic RPA bot with a fixed template library. When their top three suppliers changed invoice formats in the same quarter, the bot failed on all three simultaneously. Understanding what you are buying is not a technical nicety, it is a commercial necessity.
+
+**Intelligent automation** is the term used when RPA and AI are combined in a single workflow. The RPA layer handles the structured, repetitive movement of data. The AI layer handles interpretation, exception routing, and prediction. Together, they cover the full range of finance process automation needs.
+
+---
+
+### 2. Where RPA Wins: Five Finance Processes That Reward Rule-Based Automation
+
+RPA delivers its highest ROI on processes that share four characteristics: high volume, structured inputs, low exception rates, and stable rules. Finance departments are full of them.
+
+**Process 1: Accounts Payable Invoice Data Entry**
+
+This is the most commonly automated finance process in Australia for a reason. When suppliers send invoices in a consistent, structured format (a fixed-template PDF or an e-invoice via Peppol), RPA can capture header data, line items, GST amounts, and purchase order references with 99%+ accuracy. The Ordron [logistics AP and OCR case study](https://ordron.com/case-studies/logistics-ap-ocr) documents exactly this: a logistics firm processing 1,200 supplier invoices per month reduced manual data entry time by 87 per cent within eight weeks of deployment. The key was that the majority of invoices came from a defined supplier pool with consistent templates.
+
+Where RPA alone breaks down is when 15-20 per cent of invoices arrive in variable formats, handwritten delivery dockets, scanned invoices with inconsistent layouts, or email-based invoices with data embedded in the body text. That is the threshold at which AI augmentation becomes necessary.
+
+**Process 2: Bank Reconciliation Matching**
+
+Automating the matching of bank statement transactions to general ledger entries is a high-value, low-risk RPA application. The rules are clear: match on amount, date, and reference. For transactions that match perfectly, RPA handles the entire workflow. Exceptions (partial payments, timing differences, split transactions) are flagged for human review. Ordron's [reconciliations automation guide](https://ordron.com/guides/reconciliations-automation) outlines a typical implementation where 70-80 per cent of transactions are matched automatically, reducing month-end close time from three days to under one day.
+
+**Process 3: Legacy ERP Migration and Data Transfer**
+
+Moving structured data between ERP systems, extracting from an old MYOB instance, transforming to the schema of a new NetSuite or SAP environment, and loading in bulk, is a textbook RPA use case. The Ordron [logistics legacy ERP RPA case study](https://ordron.com/case-studies/logistics-legacy-erp-rpa) outlines a migration project where RPA bots processed over 40,000 historical transaction records, reducing what would have been a six-week manual effort to under four days, with a validation pass that caught 312 data integrity issues that a purely manual migration would likely have missed entirely.
+
+**Process 4: Payroll File Generation and STP Lodgement**
+
+Australia's Single Touch Payroll Phase 2 requirements under the ATO create a highly structured, rules-based reporting obligation. Generating the payroll event files, validating them against ATO schema requirements, and submitting them through a compliant channel is exactly the kind of deterministic, repeatable process where RPA delivers reliable automation. Errors in STP reporting carry real penalties, so the auditability of RPA (you can trace exactly what the bot did at each step) is also a compliance advantage.
+
+**Process 5: Inter-Company Reconciliations and Reporting Consolidation**
+
+For Australian businesses with multiple entities, pulling trial balances from subsidiary systems, applying intercompany elimination rules, and consolidating into a group reporting pack is time-consuming and error-prone when done manually. The rules are complex but stable, they do not change frequently. RPA handles this well, with human review focused on the exceptions rather than the mechanical extraction and calculation.
+
+For a full breakdown of which AP processes suit automation and at what stage, see the Ordron [accounts payable automation guide](https://ordron.com/guides/accounts-payable-automation).
+
+---
+
+### 3. Where AI Wins: Exception Handling, Contract Analysis, and Risk Scoring
+
+AI earns its investment on processes where the inputs are variable, the rules are ambiguous, or the value comes from pattern recognition across large datasets rather than deterministic execution.
+
+**Exception Handling in Accounts Payable**
+
+In a typical AP workflow, the RPA bot handles the 80 per cent of invoices that match cleanly. The other 20 per cent represent the real cost: invoices with no purchase order, price discrepancies, duplicate submissions, missing GST fields, or suppliers who have changed their bank details (a major fraud risk in Australia). AI models trained on historical exception data can categorise exceptions, predict which are likely to be genuine errors versus fraud, and route them to the right person with context already attached. This is categorically different from what an RPA bot can do.
+
+**Contract Analysis and Obligation Extraction**
+
+Finance teams are often responsible for tracking payment terms, early payment discounts, penalty clauses, and auto-renewal dates across dozens or hundreds of supplier and customer contracts. Reading and extracting this information manually is slow, inconsistent, and a genuine source of financial risk. AI-powered contract analysis using NLP can process a contract in seconds, extract structured data fields, and flag anomalies or high-risk clauses. The Ordron [legal AI contracts case study](https://ordron.com/case-studies/legal-ai-contracts) documents a professional services firm that reduced contract review time by 73 per cent and recovered over $180,000 AUD in missed early-payment discounts in the first year by having AI surface discount opportunities that manual review had been missing.
+
+**Risk Scoring and Anomaly Detection**
+
+Machine learning models are well-suited to the task of scoring financial transactions, supplier relationships, or customer accounts for risk. Rather than applying a fixed rule ("flag any invoice over $50,000"), an AI model learns the patterns associated with fraudulent or erroneous transactions from historical data and assigns a risk score in real time. This is especially relevant for Australian financial services firms operating under ASIC and APRA oversight, where demonstrating a systematic approach to financial risk is a regulatory expectation. The Ordron [financial services risk AI case study](https://ordron.com/case-studies/financial-services-risk-ai) details how a mid-market financial services firm implemented a transaction risk scoring model that identified anomalies across 2.4 million transactions monthly, surfacing issues that rule-based systems had consistently missed.
+
+**Cash Flow Forecasting and Predictive Analytics**
+
+AI excels at synthesising historical payment behaviour, seasonal patterns, outstanding receivables, and macroeconomic signals to produce cash flow forecasts that are materially more accurate than spreadsheet-based models. McKinsey's research on AI in finance functions found that companies using ML-based forecasting reduced forecast error rates by 30-50 per cent compared to traditional methods. For Australian businesses managing working capital through the quarterly BAS lodgement cycle, more accurate forecasting has a direct dollar value.
+
+**Preparing Data for AI: The PE Analytics Example**
+
+AI only performs as well as the data it is trained on. This is not a caveat, it is a foundational project consideration. The Ordron [PE analytics AI-ready case study](https://ordron.com/case-studies/pe-analytics-ai-ready) illustrates a private equity firm that spent the first phase of their automation programme cleaning and structuring their portfolio company financial data before any AI model was deployed. The result was a dramatically shorter model training cycle and significantly higher accuracy in their reporting automation. Finance leaders who skip this step and jump straight to AI deployment consistently encounter the same outcome: poor model performance and a lengthy remediation phase.
+
+---
+
+### 4. The Hybrid Model: How Leading Australian Finance Teams Layer RPA Then AI
+
+The most effective automation programmes in Australian mid-market finance do not choose between RPA and AI. They sequence them.
+
+The logic is straightforward. RPA delivers faster time-to-value (6-12 weeks versus 3-9 months for AI), requires less data preparation, and produces immediately measurable ROI in the form of hours saved and error rates reduced. Starting with RPA also generates the structured, clean data that AI models subsequently need to perform well. The RPA phase is, in effect, the data infrastructure investment for the AI phase.
+
+**Phase 1: RPA Foundation (Months 1-3)**
+
+Identify the two or three highest-volume, most structured finance processes. Invoice data entry and bank reconciliation are the standard starting points. Deploy RPA bots, establish exception reporting, and measure baseline performance against a pre-automation benchmark. At this stage, the team is also building familiarity with automation tooling and workflow discipline.
+
+**Phase 2: Data Enrichment and Cleaning (Months 3-6)**
+
+The RPA bots are now generating structured, timestamped transaction logs. Use this period to review data quality, standardise supplier master data, clean up historical records, and begin mapping the exception categories that the bots are escalating. This data is the training fuel for the AI layer.
+
+**Phase 3: AI Layer Deployment (Months 6-12)**
+
+With clean data and a clear map of exceptions, deploy AI models to handle the use cases that RPA cannot: variable invoice formats, exception triage, risk scoring, contract analysis, or cash flow forecasting. The AI sits on top of the RPA workflow, it handles the hard cases, while the bot handles the easy ones.
+
+**Phase 4: Continuous Improvement (Month 12 onward)**
+
+Both layers are monitored against performance KPIs. AI models are retrained as patterns shift. RPA bots are updated as supplier or ERP formats change. The finance team transitions from data processors to reviewers and analysts, focusing human effort on the judgement calls that genuinely require it.
+
+This sequenced approach is the reason Ordron's engagements begin with a [finance automation health check](https://ordron.com/health-check) rather than a technology recommendation. The right tool depends entirely on what processes you have, what your data quality looks like, and what business outcome you are optimising for.
+
+---
+
+### 5. Decision Framework: How CFOs Should Choose by Process Type
+
+Rather than choosing a technology and then looking for processes to apply it to, the correct approach is to start with the process and work backwards to the technology. The following framework helps structure that decision.
+
+**Step 1: Classify the process inputs**
+
+Are the inputs structured (fixed-format PDFs, CSV files, database records with consistent schema) or unstructured (emails, scanned documents, contracts, verbal instructions, variable-format invoices)? If structured, RPA is the primary candidate. If unstructured, AI is required.
+
+**Step 2: Assess the rule stability**
+
+Can the process logic be written as a complete, stable set of rules that will not change frequently? Tax rules, payment terms, and reconciliation matching logic are relatively stable. Fraud detection, exception categorisation, and supplier risk assessment are not, they require ongoing learning. Stable rules suit RPA. Dynamic judgement suits AI.
+
+**Step 3: Measure the exception rate**
+
+What percentage of process instances require human judgement? If it is under 10 per cent, RPA with escalation handles it efficiently. If it is consistently above 10-15 per cent, you need AI to triage those exceptions before they overwhelm your human reviewers and negate the automation benefit.
+
+**Step 4: Evaluate data readiness**
+
+Do you have 12-24 months of clean, labelled historical data for the process? If not, AI model training will be slow and inaccurate. Start with RPA while you build the data asset. If you do have quality historical data, AI deployment can proceed concurrently.
+
+**Step 5: Consider integration complexity**
+
+Both RPA and AI need to integrate with your ERP and accounting platforms. In the Australian mid-market, that typically means Xero, MYOB, or SAP. RPA integration is generally more straightforward, it can operate via UI automation or API. AI typically requires API access and, depending on the use case, direct database access for model training. Check your platform's API rate limits and data export capabilities before scoping the project.
+
+For a self-directed version of this framework, the Ordron [automation scorecard](https://ordron.com/scorecard) walks finance leaders through a structured assessment of their current process landscape.
+
+---
+
+### 6. Australian Market Considerations: Compliance, Platforms, and Data Sovereignty
+
+Generic automation content does not account for the specific constraints of operating in the Australian market. Finance leaders here need to consider several factors that are either absent or materially different in other geographies.
+
+**ATO Compliance Requirements**
+
+Australia's tax reporting obligations are highly structured and time-sensitive. GST reporting via BAS lodgements, Single Touch Payroll Phase 2 reporting, Taxable Payments Annual Reports (TPAR) for certain industries, and the ATO's mandatory e-invoicing initiative (based on the Peppol network) all create specific data format and timing requirements. RPA is well-suited to meeting these requirements because the rules are defined, the formats are standardised, and the ATO provides clear technical specifications. AI applications in this space are most valuable in anomaly detection (catching GST coding errors before lodgement) and in managing the data quality issues that cause BAS revisions.
+
+**Privacy Act and Data Sovereignty**
+
+Under the Australian Privacy Act 1988 and the Notifiable Data Breaches scheme, finance teams handling personal information (employee payroll data, customer payment data, contractor tax file numbers) must ensure that data processed by automation tools is handled in compliance with the Act. For cloud-based AI services, this means verifying that data is processed and stored in Australian data centres or in jurisdictions covered by an approved data transfer agreement. Microsoft Azure Australia East, AWS Sydney, and Google Cloud Sydney regions all provide compliant options. However, many AI automation vendors, particularly those offering off-the-shelf SaaS products, route data through US or European infrastructure by default. Always confirm data residency in writing before signing a contract.
+
+**Platform Ecosystem: Xero, MYOB, and SAP**
+
+Australia's accounting software landscape is distinctive. Xero, headquartered in Wellington but with its largest market in Australia, holds a dominant position in the small-to-mid market. MYOB retains strong presence in the mid-market, particularly in manufacturing and distribution. SAP is common in larger organisations and those with complex multi-entity structures.
+
+Xero's API is well-documented and actively maintained, making it a solid integration target for both RPA and AI applications. MYOB's API capabilities have improved significantly in recent versions but can be more constrained in older on-premise deployments. SAP's integration landscape is more complex, but both standard SAP APIs and the Business Technology Platform (BTP) provide solid pathways for automation integration.
+
+For a comprehensive overview of automation options within the Australian market context, see the Ordron [finance automation Australia](https://ordron.com/finance-automation-australia) resource.
+
+**ACCC and Fair Trading Considerations**
+
+For finance teams in industries subject to ACCC oversight, retail, financial services, telecommunications, automated pricing, billing, and contract processes need to be designed with compliance in mind from the outset. Automated billing errors at scale can attract ACCC attention quickly, as several Australian retailers discovered when pricing automation errors led to systematic overcharging. Audit trails, exception flags, and human review steps for high-risk outputs are not optional extras; they are compliance requirements.
+
+**Availability of Local Expertise**
+
+One practical advantage of operating in Australia's major metropolitan centres is the growing availability of local automation expertise. The RPA market is mature, with certified practitioners available across Sydney, Melbourne, Brisbane, and Perth. AI implementation expertise is less evenly distributed, with the majority of specialist capability concentrated in Sydney and Melbourne. Remote delivery has improved considerably, but for complex AI implementations involving sensitive financial data, there is a strong argument for working with an Australian-based implementation partner who understands both the technical and regulatory landscape.
+
+---
+
+### 7. Implementation Roadmap: A 90-Day Phased Approach for Australian Finance Teams
+
+The following roadmap is designed for a mid-market Australian finance team (5-20 people, $50M-$500M revenue) implementing automation for the first time. It is deliberately conservative in scope because the most common implementation failure mode is trying to automate too many processes simultaneously.
+
+**Days 1-14: Discovery and Baseline**
+
+Conduct a process inventory. Map every finance process by volume (transactions per month), exception rate (percentage requiring human review), and current time cost (hours per month). Prioritise the two or three processes with the highest volume, lowest exception rate, and clearest rules. Establish a quantitative baseline: record current processing time, error rate, and cost per transaction for each candidate process. This baseline is what you will measure ROI against.
+
+During this phase, also audit your data quality. Pull 90 days of historical transaction data for each candidate process and assess completeness, consistency, and format standardisation. If you identify significant data quality issues, factor remediation time into the project plan.
+
+**Days 15-45: RPA Deployment (Process 1)**
+
+Scope the first automation to a single, contained process. Build the RPA workflow, including the exception handling logic (what the bot does when it encounters a record it cannot process). Test thoroughly against historical data before deploying to live transactions. Run the bot in parallel with the manual process for two weeks, comparing outputs before cutting over fully.
+
+Document the bot's decision logic carefully. This documentation serves two purposes: it is your audit trail for compliance purposes, and it is the foundation for training any AI models you deploy later.
+
+**Days 46-60: Measurement and Iteration**
+
+Measure the bot's performance against baseline. Calculate time saved, error rate change, and cost per transaction. Share results with the broader finance team and leadership. Address any edge cases or exceptions that the initial deployment did not handle. Refine the bot's rules based on the first four weeks of live operation.
+
+**Days 61-75: Second Process Automation**
+
+With one successful deployment behind you, repeat the process for the second priority. The team's confidence and the tooling configuration will make this deployment faster. Typically, a second process can be deployed in 10-14 days once the team is familiar with the platform.
+
+**Days 76-90: AI Readiness Assessment and Planning**
+
+With RPA running on two processes and generating clean, structured data, conduct an AI readiness assessment. Review the exception data generated by the RPA bots over the past 60 days. Which exception categories are most frequent? Which have the most consistent characteristics? These are your AI candidates for Phase 2.
+
+Produce a Phase 2 business case for AI deployment. The ROI calculation at this stage is more nuanced than for RPA, it should account for model training time, data preparation costs, and the longer time-to-value. Deloitte's global RPA survey consistently finds that organisations that invest in a structured Phase 1 RPA programme deliver 40-60 per cent higher ROI on subsequent AI deployments than those that attempt AI without the RPA foundation.
+
+**Beyond 90 Days: Scaling and Optimising**
+
+The 90-day roadmap gets you to a working foundation. The real value compounds over the following 12-24 months as the AI layer is trained on increasingly rich data, more processes are automated, and the finance team's capacity shifts from execution to analysis. CPA Australia's 2025 digital transformation survey found that Australian finance functions which had been running hybrid automation programmes for more than 18 months reported a 35 per cent reduction in time spent on transactional processing and a corresponding increase in time allocated to financial analysis and business partnering.
+
+Gartner's Hyperautomation trends research identifies finance as the function with the highest automation potential across all enterprise departments, with an estimated 80 per cent of finance processes having some automation candidate characteristics. The gap between that potential and what most Australian mid-market teams have deployed today represents a significant competitive opportunity.
+
+MCKinsey research on AI in finance functions estimates that automation and AI together could unlock productivity gains equivalent to 30-40 per cent of finance FTE cost over a five-year horizon for organisations that execute well. The critical qualifier is "execute well", which means choosing the right tool for each process, sequencing deployments intelligently, and investing in data quality before model deployment.
+
+The ACCA's research on automation in accounting found that the primary barrier to adoption among mid-market finance teams is not cost or technology availability but a lack of clarity about where to start. That is a solvable problem, and it is exactly what the structured discovery and prioritisation process described above addresses.
+
+---
+
+
+## References
+
+1. **Deloitte Global Robotic Process Automation Survey**, Deloitte's multi-year global survey tracking RPA adoption rates, ROI outcomes, and implementation lessons across finance functions in large and mid-market organisations. Provides benchmarking data on time-to-value and cost-per-process for RPA deployments.
+
+2. **McKinsey Global Institute: The Age of AI in Finance**, McKinsey's research on AI adoption in corporate finance functions, including quantified productivity gains, adoption barriers, and best-practice implementation patterns. Referenced for the 30-50 per cent forecast error reduction statistic and the 30-40 per cent FTE productivity gain estimate.
+
+3. **ACCA: Professional Accountants, The Future: Drivers of Change and Future Skills**, The Association of Chartered Certified Accountants' research on automation adoption in mid-market accounting and finance teams, including analysis of adoption barriers and the skills transition required for finance professionals in an automated environment.
+
+4. **Gartner: Hyperautomation Technology Trends**, Gartner's annual analysis of the hyperautomation market, covering the convergence of RPA, AI, and process intelligence. Referenced for the 80 per cent finance process automation potential estimate and market sizing data.
+
+5. **CPA Australia: Digital Finance Transformation Survey 2025**, CPA Australia's annual survey of Australian finance professionals covering digital tool adoption, automation maturity, and the productivity impacts reported by teams at different stages of their automation journey. Provides Australian-specific benchmarking data.
+
+6. **Australian Bureau of Statistics: Labour Cost Index, Professional Services Sector**, ABS data on labour cost movements in the Australian professional services and finance sector, providing the economic context for automation investment decisions by Australian CFOs.
+
+---
+
+<CTA slot="inline-form" />
+
