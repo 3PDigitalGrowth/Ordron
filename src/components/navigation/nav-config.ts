@@ -71,7 +71,7 @@ export type LeadMagnetCard = {
   ctaHref: string;
 };
 
-export type DropdownKey = "solutions" | "platforms" | "results";
+export type DropdownKey = "solutions" | "platforms" | "results" | "insights";
 
 export type DropdownDef = {
   key: DropdownKey;
@@ -328,6 +328,63 @@ export const navDropdowns: Record<DropdownKey, DropdownDef> = {
       ctaHref: "/lead-magnets/case-study-proof-pack",
     },
   },
+  insights: {
+    key: "insights",
+    label: "Insights",
+    columns: [
+      {
+        kind: "links",
+        title: "Articles",
+        links: [
+          { label: "Latest articles", href: "/blog" },
+          { label: "AP and AR pieces", href: "/blog" },
+          { label: "Month-end close pieces", href: "/blog" },
+          { label: "Platform deep dives", href: "/blog" },
+        ],
+        seeAll: { label: "All articles", href: "/blog" },
+      },
+      {
+        kind: "links",
+        title: "Deep dive guides",
+        links: [
+          { label: "Accounts payable", href: GUIDE_AP },
+          { label: "Accounts receivable", href: GUIDE_AR },
+          { label: "Reconciliations", href: GUIDE_RECS },
+          { label: "Month-end close", href: GUIDE_CLOSE },
+        ],
+        seeAll: {
+          label: "Browse 130 automations",
+          href: "/guide/automations",
+        },
+      },
+      {
+        kind: "links",
+        title: "Tools and proof",
+        links: [
+          { label: "Cost of Inaction calculator", href: "/cost-of-inaction" },
+          { label: "Automation Diagnostic", href: "/scorecard" },
+          { label: "Case study library", href: "/case-studies" },
+          {
+            label: "Proof pack download",
+            href: "/lead-magnets/case-study-proof-pack",
+          },
+        ],
+        seeAll: {
+          label: "Book your Roadmap session",
+          href: "/health-check",
+        },
+      },
+    ],
+    leadMagnet: {
+      tag: "FREE GUIDE",
+      heading: "13 platforms, 130 automations",
+      description:
+        "Every automation Ordron has shipped, grouped by the problems they solve. The reference catalogue behind the articles.",
+      meta: "Interactive \u00b7 5 min",
+      ctaLabel: "Open the explorer",
+      ctaHref: "/guide/automations",
+    },
+  },
 };
 
 /**
@@ -392,6 +449,9 @@ export function isDropdownActive(
   }
   if (key === "results") {
     return pathname === "/case-studies" || pathname.startsWith("/case-studies/");
+  }
+  if (key === "insights") {
+    return pathname === "/blog" || pathname.startsWith("/blog/");
   }
   return false;
 }

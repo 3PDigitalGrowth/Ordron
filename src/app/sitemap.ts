@@ -3,6 +3,7 @@ import { siteConfig } from "@/lib/site";
 import { platforms } from "@/lib/platforms";
 import { caseStudies } from "@/lib/case-studies";
 import { guides } from "@/data/guides";
+import { getAllPosts } from "@/lib/blog";
 
 /**
  * XML sitemap at `/sitemap.xml` (Next.js MetadataRoute). Declared in
@@ -31,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: url("/finance-automation-australia"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: url("/cost-of-inaction"), lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: url("/guide/automations"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: url("/blog"), lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: url("/about"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: url("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: url("/lead-magnets/case-study-proof-pack"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
@@ -58,11 +60,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Drafts are excluded by `getAllPosts`, so unpublished editor
+  // previews never make it into the sitemap.
+  const blogRoutes: Entry[] = getAllPosts().map((post) => ({
+    url: url(`/blog/${post.slug}`),
+    lastModified: post.date ? new Date(post.date) : now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
   const entries: Entry[] = [
     ...staticRoutes,
     ...platformRoutes,
     ...guideRoutes,
     ...caseStudyRoutes,
+    ...blogRoutes,
   ];
 
   entries.sort((a, b) => a.url.localeCompare(b.url, "en-AU"));

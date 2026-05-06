@@ -39,6 +39,29 @@
   --ordron-steel: #687B89;
   --ordron-steel-light: #AAB9C8;
   --ordron-steel-pale: #C8CFD3;
+
+  /*
+    Blog template brand-token shim.
+    The github_template blog spec (§5) declares its own variable
+    contract (--brand-primary, --brand-accent, etc) so the same
+    template can ship across multiple client sites. Aliasing them
+    onto Ordron's existing tokens lets the spec's CSS contract resolve
+    without introducing a parallel palette.
+    Update these aliases (not the Ordron tokens above) if the spec
+    bumps its variable names.
+  */
+  --brand-primary: var(--ordron-blue);
+  --brand-accent: var(--ordron-blue-deep);
+  --brand-text: var(--ordron-ink);
+  --brand-heading: var(--ordron-ink);
+  --brand-muted: var(--ordron-ink-muted);
+  --brand-bg: var(--ordron-surface);
+  --brand-surface: var(--ordron-surface-2);
+  --brand-border: var(--ordron-line-soft);
+  --brand-cta-bg: var(--ordron-blue);
+  --brand-cta-text: #FFFFFF;
+  --font-heading: var(--font-sora);
+  --font-body: var(--font-commissioner);
 }
 
 @theme inline {

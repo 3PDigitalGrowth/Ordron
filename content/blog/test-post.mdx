@@ -1,0 +1,106 @@
+---
+title: "Test post: every block in one file"
+slug: "test-post"
+date: "2026-05-06"
+author: "Ordron"
+readTime: "5 min read"
+metaTitle: "Test post: every block in one file"
+metaDescription: "A sandbox post for verifying the Ordron blog template renders all components correctly. Not for indexing."
+primaryKeyword: "blog template test"
+keywords:
+  - blog template
+  - sandbox
+  - mdx
+tags:
+  - test
+  - sandbox
+breadcrumb: ["Insights", "Test"]
+draft: true
+faqSchema:
+  - question: "Does the FAQ block render with JSON-LD?"
+    answer: "Yes. The template auto-builds the FAQPage schema from this frontmatter."
+  - question: "Does the slot-based CTA show Ordron-approved copy?"
+    answer: "Yes. The agent picks the slot, the template owns the headline, body, and destination."
+internalLinks:
+  - url: "/health-check"
+    anchor: "Book your Roadmap"
+  - url: "/scorecard"
+    anchor: "Find your automation quick wins"
+references:
+  - title: "Sample reference"
+    url: "https://example.com"
+    note: "Demonstrates the references block"
+  - title: "ABS finance team productivity"
+    url: "https://abs.gov.au"
+---
+
+This is the intro paragraph. It exists to make sure body copy inherits the
+right typography and the `prose-blog` column width feels balanced against
+the headline above.
+
+<KeyTakeaways items={[
+  "Slot-based CTAs render Ordron copy regardless of agent input",
+  "Drafts are excluded from /blog index, sitemap, and related posts",
+  "Detail route still renders so editors can preview safely",
+]} />
+
+## A section heading
+
+Body copy goes here. A second sentence to confirm spacing between paragraphs
+reads well and the column max-width holds at 720px.
+
+A third paragraph for good measure. It should sit comfortably below the
+section heading without crowding the next block.
+
+<Callout type="tip">
+  This is a tip callout. Use it for an inline aside that the reader should
+  remember without breaking flow.
+</Callout>
+
+<Callout type="warning">
+  This is a warning callout. Use it sparingly when something risks costing
+  the reader money or time.
+</Callout>
+
+### A subsection
+
+A short paragraph under a subsection heading to confirm the H3 spacing.
+
+<ComparisonTable
+  headers={["Approach", "Manual", "Automated"]}
+  rows={[
+    ["Time per invoice", "4 to 6 minutes", "Under 30 seconds"],
+    ["Error rate", "3 to 5 percent", "Under 1 percent"],
+    ["Throughput", "150 per FTE per week", "1,200 per FTE per week"],
+  ]}
+  caption="Indicative AP processing benchmarks for a mid-market team."
+/>
+
+<Stats items={[
+  { value: "4 hrs", label: "to 15 min AP cycle" },
+  { value: "85%", label: "less manual entry" },
+  { value: "160 hrs", label: "returned per month" },
+  { value: "10x", label: "throughput uplift" },
+]} />
+
+<CaseStudy
+  industry="Logistics"
+  metric="160+ hrs"
+  metricLabel="returned every month"
+  number={1}
+  quote="The bot does what three people used to do, only it does it overnight and never makes a typo."
+  author="Finance Director, national logistics operator"
+>
+  RPA bot driving a 20-year-old ERP, feeding clean data into Xero. Zero
+  manual data entry across the AP and AR cycles.
+</CaseStudy>
+
+<CTA slot="primary" />
+
+## Closing thoughts
+
+A final body paragraph. It cross-links to the [Roadmap booking](/health-check)
+and the [Diagnostic](/scorecard) so internal-link assertions work even in
+sandbox content.
+
+<CTA slot="inline-form" />

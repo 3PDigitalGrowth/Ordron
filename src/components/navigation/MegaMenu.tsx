@@ -36,11 +36,13 @@ export function MegaMenu() {
     solutions: null,
     platforms: null,
     results: null,
+    insights: null,
   });
   const triggerRefs = useRef<Record<DropdownKey, HTMLButtonElement | null>>({
     solutions: null,
     platforms: null,
     results: null,
+    insights: null,
   });
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -124,6 +126,7 @@ export function MegaMenu() {
       solutions: isDropdownActive("solutions", pathname),
       platforms: isDropdownActive("platforms", pathname),
       results: isDropdownActive("results", pathname),
+      insights: isDropdownActive("insights", pathname),
     }),
     [pathname],
   );
@@ -143,7 +146,12 @@ export function MegaMenu() {
         firstLink?.focus();
       });
     } else if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-      const keys: DropdownKey[] = ["solutions", "platforms", "results"];
+      const keys: DropdownKey[] = [
+        "solutions",
+        "platforms",
+        "results",
+        "insights",
+      ];
       const idx = keys.indexOf(key);
       const nextIdx =
         event.key === "ArrowRight"
@@ -190,7 +198,12 @@ export function MegaMenu() {
     }
   }
 
-  const dropdownKeys: DropdownKey[] = ["solutions", "platforms", "results"];
+  const dropdownKeys: DropdownKey[] = [
+    "solutions",
+    "platforms",
+    "results",
+    "insights",
+  ];
 
   return (
     <div
