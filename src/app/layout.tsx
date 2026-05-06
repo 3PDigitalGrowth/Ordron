@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Commissioner } from "next/font/google";
 import "./globals.css";
 import { HealthCheckDialogProvider } from "@/components/health-check/health-check-dialog";
+import { Analytics } from "@vercel/analytics/next";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -71,6 +72,7 @@ gtag('config', 'G-X0V2RGZ9WH');`,
       </head>
       <body className="flex min-h-full flex-col bg-surface text-ink">
         <HealthCheckDialogProvider>{children}</HealthCheckDialogProvider>
+        <Analytics />
       </body>
     </html>
   );
